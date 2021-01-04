@@ -1,0 +1,26 @@
+.main{
+  display: flex;
+  flex-direction: row;
+  width:505px ;
+  border: solid black 1px;
+}
+.table {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  border: solid black 1px
+}
+.id {
+  width: 40px;
+}
+.name {
+  width: 200px;
+}
+.category {
+  width: 80px;
+}
+.status {
+  width: 60px;
+}
+
+
