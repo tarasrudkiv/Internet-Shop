@@ -1,0 +1,25 @@
+<form #computerForm="ngForm"  >
+  <p>User name</p>
+  <input type="text" name="userName" [(ngModel)]="user.name">
+  <p>User Surname</p>
+  <input type="text" name="userSurname" [(ngModel)]="user.surname">
+  <p>Password</p>
+  <input type="password" name="userPassword" [(ngModel)]="user.password">
+  <p>repeat password</p>
+  <input type="password" name="userPassword2" [(ngModel)]="controlPassword">
+  <p>{{message}}</p>
+  <p>user email</p>
+  <input type="text" name="userEmail" [(ngModel)]="user.email">
+  <p>user phonenumber</p>
+  <input type="text" name="userPhoneNumber" [(ngModel)]="user.phoneNumber">
+</form>
+<button (click)="saveUser()">save</button>
+<div>
+  <div>{{user.name}}</div>
+  <div>{{user.surname}}</div>
+  <div>{{user.password}}</div>
+  <div>{{controlPassword}}</div>
+  <div>{{user.email}}</div>
+  <div>{{user.phoneNumber}}</div>
+</div>
+
