@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {IUser} from "../../models/userModel";
-import {UserService} from "../../services/user/user.service";
+import {UserService} from "../../user-module/services/user.service";
+import {IUser} from "../../user-module/model/userModel";
+
 
 @Component({
   selector: 'app-registration-page',

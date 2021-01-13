@@ -1,9 +1,0 @@
-<div>
-<app-product-with-settings
-  *ngFor="let product of products" [product]="product"
-  (productSelected)="toProductDetails(product)"
-  (productDeleted)="deleteComponent(product.id)"
-></app-product-with-settings>
-  <ngb-pagination class="d-flex justify-content-center" [collectionSize]="totalElements" maxSize="10"
-                  (pageChange)="onPageChange($event)"  [boundaryLinks]="true"></ngb-pagination>
-</div>
