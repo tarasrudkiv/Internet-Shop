@@ -1,0 +1,14 @@
+<div>
+    <table>
+<!--    <table [ngClass]="{table:true}">-->
+      <tr>
+        <td [ngClass]="{id:true}">{{product.id}}</td>
+        <td [ngClass]="{name:true}" >{{product.name}}</td>
+        <td [ngClass]="{category:true}">{{product.category}}</td>
+        <td [ngClass]="{status:true}"> {{product.status}}</td>
+        <td><button (click)="deleteProduct(product.id)">delete</button></td>
+        <td><button (click)="openUpdatePage()">update</button></td>
+      </tr>
+    </table>
+</div>
+

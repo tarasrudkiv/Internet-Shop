@@ -1,5 +1,14 @@
-<ul>
-  <li><a routerLink="allProducts">All products</a></li>
-  <li><a routerLink="admin">Admin</a></li>
-  <li><a routerLink="registration">Registration</a></li>
-</ul>
+<!--<ul>-->
+<!--  <li><a routerLink="allProducts">All products</a></li>-->
+<!--  <li><a routerLink="admin">Admin</a></li>-->
+<!--  <li><a routerLink="registration">Registration</a></li>-->
+<!--  <li><a routerLink="authentication">Authentication</a></li>-->
+<!--</ul>-->
+<div [ngClass]="{header:true}">
+  <div [ngClass]="{block:true}" ><a routerLink="allProducts">All products</a></div>
+  <div [ngClass]="{block:true}"><a routerLink="admin">Admin</a></div>
+  <div [ngClass]="{auth:true}">
+    <div [ngClass]="{form:true}"><a routerLink="registration">Registration</a></div>
+    <div [ngClass]="{form:true}"><a routerLink="authentication">Authentication</a></div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+.reg{
+  display: flex;
+  justify-content: center;
+}
+.form{
+  width: 190px;
+  height: 500px;
+background-color: #e8eee3;
+;
+}

@@ -1,0 +1,15 @@
+.header{
+  width: 1366px;
+  display: flex;
+justify-content: space-between;
+}
+.block{
+  width: content-box;
+}
+.auth{
+  display: flex;
+}
+.form{
+  margin-left: 20px;
+}
+
