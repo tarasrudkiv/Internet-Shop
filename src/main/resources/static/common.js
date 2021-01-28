@@ -51,6 +51,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 class ProductService {
     constructor(httpClient) {
         this.httpClient = httpClient;
@@ -58,17 +59,23 @@ class ProductService {
     getAllProducts(page) {
         return (this.httpClient.get(`http://localhost:8080/product?page=${page}`));
     }
-    getOneProduct(id) {
-        return (this.httpClient.get(`http://localhost:8080/product/${id}`));
-    }
     save(product) {
-        return (this.httpClient.post('http://localhost:8080/product', product));
+        let token = localStorage.getItem("token");
+        let tokenSTR = 'Bearer ' + token;
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set("Authorization", tokenSTR);
+        return (this.httpClient.post('http://localhost:8080/product', product, { headers }));
     }
     update(product, id) {
-        return (this.httpClient.put(`http://localhost:8080/product/${id}`, product));
+        let token = localStorage.getItem("token");
+        let tokenSTR = 'Bearer ' + token;
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set("Authorization", tokenSTR);
+        return (this.httpClient.put(`http://localhost:8080/product/${id}`, product, { headers }));
     }
     deleteProduct(id) {
-        return (this.httpClient.delete(`http://localhost:8080/product/${id}`).subscribe());
+        let token = localStorage.getItem("token");
+        let tokenSTR = 'Bearer ' + token;
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set("Authorization", tokenSTR);
+        return (this.httpClient.delete(`http://localhost:8080/product/${id}`, { headers }).subscribe());
     }
 }
 ProductService.ɵfac = function ProductService_Factory(t) { return new (t || ProductService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };

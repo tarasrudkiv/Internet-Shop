@@ -1,16 +1,26 @@
 package com.example.InternetShop.controller;
-
+import com.example.InternetShop.dto.AuthRequest;
+import com.example.InternetShop.dto.AuthenticationResponse;
 import com.example.InternetShop.dto.UsersPageDTO;
 import com.example.InternetShop.entity.User;
+import com.example.InternetShop.service.JwtService;
 import com.example.InternetShop.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
     UserService userService;
+    @Autowired
+    private JwtService jwtService;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
 
     @Autowired
     public UserController(UserService userService) {
@@ -25,27 +35,31 @@ public class UserController {
         );
     }
 
-    @GetMapping("/{id}")
-    public User getOneUser(@PathVariable int id) {
-        return (
-                userService.getOneUser(id)
-        );
+    @GetMapping("/{name}")
+    public User getUserByUserName(@PathVariable String name) {
+        return (userService.getUserByUserName(name));
     }
 
     @PostMapping()
-    public User insertUser(@RequestBody User user) {
-        return (userService.insertUser(user));
+    public String registerUser(@RequestBody User user) {
+        return (userService.createUser(user));
     }
 
-    @PutMapping(value = "/{id}")
-    public User updateUser(@RequestBody User user, @PathVariable int id) {
-        user.setId(id);
-        userService.updateUser(user);
-        return (user);
+    @PostMapping("/authenticate")
+    public AuthenticationResponse generateJWT(@RequestBody AuthRequest authRequest) {
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
+        return new AuthenticationResponse(jwtService.generateToken(authRequest.getUsername()));
     }
 
-    @DeleteMapping(value = "/{id}")
-    public void deleteUser(@PathVariable int id) {
-        userService.deleteUser(id);
-    }
+    //    @PutMapping(value = "/{id}")
+//    public User updateUser(@RequestBody User user, @PathVariable int id) {
+//        user.setId(id);
+//        userService.updateUser(user);
+//        return (user);
+//    }
+//
+//    @DeleteMapping(value = "/{id}")
+//    public void deleteUser(@PathVariable int id) {
+//        userService.deleteUser(id);
+//    }
 }

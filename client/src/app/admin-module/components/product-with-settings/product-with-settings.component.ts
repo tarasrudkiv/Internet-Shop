@@ -12,10 +12,9 @@ export class ProductWithSettingsComponent implements OnInit {
   @Output() productSelected: EventEmitter<IProduct> = new EventEmitter;
   @Output() productDeleted: EventEmitter<IProduct> = new EventEmitter;
 
-
-
   constructor() {
   }
+
   public deleteProduct(id: number): void {
     this.productDeleted.emit()
   }
@@ -26,5 +25,4 @@ export class ProductWithSettingsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

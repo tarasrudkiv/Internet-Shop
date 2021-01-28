@@ -1,4 +1,4 @@
-import {IUser} from "./userModel";
+import {IUser} from './userModel';
 
 export interface IUserPage {
   usersList: IUser[];

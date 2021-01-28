@@ -27,15 +27,11 @@ export class ProductDetailsComponent implements OnInit {
     const findId = (element) => element.id === id;
     let deleteIndex = this.products.findIndex(findId);
     this.products.splice(deleteIndex, 1);
-    this.activatedRoute.data.subscribe(value => this.data = value.allProducts);
-    this.totalElements=this.data.totalElements
   }
-
   onPageChange(pageNumber: number) {
     this.productService.getAllProducts(pageNumber - 1).subscribe(value =>
       this.products = value.productList);
   }
-
   toProductDetails(product: IProduct) {
     this.router.navigate(['admin/update', product.category, product.id], {state: {product}});
   }
