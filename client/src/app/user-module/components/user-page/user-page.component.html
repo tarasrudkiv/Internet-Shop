@@ -1,0 +1,7 @@
+<div *ngIf="user">
+  {{user.id}}
+  {{user.username}}
+  {{user.password}}
+  {{user.role}}
+  <button *ngIf="isAdmin()" (click)="toAdminPage()">Admin Page</button>
+</div>
