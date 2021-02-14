@@ -1,0 +1,53 @@
+<form #smartWatchForm="ngForm">
+  <p>Product name</p>
+  <input type="text" name="smartWatchName" [(ngModel)]="smartWatch.name">
+  <p>Product description</p>
+  <textarea type="text" name="smartWatchDescription" [(ngModel)]="smartWatch.description"></textarea>
+  <p>Product price</p>
+  <input type="number" name="smartWatchPrice" [(ngModel)]="smartWatch.price">
+  <p>Product status</p>
+  <select name="smartWatchStatus" [(ngModel)]="smartWatch.status">
+    <option>In stock</option>
+    <option>is over</option>
+  </select>
+  <p>processor name</p>
+  <input type="text" name="cpuName" [(ngModel)]="smartWatch.components[0].componentName">
+  <p>Processor clock speed</p>
+  <input type="number" name="cpuClockSpeed" [(ngModel)]="smartWatch.components[0].componentValues[0].propertyValue">
+  <p>Processor number of cores</p>
+  <input type="number" name="cpuNumberOfCores" [(ngModel)]="smartWatch.components[0].componentValues[1].propertyValue">
+
+  <p>Amount of memory</p>
+  <input type="number" name="amountOfMemory" [(ngModel)]="smartWatch.components[1].componentValues[0].propertyValue">
+  <p>Amount of RAM memory</p>
+  <input type="number" name="amountOfRamMemory" [(ngModel)]="smartWatch.components[1].componentValues[1].propertyValue">
+
+
+  <p>Display type</p>
+  <input type="text" name="monitorType" [(ngModel)]="smartWatch.components[2].componentName">
+  <p>screen diagonal</p>
+  <input type="number" name="screenDiagonal" [(ngModel)]="smartWatch.components[2].componentValues[0].propertyValue">
+  <p>screen extension</p>
+  <input type="text" name="screenExtension" [(ngModel)]="smartWatch.components[2].componentValues[1].propertyValue">
+  <p>frame rate</p>
+  <input type="number" name="frameRate" [(ngModel)]="smartWatch.components[2].componentValues[2].propertyValue">
+
+  <p>Battery type</p>
+  <input type="text" name="batteryType" [(ngModel)]="smartWatch.components[3].componentName">
+  <p>Battery capacity</p>
+  <input type="number" name="batteryCapacity" [(ngModel)]="smartWatch.components[3].componentValues[0].propertyValue">
+  <p>Operating system type</p>
+  <input type="text" name="operatingSystemType" [(ngModel)]="smartWatch.components[4].componentName">
+  <p>Operating system version</p>
+  <input type="number" name="operatingSystemVersion" [(ngModel)]="smartWatch.components[4].componentValues[0].propertyValue">
+
+  <p>Image</p>
+  <input type="file" name="productImage" (change)="onSelectFile($event)">
+  <p>{{message}}</p>
+</form>
+<button (click)="print()">print</button>
+<button (click)="save()">save</button>
+<div>
+  <img [src]="imgURL" height="200" *ngIf="imgURL">
+</div>
+

@@ -20,7 +20,7 @@ export class UserPageComponent implements OnInit {
   }
 
   isAdmin(): boolean {
-    return (localStorage.getItem('role') === 'ROLE_ADMIN');
+    return (localStorage.getItem('role') === 'ROLE_ADMIN'||localStorage.getItem('role') === 'ROLE_MAIN_ADMIN');
   }
 
   toAdminPage(): void {

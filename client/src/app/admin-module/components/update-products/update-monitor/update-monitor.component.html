@@ -1,0 +1,40 @@
+<div *ngIf="productForUpdate">
+  <img src="{{host+'/product/image/'+productForUpdate.id}}" alt="" [ngClass]="{picture:true}">
+  <form #updateMonitorForm="ngForm">
+    <p>Product name</p>
+    <input type="text" name="monitorName" [(ngModel)]="productForUpdate.name">
+    <p>Product description</p>
+    <textarea type="text" name="monitorDescription" [(ngModel)]="productForUpdate.description"></textarea>
+    <p>Product price</p>
+    <input type="number" name="monitorPrice" [(ngModel)]="productForUpdate.price">
+    <p>Product status</p>
+    <select name="monitorStatus" [(ngModel)]="productForUpdate.status">
+      <option>In stock</option>
+      <option>is over</option>
+    </select>
+    <p>Monitor type</p>
+    <input type="text" name="monitorType" [(ngModel)]="productForUpdate.components[0].componentName">
+    <p>Screen diagonal</p>
+    <input type="number" name="screenDiagonal" [(ngModel)]="productForUpdate.components[0].componentValues[0].propertyValue">
+    <p>Screen extension</p>
+    <input type="text" name="screenExtension" [(ngModel)]="productForUpdate.components[0].componentValues[1].propertyValue">
+    <p>Frame rate</p>
+    <input type="number" name="frameRate" [(ngModel)]="productForUpdate.components[0].componentValues[2].propertyValue">
+    <p>Display brightness</p>
+    <input type="number" name="displayBrightness" [(ngModel)]="productForUpdate.components[0].componentValues[3].propertyValue">
+    <p>Display contrast</p>
+    <input type="number" name="displayContrast" [(ngModel)]="productForUpdate.components[0].componentValues[4].propertyValue">
+    <p>Matrix reaction time</p>
+    <input type="number" name="matrixReactionTime" [(ngModel)]="productForUpdate.components[0].componentValues[5].propertyValue">
+    <p>Image</p>
+    <p>Image</p>
+    <input type="file" name="productImage" (change)="onSelectFile($event)">
+    <p>{{message}}</p>
+  </form>
+  <div>
+    <img [src]="imgURL" height="200"  *ngIf="imgURL">
+  </div>
+  <button (click)="updateProduct()">update</button>
+  <button (click)="print()">print</button>
+</div>
+

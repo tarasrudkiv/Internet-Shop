@@ -59,17 +59,23 @@ class ProductService {
     getAllProducts(page) {
         return (this.httpClient.get(`http://localhost:8080/product?page=${page}`));
     }
-    save(product) {
-        let token = localStorage.getItem("token");
-        let tokenSTR = 'Bearer ' + token;
-        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set("Authorization", tokenSTR);
-        return (this.httpClient.post('http://localhost:8080/product', product, { headers }));
+    getAllProductsByCategory(page, category) {
+        return (this.httpClient.get(`http://localhost:8080/product/${category}/?page=${page}`));
     }
-    update(product, id) {
+    getAllProductsByName(page, name) {
+        return (this.httpClient.get(`http://localhost:8080/product/name/${name}/?page=${page}`));
+    }
+    save(formData) {
         let token = localStorage.getItem("token");
         let tokenSTR = 'Bearer ' + token;
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set("Authorization", tokenSTR);
-        return (this.httpClient.put(`http://localhost:8080/product/${id}`, product, { headers }));
+        return (this.httpClient.post('http://localhost:8080/product', formData, { headers }));
+    }
+    update(formData, id) {
+        let token = localStorage.getItem("token");
+        let tokenSTR = 'Bearer ' + token;
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set("Authorization", tokenSTR);
+        return (this.httpClient.put(`http://localhost:8080/product/${id}`, formData, { headers }));
     }
     deleteProduct(id) {
         let token = localStorage.getItem("token");

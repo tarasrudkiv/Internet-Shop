@@ -1,0 +1,37 @@
+<div *ngIf="productForUpdate">
+  <img src="{{host+'/product/image/'+productForUpdate.id}}" alt="" [ngClass]="{picture:true}">
+  <form #updateTVForm="ngForm">
+    <p>Product name</p>
+    <input type="text" name="TVName" [(ngModel)]="productForUpdate.name">
+    <p>Product description</p>
+    <textarea type="text" name="TVDescription" [(ngModel)]="productForUpdate.description"></textarea>
+    <p>Product price</p>
+    <input type="number" name="TVPrice" [(ngModel)]="productForUpdate.price">
+    <p>Product status</p>
+    <select name="TVStatus" [(ngModel)]="productForUpdate.status">
+      <option>In stock</option>
+      <option>is over</option>
+    </select>
+    <p>Monitor type</p>
+    <input type="text" name="monitorType" [(ngModel)]="productForUpdate.components[0].componentName">
+    <p>screen diagonal</p>
+    <input type="number" name="screenDiagonal" [(ngModel)]="productForUpdate.components[0].componentValues[0].propertyValue">
+    <p>screen extension</p>
+    <input type="text" name="screenExtension" [(ngModel)]="productForUpdate.components[0].componentValues[1].propertyValue">
+
+    <p>Operating system type</p>
+    <input type="text" name="operatingSystemType" [(ngModel)]="productForUpdate.components[1].componentName">
+    <p>Operating system version</p>
+    <input type="number" name="operatingSystemVersion" [(ngModel)]="productForUpdate.components[1].componentValues[0].propertyValue">
+
+    <p>Image</p>
+    <input type="file" name="productImage" (change)="onSelectFile($event)">
+    <p>{{message}}</p>
+  </form>
+  <div>
+    <img [src]="imgURL" height="200"  *ngIf="imgURL">
+  </div>
+  <button (click)="updateProduct()">update</button>
+  <button (click)="print()">print</button>
+</div>
+

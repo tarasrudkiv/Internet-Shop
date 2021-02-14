@@ -1,0 +1,24 @@
+<div *ngIf="singleProduct">
+  <h2>{{singleProduct.name}}</h2>
+  <img src="{{host+'/product/image/'+singleProduct.id}}" alt="" [ngClass]="{picture:true}">
+  <p>{{singleProduct.price}}</p>
+  <p>{{singleProduct.description}}</p>
+  <p>{{singleProduct.status}}</p>
+  <div>
+    <h2>Screen</h2>
+    <p>{{singleProduct.components[0].componentName}}</p>
+    <p>{{singleProduct.components[0].componentValues[0].propertyName}}</p>
+    <p>{{singleProduct.components[0].componentValues[0].propertyValue}}</p>
+    <p>{{singleProduct.components[0].componentValues[1].propertyName}}</p>
+    <p>{{singleProduct.components[0].componentValues[1].propertyValue}}</p>
+    <p>{{singleProduct.components[0].componentValues[2].propertyName}}</p>
+    <p>{{singleProduct.components[0].componentValues[2].propertyValue}}</p>
+    <p>{{singleProduct.components[0].componentValues[3].propertyName}}</p>
+    <p>{{singleProduct.components[0].componentValues[3].propertyValue}}</p>
+    <p>{{singleProduct.components[0].componentValues[4].propertyName}}</p>
+    <p>{{singleProduct.components[0].componentValues[4].propertyValue}}</p>
+    <p>{{singleProduct.components[0].componentValues[5].propertyName}}</p>
+    <p>{{singleProduct.components[0].componentValues[5].propertyValue}}</p>
+  </div>
+
+</div>

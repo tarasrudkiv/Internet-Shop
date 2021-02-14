@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {IProduct} from "../../../product-module/models/productModel";
-import {ProductService} from "../../../product-module/services/product.service";
+import {IProduct} from "../../../../product-module/models/productModel";
+import {ProductService} from "../../../../product-module/services/product.service";
 
 @Component({
   selector: 'app-add-computer',
@@ -22,11 +22,11 @@ export class AddComputerComponent implements OnInit {
           componentValues: [
             {
               propertyName: 'cpu clock speed',
-              propertyValue: 0,
+              propertyValue: '',
             },
             {
               propertyName: 'cpu number Of cores',
-              propertyValue: 0,
+              propertyValue: '',
             }
           ]
         },
@@ -36,7 +36,7 @@ export class AddComputerComponent implements OnInit {
           componentValues: [
             {
               propertyName: 'graphics card amount Of video memory',
-              propertyValue: 0
+              propertyValue: ''
             }
           ]
         },
@@ -46,19 +46,47 @@ export class AddComputerComponent implements OnInit {
           componentValues: [
             {
               propertyName: 'amount Of RAM memory',
-              propertyValue: 0
+              propertyValue: ''
             }
           ]
         }
       ],
     };
+  id: number;
+  image: File;
+  message: string;
+  imgURL: any;
 
   constructor(private productService: ProductService) {
   }
 
-  save(): void {
-    this.productService.save(this.computer).subscribe();
+  onSelectFile(event) {
+    if (event.target.files.length > 0) {
+      let fileType = event.target.files[0].type;
+      if (fileType.match("image") == null) {
+        this.imgURL = null;
+        this.message = "only images are supported";
+        return
+      } else {
+        this.message="";
+        const file = event.target.files[0];
+        this.image = file;
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (event) => {
+          this.imgURL = reader.result
+        }
+      }
+    }
   }
+
+  save():void{
+    const formData: FormData = new FormData();
+    formData.append("file",this.image);
+    formData.append("product",JSON.stringify(this.computer));
+    this.productService.save(formData).subscribe()
+  }
+
 
   print(): void {
     console.log(this.computer)

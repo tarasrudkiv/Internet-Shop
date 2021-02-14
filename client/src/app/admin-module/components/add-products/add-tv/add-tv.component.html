@@ -1,0 +1,34 @@
+<form #TVForm="ngForm">
+  <p>Product name</p>
+  <input type="text" name="TVName" [(ngModel)]="TV.name">
+  <p>Product description</p>
+  <textarea type="text" name="TVDescription" [(ngModel)]="TV.description"></textarea>
+  <p>Product price</p>
+  <input type="number" name="TVPrice" [(ngModel)]="TV.price">
+  <p>Product status</p>
+  <select name="TVStatus" [(ngModel)]="TV.status">
+    <option>In stock</option>
+    <option>is over</option>
+  </select>
+  <p>Monitor type</p>
+  <input type="text" name="monitorType" [(ngModel)]="TV.components[0].componentName">
+  <p>screen diagonal</p>
+  <input type="number" name="screenDiagonal" [(ngModel)]="TV.components[0].componentValues[0].propertyValue">
+  <p>screen extension</p>
+  <input type="text" name="screenExtension" [(ngModel)]="TV.components[0].componentValues[1].propertyValue">
+
+  <p>Operating system type</p>
+  <input type="text" name="operatingSystemType" [(ngModel)]="TV.components[1].componentName">
+  <p>Operating system version</p>
+  <input type="number" name="operatingSystemVersion" [(ngModel)]="TV.components[1].componentValues[0].propertyValue">
+
+  <p>Image</p>
+  <input type="file" name="productImage" (change)="onSelectFile($event)">
+  <p>{{message}}</p>
+</form>
+<button (click)="print()">print</button>
+<button (click)="save()">save</button>
+<div>
+  <img [src]="imgURL" height="200" *ngIf="imgURL">
+</div>
+

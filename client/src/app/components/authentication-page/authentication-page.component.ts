@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {IUser} from "../../user-module/model/userModel";
 import {UserService} from "../../user-module/services/user.service";
 import {Router} from "@angular/router";
+import {IAuthentication} from "../../user-module/model/authenticationModel";
 
 @Component({
   selector: 'app-authentication-page',
@@ -12,8 +13,7 @@ export class AuthenticationPageComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router) {
   }
-
-  user: IUser = {
+  user: IAuthentication = {
     username: "",
     password: ""
   };
@@ -23,6 +23,7 @@ export class AuthenticationPageComponent implements OnInit {
       this.userService.generateToken(this.user).subscribe(value => {
           localStorage.setItem("token", value.token);
           localStorage.setItem("userName", this.user.username);
+          this.router.navigate(["/"])
         },
         error => {
           alert("Wrong login or password")
@@ -31,6 +32,7 @@ export class AuthenticationPageComponent implements OnInit {
       this.userService.generateToken(this.user).subscribe(value => {
           localStorage.setItem("token", value.token);
           localStorage.setItem("userName", this.user.username);
+          this.router.navigate(["/"])
         },
         error => {
           alert("Wrong login or password")

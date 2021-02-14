@@ -1,8 +1,9 @@
- <form #authenticationForm="ngForm"  >
-      <p>Login</p>
-      <input type="text" name="login" [(ngModel)]="user.username">
-      <p>Password</p>
-      <input type="password" name="password" [(ngModel)]="user.password">
-    </form>
-    <button (click)="login()">Login</button>
+<form #authenticationForm="ngForm">
+  <p>Login</p>
+  <input type="text" name="login" [(ngModel)]="user.username">
+  <p>Password</p>
+  <input type="password" name="password" [(ngModel)]="user.password">
+</form>
+<button (click)="login()">Login</button>
+
 

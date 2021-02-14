@@ -6,11 +6,14 @@ import com.example.InternetShop.entity.User;
 import org.springframework.data.domain.PageRequest;
 
 public interface iUserService {
-     String createUser(User user);
-     UsersPageDTO getAllUsers(PageRequest pageRequest);
-     User getUserByUserName(String name);
-     UserRoleDTO getUserRoleByUserName(String name);
+    String createUser(User user);
 
-//    public User updateUser(User user);
+    UsersPageDTO getAllUsers(PageRequest pageRequest);
+
+    User getUserByUserName(String name);
+//     UserRoleDTO getUserRoleByUserName(String name);
+
+//    public String changeRole(User user, int id);
+    public User changeRole(String role, int id);
 //    public void deleteUser(int id);
 }

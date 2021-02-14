@@ -1,16 +1,28 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {AddComputerComponent} from "./components/add-computer/add-computer.component";
+import {AddComputerComponent} from "./components/add-products/add-computer/add-computer.component";
 import {AddProductPageComponent} from "./components/add-product-page/add-product-page.component";
 import {AdminPageComponent} from "./components/admin-page/admin-page.component";
 import {ProductDetailsComponent} from "./components/product-details/product-details.component";
 import {ProductWithSettingsComponent} from "./components/product-with-settings/product-with-settings.component";
-import {UpdateComputerComponent} from "./components/update-computer/update-computer.component";
+import {UpdateComputerComponent} from "./components/update-products/update-computer/update-computer.component";
 import {HttpClientModule} from "@angular/common/http";
 import {RouterModule, Routes} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {ProductResolveService} from "../product-module/services/product-resolve.service";
+import {AddLaptopComponent} from './components/add-products/add-laptop/add-laptop.component';
+import {AddSmartphoneComponent} from './components/add-products/add-smartphone/add-smartphone.component';
+import {AddTVComponent} from './components/add-products/add-tv/add-tv.component';
+import {AddMonitorComponent} from './components/add-products/add-monitor/add-monitor.component';
+import {AddConsoleComponent} from './components/add-products/add-console/add-console.component';
+import {AddSmartWatchComponent} from './components/add-products/add-smart-watch/add-smart-watch.component';
+import {UpdateConsoleComponent} from './components/update-products/update-console/update-console.component';
+import {UpdateLaptopComponent} from './components/update-products/update-laptop/update-laptop.component';
+import {UpdateSmartphoneComponent} from './components/update-products/update-smartphone/update-smartphone.component';
+import {UpdateMonitorComponent} from './components/update-products/update-monitor/update-monitor.component';
+import {UpdateTvComponent} from './components/update-products/update-tv/update-tv.component';
+import {UpdateSmartWatchComponent} from './components/update-products/update-smart-watch/update-smart-watch.component';
 
 
 const routes: Routes = [
@@ -18,11 +30,23 @@ const routes: Routes = [
   {
     path: '', component: AdminPageComponent, children: [
       {path: 'productDetails', component: ProductDetailsComponent, resolve: {allProducts: ProductResolveService}},
-      {path: 'update/computer/:id', component: UpdateComputerComponent},
       {path: 'allUsers', loadChildren: () => import('../user-module/user.module').then(m => m.UserModule)},
+      {path: 'update/computer/:id', component: UpdateComputerComponent},
+      {path: 'update/laptop/:id', component: UpdateLaptopComponent},
+      {path: 'update/console/:id', component: UpdateConsoleComponent},
+      {path: 'update/smartphone/:id', component: UpdateSmartphoneComponent},
+      {path: 'update/TV/:id', component: UpdateTvComponent},
+      {path: 'update/monitor/:id', component: UpdateMonitorComponent},
+      {path: 'update/smartWatch/:id', component: UpdateSmartWatchComponent},
       {
         path: 'addProduct', component: AddProductPageComponent, children: [
-          {path: 'addComputer', component: AddComputerComponent}
+          {path: 'addComputer', component: AddComputerComponent},
+          {path: 'addLaptop', component: AddLaptopComponent},
+          {path: 'addConsole', component: AddConsoleComponent},
+          {path: 'addSmartphone', component: AddSmartphoneComponent},
+          {path: 'addSmartWatch', component: AddSmartWatchComponent},
+          {path: 'addTV', component: AddTVComponent},
+          {path: 'addMonitor', component: AddMonitorComponent},
         ]
       }
     ]
@@ -36,7 +60,19 @@ const routes: Routes = [
     AdminPageComponent,
     ProductDetailsComponent,
     ProductWithSettingsComponent,
-    UpdateComputerComponent
+    UpdateComputerComponent,
+    AddLaptopComponent,
+    AddSmartphoneComponent,
+    AddTVComponent,
+    AddMonitorComponent,
+    AddConsoleComponent,
+    AddSmartWatchComponent,
+    UpdateConsoleComponent,
+    UpdateLaptopComponent,
+    UpdateSmartphoneComponent,
+    UpdateMonitorComponent,
+    UpdateTvComponent,
+    UpdateSmartWatchComponent,
   ],
   imports: [
     CommonModule,

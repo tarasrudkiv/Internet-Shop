@@ -1,8 +1,36 @@
-<div *ngIf="products">
-  <app-product-card
-    *ngFor="let product of products" [product]="product"
-    (productSelected)="toProductDetails(product)"
-  ></app-product-card>
-  <ngb-pagination class="d-flex justify-content-center" [collectionSize]="totalElements" maxSize="10"
-                  (pageChange)="onPageChange($event)"  [boundaryLinks]="true"></ngb-pagination>
+<div [ngClass]="{page:true}">
+  <div [ngClass]="{categories:true}">
+    <h3 [ngClass]="{categories:true}">Categories</h3>
+    <button [ngClass]="{button:true}" (click)="(getAllProducts())">all</button>
+    <button [ngClass]="{button:true}" (click)="getProductByCategory(0,'computer')">computers</button>
+    <button [ngClass]="{button:true}" (click)="getProductByCategory(0,'smartphone')">smartphones</button>
+    <button [ngClass]="{button:true}" (click)="getProductByCategory(0,'laptop')">laptops</button>
+    <button [ngClass]="{button:true}" (click)="getProductByCategory(0,'tv')">TV</button>
+    <button [ngClass]="{button:true}" (click)="getProductByCategory(0,'monitor')">monitors</button>
+    <button [ngClass]="{button:true}" (click)="getProductByCategory(0,'smartWatch')">smart watch</button>
+    <button [ngClass]="{button:true}" (click)="getProductByCategory(0,'console')">consoles</button>
+  </div>
+
+  <div [ngClass]="{productsAndPagination:true}">
+    <div>
+      <form #findProductForm="ngForm" [ngClass]="{form:true}">
+        <input type="text" name="productName" [(ngModel)]="productName">
+        <button (click)="getProductByProductName()">find</button>
+      </form>
+    </div>
+    <div *ngIf="products" [ngClass]="{products:true}">
+      <app-product-card *ngFor="let product of products" [product]="product"
+                        (productSelected)="toProductDetails(product)">
+      </app-product-card>
+    </div>
+    <div>
+      <ngb-pagination class="d-flex justify-content-center"
+                      [collectionSize]="totalElements"
+                      pageSize="20"
+                      maxSize="10"
+                      [(page)]="page"
+                      (pageChange)="onPageChange($event)" [boundaryLinks]="true"></ngb-pagination>
+    </div>
+
+  </div>
 </div>

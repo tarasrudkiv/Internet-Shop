@@ -1,0 +1,36 @@
+<form #consoleForm="ngForm"  >
+  <p>Product name</p>
+  <input type="text" name="consoleName" [(ngModel)]="console.name">
+  <p>Product description</p>
+  <textarea type="text" name="consoleDescription" [(ngModel)]="console.description"></textarea>
+  <p>Product price</p>
+  <input type="number" name="consolePrice" [(ngModel)]="console.price">
+  <p>Product status</p>
+  <select name="consoleStatus" [(ngModel)]="console.status">
+    <option>In stock</option>
+    <option>is over</option>
+  </select>
+  <p>processor name</p>
+  <input type="text" name="cpuName" [(ngModel)]="console.components[0].componentName">
+  <p>Processor clock speed</p>
+  <input type="number" name="cpuClockSpeed" [(ngModel)]="console.components[0].componentValues[0].propertyValue">
+  <p>Processor number of cores</p>
+  <input type="number" name="cpuNumberOfCores" [(ngModel)]="console.components[0].componentValues[1].propertyValue">
+  <p>Graphics card name </p>
+  <input type="text" name="graphicsCardName" [(ngModel)]="console.components[1].componentName">
+  <p>Graphics card amount of video memory</p>
+  <input type="number" name="graphicsCardAmountOfVideoMemory" [(ngModel)]="console.components[1].componentValues[0].propertyValue">
+  <p>RAM name</p>
+  <input type="text" name="ramName" [(ngModel)]="console.components[2].componentName">
+  <p>Amount of RAM memory</p>
+  <input type="number" name="amountOfRamMemory" [(ngModel)]="console.components[2].componentValues[0].propertyValue">
+  <p>Image</p>
+  <input type="file" name="productImage"  (change)="onSelectFile($event)">
+  <p>{{message}}</p>
+</form>
+<button (click)="print()">print</button>
+<button (click)="save()">save</button>
+<div>
+  <img [src]="imgURL" height="200"  *ngIf="imgURL">
+</div>
+

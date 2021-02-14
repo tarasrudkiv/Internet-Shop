@@ -7,6 +7,7 @@ import {IProduct} from "../../models/productModel";
 })
 export class ProductPageComponent implements OnInit {
   singleProduct: IProduct;
+  public host: string ="http://localhost:8080";
   constructor() {
     this.singleProduct = history.state.product
   }

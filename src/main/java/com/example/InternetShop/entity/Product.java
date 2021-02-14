@@ -21,6 +21,8 @@ public class Product {
     int price;
     String category;
     String status;
-@OneToMany(cascade = CascadeType.ALL)
-List<Component> components;
+    @Lob
+    byte[] image;
+    @OneToMany(cascade = CascadeType.ALL)
+    List<Component> components;
 }

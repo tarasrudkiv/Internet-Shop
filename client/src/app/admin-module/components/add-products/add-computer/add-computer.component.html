@@ -23,8 +23,14 @@
   <p>RAM name</p>
   <input type="text" name="ramName" [(ngModel)]="computer.components[2].componentName">
   <p>Amount of RAM memory</p>
-  <input type="number" name="mountOfRamMemory" [(ngModel)]="computer.components[2].componentValues[0].propertyValue">
+  <input type="number" name="amountOfRamMemory" [(ngModel)]="computer.components[2].componentValues[0].propertyValue">
+  <p>Image</p>
+  <input type="file" name="productImage"  (change)="onSelectFile($event)">
+  <p>{{message}}</p>
 </form>
-<button (click)="save()">save</button>
 <button (click)="print()">print</button>
+<button (click)="save()">save</button>
+<div>
+  <img [src]="imgURL" height="200"  *ngIf="imgURL">
+</div>
 

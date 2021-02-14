@@ -10,10 +10,11 @@ import {IProduct} from "../../models/productModel";
 export class ProductCardComponent implements OnInit {
   @Input() product: IProduct;
   @Output() productSelected: EventEmitter<IProduct> = new EventEmitter;
-
+  public host: string ="http://localhost:8080";
   public showDetails() {
     this.productSelected.emit();
   }
+
 
 
   constructor() {

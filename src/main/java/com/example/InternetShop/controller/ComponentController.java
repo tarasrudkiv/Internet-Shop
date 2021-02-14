@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+@CrossOrigin("http://localhost:4200")
 @RestController
 @RequestMapping("/component")
 public class ComponentController {

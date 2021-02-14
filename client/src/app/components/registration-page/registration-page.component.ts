@@ -13,22 +13,15 @@ export class RegistrationPageComponent implements OnInit {
   constructor(private userService: UserService) {
   }
 
-  user: IUser ={
-    username:"",
-    password:"",
-    role:"ROLE_USER"
-  };
-  admin: IUser ={
-    username:"",
-    password:"",
-    role:"ROLE_ADMIN"
+  user: IUser = {
+    username: "",
+    password: "",
+    phoneNumber: "",
+    email: ""
   };
 
   public saveUser() {
-      this.userService.save(this.user).subscribe()
-  }
-  public saveAdmin() {
-    this.userService.save(this.admin).subscribe()
+    this.userService.save(this.user).subscribe()
   }
   ngOnInit(): void {
   }

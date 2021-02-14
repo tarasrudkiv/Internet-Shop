@@ -1,9 +1,11 @@
-<div (click)="showDetails()"
-     [ngClass]="{main:true}">
-  <div [ngClass]="{picture:true}"></div>
-  <div>{{product.id}}</div>
-  <div>{{product.name}}</div>
-  <div>{{product.category}}</div>
-  <div>{{product.price}}</div>
+<div  (click)="showDetails()" [ngClass]="{card:true}">
+  <div [ngClass]="{pictureBlock:true}">
+    <img src="{{host+'/product/image/'+product.id}}" alt="" [ngClass]="{picture:true}">
+  </div>
+  <div>
+    <p>{{product.category+" "+ product.name}}</p>
+    <p>{{product.status}}</p>
+    <p>{{product.price}}</p>
+  </div>
 </div>
 

@@ -1,4 +1,5 @@
 package com.example.InternetShop.controller;
+
 import com.example.InternetShop.dto.AuthRequest;
 import com.example.InternetShop.dto.AuthenticationResponse;
 import com.example.InternetShop.dto.UsersPageDTO;
@@ -10,7 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin("http://localhost:4200")
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -51,13 +52,17 @@ public class UserController {
         return new AuthenticationResponse(jwtService.generateToken(authRequest.getUsername()));
     }
 
-    //    @PutMapping(value = "/{id}")
-//    public User updateUser(@RequestBody User user, @PathVariable int id) {
-//        user.setId(id);
-//        userService.updateUser(user);
-//        return (user);
+//    @PutMapping(value = "/changeRole/{id}")
+//    public String changeRole(@RequestBody User user, @PathVariable int id) {
+//        return (
+//                userService.changeRole(user, id));
 //    }
-//
+    @PutMapping("/changeRole/{id}")
+    public User changeRole(@RequestBody String role, @PathVariable int id) {
+        return (
+                userService.changeRole(role, id));
+    }
+
 //    @DeleteMapping(value = "/{id}")
 //    public void deleteUser(@PathVariable int id) {
 //        userService.deleteUser(id);

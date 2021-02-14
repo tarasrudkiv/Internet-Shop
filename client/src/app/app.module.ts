@@ -13,10 +13,8 @@ import {AdminPageComponent} from "./admin-module/components/admin-page/admin-pag
 import {UserPageComponent} from "./user-module/components/user-page/user-page.component";
 
 
-
-
 const routes: Routes = [
-    {path: 'home', component: HomePageComponent},
+    {path: '', component: HomePageComponent},
     {path: 'allProducts', loadChildren: () => import('./product-module/product.module').then(m => m.ProductModule)},
     {path: 'admin', loadChildren: () => import('./admin-module/admin.module').then(m => m.AdminModule)},
     {path: 'authentication', component: AuthenticationPageComponent},

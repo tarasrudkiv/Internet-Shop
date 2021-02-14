@@ -8,6 +8,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {UserResolveService} from './services/user-resolve.service';
 import {UserPageForAdminComponent } from './components/user-page-for-admin/user-page-for-admin.component';
 import {UserPageComponent} from "./components/user-page/user-page.component";
+import {FormsModule} from "@angular/forms";
 
 const routes: Routes = [
   {path: '', component: AllUsersComponent, resolve: {allUsers: UserResolveService}},
@@ -21,12 +22,13 @@ const routes: Routes = [
     UserPageComponent,
     UserPageForAdminComponent
   ],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    NgbModule,
-    RouterModule.forChild(routes)
-  ]
+    imports: [
+        CommonModule,
+        HttpClientModule,
+        NgbModule,
+        RouterModule.forChild(routes),
+        FormsModule
+    ]
 })
 export class UserModule {
 }

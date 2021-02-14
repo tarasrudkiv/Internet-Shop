@@ -6,6 +6,7 @@ export interface IProduct {
   status: string;
   category: string;
   components: Component[];
+  image?:File;
 }
 interface Component {
   componentName: string;
@@ -14,6 +15,6 @@ interface Component {
 }
 interface ComponentValues {
   propertyName: string;
-  propertyValue: number;
+  propertyValue: string;
 }
 

@@ -16,5 +16,5 @@ public class ComponentValue {
     int id;
     @Column
     String propertyName;
-    int propertyValue;
+    String propertyValue;
 }

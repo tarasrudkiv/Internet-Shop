@@ -1,0 +1,43 @@
+<div *ngIf="singleProduct">
+  <h2>{{singleProduct.name}}</h2>
+  <img src="{{host+'/product/image/'+singleProduct.id}}" alt="" [ngClass]="{picture:true}">
+  <p>{{singleProduct.price}}</p>
+  <p>{{singleProduct.description}}</p>
+  <p>{{singleProduct.status}}</p>
+  <div>
+    <h2> Processor</h2>
+    <p>{{singleProduct.components[0].componentName}}</p>
+    <p>{{singleProduct.components[0].componentValues[0].propertyName}}</p>
+    <p>{{singleProduct.components[0].componentValues[0].propertyValue}}</p>
+    <p>{{singleProduct.components[0].componentValues[1].propertyName}}</p>
+    <p>{{singleProduct.components[0].componentValues[1].propertyValue}}</p>
+  </div>
+  <div>
+    <h2>Video card</h2>
+    <p>{{singleProduct.components[1].componentName}}</p>
+    <p>{{singleProduct.components[1].componentValues[0].propertyName}}</p>
+    <p>{{singleProduct.components[1].componentValues[0].propertyValue}}</p>
+  </div>
+  <div>
+    <h2>RAM</h2>
+    <p>{{singleProduct.components[2].componentName}}</p>
+    <p>{{singleProduct.components[2].componentValues[0].propertyName}}</p>
+    <p>{{singleProduct.components[2].componentValues[0].propertyValue}}</p>
+  </div>
+  <div>
+    <h2>Monitor</h2>
+    <p>{{singleProduct.components[3].componentName}}</p>
+    <p>{{singleProduct.components[3].componentValues[0].propertyName}}</p>
+    <p>{{singleProduct.components[3].componentValues[0].propertyValue}}</p>
+    <p>{{singleProduct.components[3].componentValues[1].propertyName}}</p>
+    <p>{{singleProduct.components[3].componentValues[1].propertyValue}}</p>
+    <p>{{singleProduct.components[3].componentValues[2].propertyName}}</p>
+    <p>{{singleProduct.components[3].componentValues[2].propertyValue}}</p>
+  </div>
+  <div>
+    <h2>Battery</h2>
+    <p>{{singleProduct.components[4].componentName}}</p>
+    <p>{{singleProduct.components[4].componentValues[0].propertyName}}</p>
+    <p>{{singleProduct.components[4].componentValues[0].propertyValue}}</p>
+  </div>
+</div>

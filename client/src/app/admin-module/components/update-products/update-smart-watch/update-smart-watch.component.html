@@ -1,0 +1,56 @@
+<div *ngIf="productForUpdate">
+  <img src="{{host+'/product/image/'+productForUpdate.id}}" alt="" [ngClass]="{picture:true}">
+  <form #updateSmartWatchForm="ngForm">
+    <p>Product name</p>
+    <input type="text" name="smartWatchName" [(ngModel)]="productForUpdate.name">
+    <p>Product description</p>
+    <textarea type="text" name="smartWatchDescription" [(ngModel)]="productForUpdate.description"></textarea>
+    <p>Product price</p>
+    <input type="number" name="smartWatchPrice" [(ngModel)]="productForUpdate.price">
+    <p>Product status</p>
+    <select name="smartWatchStatus" [(ngModel)]="productForUpdate.status">
+      <option>In stock</option>
+      <option>is over</option>
+    </select>
+    <p>processor name</p>
+    <input type="text" name="cpuName" [(ngModel)]="productForUpdate.components[0].componentName">
+    <p>Processor clock speed</p>
+    <input type="number" name="cpuClockSpeed" [(ngModel)]="productForUpdate.components[0].componentValues[0].propertyValue">
+    <p>Processor number of cores</p>
+    <input type="number" name="cpuNumberOfCores" [(ngModel)]="productForUpdate.components[0].componentValues[1].propertyValue">
+
+    <p>Amount of memory</p>
+    <input type="number" name="amountOfMemory" [(ngModel)]="productForUpdate.components[1].componentValues[0].propertyValue">
+    <p>Amount of RAM memory</p>
+    <input type="number" name="amountOfRamMemory" [(ngModel)]="productForUpdate.components[1].componentValues[1].propertyValue">
+
+
+    <p>Display type</p>
+    <input type="text" name="monitorType" [(ngModel)]="productForUpdate.components[2].componentName">
+    <p>screen diagonal</p>
+    <input type="number" name="screenDiagonal" [(ngModel)]="productForUpdate.components[2].componentValues[0].propertyValue">
+    <p>screen extension</p>
+    <input type="text" name="screenExtension" [(ngModel)]="productForUpdate.components[2].componentValues[1].propertyValue">
+    <p>frame rate</p>
+    <input type="number" name="frameRate" [(ngModel)]="productForUpdate.components[2].componentValues[2].propertyValue">
+
+    <p>Battery type</p>
+    <input type="text" name="batteryType" [(ngModel)]="productForUpdate.components[3].componentName">
+    <p>Battery capacity</p>
+    <input type="number" name="batteryCapacity" [(ngModel)]="productForUpdate.components[3].componentValues[0].propertyValue">
+    <p>Operating system type</p>
+    <input type="text" name="operatingSystemType" [(ngModel)]="productForUpdate.components[4].componentName">
+    <p>Operating system version</p>
+    <input type="number" name="operatingSystemVersion" [(ngModel)]="productForUpdate.components[4].componentValues[0].propertyValue">
+
+    <p>Image</p>
+    <input type="file" name="productImage" (change)="onSelectFile($event)">
+    <p>{{message}}</p>
+  </form>
+  <div>
+    <img [src]="imgURL" height="200"  *ngIf="imgURL">
+  </div>
+  <button (click)="updateProduct()">update</button>
+  <button (click)="print()">print</button>
+</div>
+

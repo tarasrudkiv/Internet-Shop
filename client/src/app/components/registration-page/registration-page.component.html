@@ -1,23 +1,14 @@
-
 <div [ngClass]="{forms:true}">
-  <div>
-<!--  <div [ngClass]="{reg:true}">-->
-    <form [ngClass]="{form:true}" #registrationForm="ngForm"  >
-      <p>Username</p>
-      <input type="text" name="Username" [(ngModel)]="user.username">
-      <p>Password</p>
-      <input type="password" name="password" [(ngModel)]="user.password">
-      <button (click)="saveUser()">add user</button>
-    </form>
-  </div>
-  <div>
-    <form [ngClass]="{form:true}" #authenticationForm="ngForm"  >
-      <p>Login</p>
-      <input type="text" name="login" [(ngModel)]="admin.username">
-      <p>Password</p>
-      <input type="password" name="password" [(ngModel)]="admin.password">
-    <button (click)="saveAdmin()">add admin</button>
-    </form>
-  </div>
+  <form [ngClass]="{form:true}" #registrationForm="ngForm">
+    <p>Username</p>
+    <input type="text" name="Username" [(ngModel)]="user.username">
+    <p>Password</p>
+    <input type="password" name="password" [(ngModel)]="user.password">
+    <p>Email</p>
+    <input type="email" name="email" [(ngModel)]="user.email">
+    <p>PhoneNumber</p>
+    <input type="number" name="number" [(ngModel)]="user.phoneNumber">
+    <button (click)="saveUser()">add user</button>
+  </form>
 </div>
 

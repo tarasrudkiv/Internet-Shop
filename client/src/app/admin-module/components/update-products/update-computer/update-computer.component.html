@@ -1,6 +1,6 @@
 <div *ngIf="productForUpdate">
+  <img src="{{host+'/product/image/'+productForUpdate.id}}" alt="" [ngClass]="{picture:true}">
   <form #updateComputerForm="ngForm">
-
     <p>Product name</p>
     <input type="text" name="computerName" [(ngModel)]="productForUpdate.name">
 
@@ -41,9 +41,14 @@
     <p>Amount of RAM memory</p>
     <input type="number" name="mountOfRamMemory"
            [(ngModel)]="productForUpdate.components[2].componentValues[0].propertyValue">
-
+    <p>Image</p>
+    <input type="file" name="productImage"  (change)="onSelectFile($event)">
+    <p>{{message}}</p>
   </form>
-  <button (click)="updateComputer()">update</button>
+  <div>
+    <img [src]="imgURL" height="200"  *ngIf="imgURL">
+  </div>
+  <button (click)="updateProduct()">update</button>
   <button (click)="print()">print</button>
 </div>
 
