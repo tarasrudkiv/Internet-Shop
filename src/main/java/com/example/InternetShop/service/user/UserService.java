@@ -35,16 +35,6 @@ public class UserService implements iUserService, UserDetailsService {
         return userDao.findByUsername(username);
     }
 
-    //    @Override
-//    public String createUser(User user) {
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
-//        if (!user.getRole().startsWith("ROLE_")) {
-//            throw new RuntimeException("User role should start with 'ROLE_' ");
-//        }
-//        User userFromDatabase = userDao.save(user);
-//
-//        return userFromDatabase.getUsername();
-//    }
     @Override
     public String createUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -65,69 +55,26 @@ public class UserService implements iUserService, UserDetailsService {
         final Page<User> userPage = userDao.findAll(pageRequest);
         return new UsersPageDTO(userPage.getContent(), userPage.getTotalElements(), userPage.getTotalPages(), userPage.getSize());
     }
-//    @Override
-//    public UsersPageDTO getAllUsers(PageRequest pageRequest) {
-//        final Page<User> userPage = userDao.findAll(pageRequest);
-//        User user = new User();
-//        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(),user.getPhoneNumber(),user.getEmail(),user.getRole());
-//        List<UserDTO> userList = new ArrayList<>();
-//        return new UsersPageDTO(userList,userPage.getTotalElements(),userPage.getTotalPages(),userPage.getSize());
-//    }
 
     @Override
     public User getUserByUserName(String name) {
         return userDao.findByUsername(name);
     }
-
-//    @Override
-//    public UserRoleDTO getUserRoleByUserName(String name) {
-//        User user = userDao.findByUsername(name);
-//        return new UserRoleDTO(user.getRole());
-//    }
-
-    //
-//    @Override
-//    public String changeRole(User user, int id) {
-//        User userFromDatabase = null;
-//        try {
-//            userFromDatabase = userDao.findById(id).orElseThrow(NotFoundException::new);
-//        } catch (NotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        String password = null;
-//        if (userFromDatabase != null) {
-//            password = userFromDatabase.getPassword();
-//        }
-//        user.setId(id);
-//        user.setPassword(password);
-//        User savedUser = userDao.save(user);
-//        return savedUser.getRole();
-//    }
     @Override
     public User changeRole(String role, int id) {
-        System.out.println(role);
         User userFromDatabase = null;
         try {
             userFromDatabase = userDao.findById(id).orElseThrow(NotFoundException::new);
         } catch (NotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println(userFromDatabase);
-        System.out.println(id);
         if (userFromDatabase != null) {
             userFromDatabase.setId(id);
         userFromDatabase.setRole(role);
         userDao.save(userFromDatabase);
         }
-        System.out.println(userFromDatabase);
 
         return userFromDatabase;
     }
-
-//
-//    @Override
-//    public void deleteUser(int id) {
-//        userDao.deleteById(id);
-//    }
 
 }
