@@ -16,7 +16,7 @@ export class AuthenticationPageComponent implements OnInit {
   }
 
   user: IAuthentication = {
-    userName: "",
+    username: "",
     password: ""
   };
   public login() {
@@ -24,7 +24,7 @@ export class AuthenticationPageComponent implements OnInit {
       localStorage.removeItem("token");
       this.userService.generateToken(this.user).subscribe(value => {
           localStorage.setItem("token", value.token);
-          localStorage.setItem("userName", this.user.userName);
+          localStorage.setItem("userName", this.user.username);
           this.router.navigate(["userPage"])
         },
         error => {
@@ -33,7 +33,7 @@ export class AuthenticationPageComponent implements OnInit {
     } else {
       this.userService.generateToken(this.user).subscribe(value => {
           localStorage.setItem("token", value.token);
-          localStorage.setItem("userName", this.user.userName);
+          localStorage.setItem("userName", this.user.username);
           this.router.navigate(["userPage"])
         },
         error => {

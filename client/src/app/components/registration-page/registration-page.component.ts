@@ -17,7 +17,7 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   user: IUser = {
-    userName: "",
+    username: "",
     password: "",
     phoneNumber: "",
     email: ""
