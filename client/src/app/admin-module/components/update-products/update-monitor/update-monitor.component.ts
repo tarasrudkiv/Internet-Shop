@@ -13,6 +13,7 @@ export class UpdateMonitorComponent implements OnInit {
   imgURL: any;
   message: string;
   public host: string = "http://localhost:8080";
+  loading: string = '';
 
   constructor(private productService: ProductService,) {
     this.productForUpdate = history.state.product;
@@ -37,15 +38,18 @@ export class UpdateMonitorComponent implements OnInit {
       }
     }
   }
-
-  public print() {
-    console.log(this.productForUpdate)
-  }
   public updateProduct() {
+    this.loading = "LOADING...";
     const formData: FormData = new FormData();
     formData.append("file", this.image);
     formData.append("product", JSON.stringify(this.productForUpdate));
-    this.productService.update(formData, this.productForUpdate.id).subscribe();
+    this.productService.update(formData, this.productForUpdate.id).subscribe(value => {
+      this.loading = '';
+      alert('Success')
+    }, error => {
+      this.loading = '';
+      alert(error.error.message)
+    });
   }
   ngOnInit(): void {
   }

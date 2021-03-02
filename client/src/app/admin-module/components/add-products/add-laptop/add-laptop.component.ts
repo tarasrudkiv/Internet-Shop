@@ -10,9 +10,9 @@ import {ProductService} from "../../../../product-module/services/product.servic
 export class AddLaptopComponent implements OnInit {
   laptop: IProduct =
     {
-      name: '',
+      productName: '',
       description: '',
-      price: 0,
+      price: null,
       status: '',
       category: 'laptop',
       components: [
@@ -41,7 +41,7 @@ export class AddLaptopComponent implements OnInit {
           ]
         },
         {
-          componentName: '',  // ram  name
+          componentName: '',
           component_id: 'ram',
           componentValues: [
             {
@@ -51,7 +51,7 @@ export class AddLaptopComponent implements OnInit {
           ]
         },
         {
-          componentName: '',  // monitor  type
+          componentName: '',
           component_id: 'monitor',
           componentValues: [
             {
@@ -70,7 +70,7 @@ export class AddLaptopComponent implements OnInit {
           ]
         },
         {
-          componentName: '',  // battery type
+          componentName: '',
           component_id: 'battery',
           componentValues: [
             {
@@ -86,6 +86,7 @@ export class AddLaptopComponent implements OnInit {
   image: File;
   message: string;
   imgURL: any;
+  loading: string = '';
 
   constructor(private productService: ProductService) {
   }
@@ -110,16 +111,23 @@ export class AddLaptopComponent implements OnInit {
     }
   }
 
-  save():void{
+  save(): void {
+    this.loading = 'LOADING...';
     const formData: FormData = new FormData();
-    formData.append("file",this.image);
-    formData.append("product",JSON.stringify(this.laptop));
-    this.productService.save(formData).subscribe()
+    formData.append("file", this.image);
+    formData.append("product", JSON.stringify(this.laptop));
+    this.productService.save(formData).subscribe(value => {
+        this.loading = '';
+        alert('Success')
+      },
+      error => {
+        this.loading = '';
+        alert(error.error.message);
+      })
   }
 
-
-  print(): void {
-    console.log(this.laptop)
+  isImageTrue() {
+    return(this.image == null)
   }
   ngOnInit(): void {
   }

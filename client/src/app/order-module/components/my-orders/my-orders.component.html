@@ -1,0 +1,12 @@
+<div>
+  <div [ngClass]="{orders:true}">
+    <app-order-card-for-user *ngFor="let o of orders" [order]="o"
+                             (orderDeleted)="deleteOrder(o.id)"></app-order-card-for-user>
+  </div>
+
+  <ngb-pagination class="d-flex justify-content-center"
+                  [collectionSize]="totalElements"
+                  pageSize="20"
+                  maxSize="10"
+                  (pageChange)="onPageChange($event)" [boundaryLinks]="true"></ngb-pagination>
+</div>

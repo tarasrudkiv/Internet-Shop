@@ -1,0 +1,21 @@
+<div [ngClass]="{card:true}">
+  <div (click)="showDetails()">
+    <div [ngClass]="{pictureBlock:true}">
+      <img src="{{host+'/product/image/'+product.id}}" alt="" [ngClass]="{picture:true}">
+    </div>
+    <div>
+      <p>{{product.category + " " + product.productName}}</p>
+      <p>{{product.status}}</p>
+      <p>{{product.price}}</p>
+    </div>
+  </div>
+  <div [ngClass]="{buttonsBlock:true}">
+    <div>
+      <button (click)="removeProduct()">Remove from basket</button>
+    </div>
+    <div>
+      <button (click)="orderProduct(product)">Buy</button>
+    </div>
+  </div>
+</div>
+

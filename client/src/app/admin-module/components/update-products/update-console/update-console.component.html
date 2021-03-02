@@ -2,30 +2,38 @@
 <form #updateConsoleForm="ngForm"  >
   <img src="{{host+'/product/image/'+productForUpdate.id}}" alt="" [ngClass]="{picture:true}">
   <p>Product name</p>
-  <input type="text" name="consoleName" [(ngModel)]="productForUpdate.name">
+  <input type="text" name="computerName" [(ngModel)]="productForUpdate.productName" #productName="ngModel" required>
   <p>Product description</p>
-  <textarea type="text" name="consoleDescription" [(ngModel)]="productForUpdate.description"></textarea>
+  <textarea type="text" name="computerDescription" [(ngModel)]="productForUpdate.description" #description="ngModel" required></textarea>
   <p>Product price</p>
-  <input type="number" name="consolePrice" [(ngModel)]="productForUpdate.price">
+  <input type="number" name="computerPrice" [(ngModel)]="productForUpdate.price" #price="ngModel" required>
   <p>Product status</p>
-  <select name="consoleStatus" [(ngModel)]="productForUpdate.status">
+  <select name="computerStatus" [(ngModel)]="productForUpdate.status" #status="ngModel" required>
     <option>In stock</option>
     <option>is over</option>
   </select>
+
+
   <p>processor name</p>
-  <input type="text" name="cpuName" [(ngModel)]="productForUpdate.components[0].componentName">
+  <input type="text" name="cpuName" [(ngModel)]="productForUpdate.components[0].componentName" #cpuName="ngModel" required>
   <p>Processor clock speed</p>
-  <input type="number" name="cpuClockSpeed" [(ngModel)]="productForUpdate.components[0].componentValues[0].propertyValue">
+  <input type="number" name="cpuClockSpeed" [(ngModel)]="productForUpdate.components[0].componentValues[0].propertyValue" #cpuClockSpeed="ngModel" required>
   <p>Processor number of cores</p>
-  <input type="number" name="cpuNumberOfCores" [(ngModel)]="productForUpdate.components[0].componentValues[1].propertyValue">
+  <input type="number" name="cpuNumberOfCores" [(ngModel)]="productForUpdate.components[0].componentValues[1].propertyValue" #cpuNumberOfCores="ngModel" required>
+
+
   <p>Graphics card name </p>
-  <input type="text" name="graphicsCardName" [(ngModel)]="productForUpdate.components[1].componentName">
+  <input type="text" name="graphicsCardName" [(ngModel)]="productForUpdate.components[1].componentName" #graphicsCardName="ngModel" required>
   <p>Graphics card amount of video memory</p>
-  <input type="number" name="graphicsCardAmountOfVideoMemory" [(ngModel)]="productForUpdate.components[1].componentValues[0].propertyValue">
+  <input type="number" name="graphicsCardAmountOfVideoMemory" [(ngModel)]="productForUpdate.components[1].componentValues[0].propertyValue" #graphicsCardAmountOfVideoMemory="ngModel" required>
+
+
   <p>RAM name</p>
-  <input type="text" name="ramName" [(ngModel)]="productForUpdate.components[2].componentName">
+  <input type="text" name="ramName" [(ngModel)]="productForUpdate.components[2].componentName" #ramName="ngModel" required>
   <p>Amount of RAM memory</p>
-  <input type="number" name="amountOfRamMemory" [(ngModel)]="productForUpdate.components[2].componentValues[0].propertyValue">
+  <input type="number" name="amountOfRamMemory" [(ngModel)]="productForUpdate.components[2].componentValues[0].propertyValue" #amountOfRamMemory="ngModel" required>
+
+
   <p>Image</p>
   <input type="file" name="productImage"  (change)="onSelectFile($event)">
   <p>{{message}}</p>
@@ -33,7 +41,9 @@
   <div>
     <img [src]="imgURL" height="200"  *ngIf="imgURL">
   </div>
-  <button (click)="updateProduct()">update</button>
-  <button (click)="print()">print</button>
+  <div>
+    <button (click)="updateProduct()" [disabled]="!updateConsoleForm.valid">update</button>
+    <p>{{loading}}</p>
+  </div>
 
 </div>

@@ -1,9 +1,14 @@
-<div *ngIf="user">
-<div>
-  {{user.id}}
-  {{user.username}}
-  {{user.password}}
-  {{user.role}}
+<div [ngClass]="{userInfo:true}" *ngIf="user">
+  <p>  {{user.userName}}</p>
+  <p>  {{user.role}}</p>
+  <p>  {{user.phoneNumber}}</p>
+  <p>  {{user.email}}</p>
+  <div>
+    <button *ngIf="isAdmin()" (click)="toAdminPage()">Admin Page</button>
+  </div>
+  <div [ngClass]="{buttons:true}">
+    <button (click)="toOrdersPage()">My orders</button>
+    <button (click)="toBasket()">Basket</button>
+  </div>
 </div>
-  <button *ngIf="isAdmin()" (click)="toAdminPage()">Admin Page</button>
-</div>
+<router-outlet></router-outlet>

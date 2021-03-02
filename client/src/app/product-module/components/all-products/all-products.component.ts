@@ -62,7 +62,7 @@ export class AllProductsComponent implements OnInit {
     return !!localStorage.getItem("token") === true;
   }
 
-  onPageChange(pageNumber: number) {//перевіряє тип пошуку щоб підтягнути правильну сторінку
+  onPageChange(pageNumber: number) {
     if (this.searchType == "all") {
       this.productService.getAllProducts(pageNumber - 1).subscribe(value => {
           this.products = value.productList;

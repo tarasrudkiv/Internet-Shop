@@ -9,18 +9,19 @@ import {RouterModule, Routes} from '@angular/router';
 import {RegistrationPageComponent} from './components/registration-page/registration-page.component';
 import {AuthenticationPageComponent} from './components/authentication-page/authentication-page.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import {AdminPageComponent} from "./admin-module/components/admin-page/admin-page.component";
-import {UserPageComponent} from "./user-module/components/user-page/user-page.component";
+import {BasketComponent} from './components/basket/basket.component';
+import {ProductModule} from "./product-module/product.module";
 
 
 const routes: Routes = [
     {path: '', component: HomePageComponent},
     {path: 'allProducts', loadChildren: () => import('./product-module/product.module').then(m => m.ProductModule)},
     {path: 'admin', loadChildren: () => import('./admin-module/admin.module').then(m => m.AdminModule)},
+    {path: 'order', loadChildren: () => import('./order-module/order-module.module').then(m => m.OrderModuleModule)},
+    {path: 'userPage', loadChildren: () => import('./user-module/user.module').then(m => m.UserModule)},
+
     {path: 'authentication', component: AuthenticationPageComponent},
     {path: 'registration', component: RegistrationPageComponent},
-    {path: 'userPage', component: UserPageComponent},
-    {path: 'userPage/admin', component: AdminPageComponent},
   ]
 ;
 
@@ -30,6 +31,7 @@ const routes: Routes = [
     HomePageComponent,
     RegistrationPageComponent,
     AuthenticationPageComponent,
+    BasketComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +40,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes),
     NgbModule,
+    ProductModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

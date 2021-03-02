@@ -1,0 +1,11 @@
+<div [ngClass]="{basket:true}">
+  <div [ngClass]="{cards:true}">
+    <app-product-card-in-basket *ngFor="let p of products" [product]="p" (productSelected)="toProductDetails(p,p.id)"
+                                (productDeleted)="deleteProduct(p.id)"></app-product-card-in-basket>
+  </div>
+  <ngb-pagination class="d-flex justify-content-center"
+                  [collectionSize]="totalElements"
+                  pageSize="20"
+                  maxSize="10"
+                  (pageChange)="onPageChange($event)" [boundaryLinks]="true"></ngb-pagination>
+</div>

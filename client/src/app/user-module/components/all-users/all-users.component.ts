@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
-import {IUserPage} from '../../model/userPageModel';
 import {IUser} from '../../model/userModel';
 
 
@@ -11,25 +10,63 @@ import {IUser} from '../../model/userModel';
   styleUrls: ['./all-users.component.css']
 })
 export class AllUsersComponent implements OnInit {
-  data: IUserPage;
   users: IUser[];
   totalElements: number;
+  userName: string;
+  searchType: string;
+  page: number;
 
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router) {
-    this.activatedRoute.data.subscribe(value => this.data = value.allUsers);
-    this.users = this.data.usersList;
-    this.totalElements = this.data.totalElements;
-    console.log(this.users);
+  constructor(private userService: UserService, private  router: Router) {
+    this.userService.getAllUsers(0).subscribe(value => {
+      this.users = value.usersList;
+      this.totalElements = value.totalElements;
+    });
+    this.searchType = "all";
+    this.page = 1;
+  }
+
+  private setPageNumber(): void { // при зміні типу пошуку відкриває першу сторінку
+    this.page = 1;
   }
 
   public toUserPage(user: IUser): void {
     this.router.navigate(['admin/allUsers/user', user.id], {state: {user}});
   }
 
-  onPageChange(pageNumber: number): void {
-    this.userService.getAllUsers(pageNumber - 1).subscribe(value =>
-      this.users = value.usersList);
+  public getAllUsers() {
+    this.userService.getAllUsers(0).subscribe(value => {
+      this.users = value.usersList;
+      this.totalElements = value.totalElements;
+      this.searchType = "all";
+      this.setPageNumber()
+    })
   }
+
+  public getUserByUserName() {
+    this.userService.getAllUsersByUserName(0, this.userName).subscribe(value => {
+      this.users = value.usersList;
+      this.totalElements = value.totalElements;
+      this.searchType = "byName";
+      this.setPageNumber()
+    })
+  }
+
+  onPageChange(pageNumber: number) {//перевіряє тип пошуку щоб підтягнути правильну сторінку
+    if (this.searchType == "all") {
+      this.userService.getAllUsers(pageNumber - 1).subscribe(value => {
+          this.users = value.usersList;
+          this.totalElements = value.totalElements;
+        }
+      );
+    }
+    if (this.searchType == "byName") {
+      this.userService.getAllUsersByUserName(pageNumber - 1, this.userName).subscribe(value => {
+        this.users = value.usersList;
+        this.totalElements = value.totalElements;
+      })
+    }
+  }
+
 
   ngOnInit(): void {
   }

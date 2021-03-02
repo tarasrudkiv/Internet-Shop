@@ -1,0 +1,20 @@
+<div>
+  <div>
+    <form #findOrderForm="ngForm">
+      <button (click)="getAllOrders()">all</button>
+      <input type="text" name="findOrder" [(ngModel)]="keyword" #word="ngModel" required>
+      <button (click)="findOrder()" [disabled]="!findOrderForm.valid">Find</button>
+    </form>
+  </div>
+  <div>
+    <div>
+      <app-order-card-for-admin *ngFor="let o of orders" [order]="o"></app-order-card-for-admin>
+    </div>
+    <ngb-pagination class="d-flex justify-content-center"
+                    [collectionSize]="totalElements"
+                    pageSize="20"
+                    maxSize="10"
+                    [(page)]="page"
+                    (pageChange)="onPageChange($event)" [boundaryLinks]="true"></ngb-pagination>
+  </div>
+</div>

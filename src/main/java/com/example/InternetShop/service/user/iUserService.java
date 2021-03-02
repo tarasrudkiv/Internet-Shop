@@ -1,19 +1,25 @@
 package com.example.InternetShop.service.user;
 
-import com.example.InternetShop.dto.UserRoleDTO;
+import com.example.InternetShop.dto.UserDTO;
 import com.example.InternetShop.dto.UsersPageDTO;
 import com.example.InternetShop.entity.User;
 import org.springframework.data.domain.PageRequest;
+
+import java.util.List;
 
 public interface iUserService {
     String createUser(User user);
 
     UsersPageDTO getAllUsers(PageRequest pageRequest);
 
-    User getUserByUserName(String name);
-//     UserRoleDTO getUserRoleByUserName(String name);
+    UsersPageDTO getAllUsersByUserName(PageRequest pageRequest, String productName);
 
-//    public String changeRole(User user, int id);
-    public User changeRole(String role, int id);
-//    public void deleteUser(int id);
+    UserDTO getUserByUserName(String name);
+
+
+    User changeRole(String role, int id);
+
+    List<UserDTO> convertUserListToUserDtoList(List<User> users, List<UserDTO> userDTOS);
+
+    void deleteUser(int id);
 }

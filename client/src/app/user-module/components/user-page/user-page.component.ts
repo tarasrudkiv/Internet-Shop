@@ -16,15 +16,25 @@ export class UserPageComponent implements OnInit {
     this.userService.getOneUser(localStorage.getItem('userName')).subscribe(value => {
       this.user = value;
       localStorage.setItem('role', this.user.role);
+      localStorage.setItem('id', JSON.stringify(this.user.id));
+      this.toOrdersPage();
     });
   }
 
   isAdmin(): boolean {
-    return (localStorage.getItem('role') === 'ROLE_ADMIN'||localStorage.getItem('role') === 'ROLE_MAIN_ADMIN');
+    return (localStorage.getItem('role') === 'ROLE_ADMIN' || localStorage.getItem('role') === 'ROLE_MAIN_ADMIN');
   }
 
   toAdminPage(): void {
     this.router.navigate(['/userPage/admin']);
+  }
+
+  toOrdersPage(): void {
+    this.router.navigate(['/userPage/order/myOrders']);
+  }
+
+  toBasket(): void {
+    this.router.navigate(['/userPage/basket']);
   }
 
   ngOnInit(): void {

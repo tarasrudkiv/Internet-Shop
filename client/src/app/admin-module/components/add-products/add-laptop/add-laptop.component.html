@@ -1,48 +1,66 @@
 <form #laptopForm="ngForm">
   <p>Product name</p>
-  <input type="text" name="laptopName" [(ngModel)]="laptop.name">
+  <input type="text" name="laptopName" [(ngModel)]="laptop.productName" #productName="ngModel" required>
   <p>Product description</p>
-  <textarea type="text" name="laptopDescription" [(ngModel)]="laptop.description"></textarea>
+  <textarea type="text" name="laptopDescription" [(ngModel)]="laptop.description" #description="ngModel"
+            required></textarea>
   <p>Product price</p>
-  <input type="number" name="laptopPrice" [(ngModel)]="laptop.price">
+  <input type="number" name="laptopPrice" [(ngModel)]="laptop.price" #price="ngModel" required>
   <p>Product status</p>
-  <select name="laptopStatus" [(ngModel)]="laptop.status">
+  <select name="laptopStatus" [(ngModel)]="laptop.status" #status="ngModel" required>
     <option>In stock</option>
     <option>is over</option>
   </select>
-  <p>processor name</p>
-  <input type="text" name="cpuName" [(ngModel)]="laptop.components[0].componentName">
+
+
+  <p>Processor name</p>
+  <input type="text" name="cpuName" [(ngModel)]="laptop.components[0].componentName" #cpuName="ngModel" required>
   <p>Processor clock speed</p>
-  <input type="number" name="cpuClockSpeed" [(ngModel)]="laptop.components[0].componentValues[0].propertyValue">
+  <input type="number" name="cpuClockSpeed" [(ngModel)]="laptop.components[0].componentValues[0].propertyValue"
+         #cpuClockSpeed="ngModel" required>
   <p>Processor number of cores</p>
-  <input type="number" name="cpuNumberOfCores" [(ngModel)]="laptop.components[0].componentValues[1].propertyValue">
+  <input type="number" name="cpuNumberOfCores" [(ngModel)]="laptop.components[0].componentValues[1].propertyValue"
+         #cpuNumberOfCores="ngModel" required>
+
+
   <p>Graphics card name </p>
-  <input type="text" name="graphicsCardName" [(ngModel)]="laptop.components[1].componentName">
+  <input type="text" name="graphicsCardName" [(ngModel)]="laptop.components[1].componentName" #graphicsCardName="ngModel"
+         required>
   <p>Graphics card amount of video memory</p>
   <input type="number" name="graphicsCardAmountOfVideoMemory"
-         [(ngModel)]="laptop.components[1].componentValues[0].propertyValue">
+         [(ngModel)]="laptop.components[1].componentValues[0].propertyValue" #graphicsCardAmountOfVideoMemory = "ngModel" required>
+
+
   <p>RAM name</p>
-  <input type="text" name="ramName" [(ngModel)]="laptop.components[2].componentName">
+  <input type="text" name="ramName" [(ngModel)]="laptop.components[2].componentName" #ramName = "ngModel" required>
   <p>Amount of RAM memory</p>
-  <input type="number" name="amountOfRamMemory" [(ngModel)]="laptop.components[2].componentValues[0].propertyValue">
+  <input type="number" name="amountOfRamMemory" [(ngModel)]="laptop.components[2].componentValues[0].propertyValue" #amountOfRamMemory = "ngModel" required>
+
+
   <p>Monitor type</p>
-  <input type="text" name="monitorType" [(ngModel)]="laptop.components[3].componentName">
+  <input type="text" name="monitorType" [(ngModel)]="laptop.components[3].componentName" #monitorType = "ngModel" required>
   <p>screen diagonal</p>
-  <input type="number" name="screenDiagonal" [(ngModel)]="laptop.components[3].componentValues[0].propertyValue">
+  <input type="number" name="screenDiagonal" [(ngModel)]="laptop.components[3].componentValues[0].propertyValue" #screenDiagonal = "ngModel" required>
   <p>screen extension</p>
-  <input type="text" name="screenExtension" [(ngModel)]="laptop.components[3].componentValues[1].propertyValue">
+  <input type="text" name="screenExtension" [(ngModel)]="laptop.components[3].componentValues[1].propertyValue" #screenExtension = "ngModel" required>
   <p>frame rate</p>
-  <input type="number" name="frameRate" [(ngModel)]="laptop.components[3].componentValues[2].propertyValue">
+  <input type="number" name="frameRate" [(ngModel)]="laptop.components[3].componentValues[2].propertyValue" #frameRate = "ngModel" required>
+
+
   <p>Battery type</p>
-  <input type="text" name="batteryType" [(ngModel)]="laptop.components[4].componentName">
+  <input type="text" name="batteryType" [(ngModel)]="laptop.components[4].componentName" #batteryType = "ngModel" required>
   <p>Battery capacity</p>
-  <input type="number" name="batteryCapacity" [(ngModel)]="laptop.components[4].componentValues[0].propertyValue">
+  <input type="number" name="batteryCapacity" [(ngModel)]="laptop.components[4].componentValues[0].propertyValue" #batteryCapacity = "ngModel" required>
+
+
   <p>Image</p>
   <input type="file" name="productImage" (change)="onSelectFile($event)">
   <p>{{message}}</p>
 </form>
-<button (click)="print()">print</button>
-<button (click)="save()">save</button>
+<div>
+  <button (click)="save()" [disabled]="!laptopForm.valid || isImageTrue()">save</button>
+  <p>{{loading}}</p>
+</div>
 <div>
   <img [src]="imgURL" height="200" *ngIf="imgURL">
 </div>

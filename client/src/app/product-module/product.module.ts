@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ProductCardComponent} from "./components/product-card/product-card.component";
-import {ProductPageComponent} from "./components/product-page/product-page.component";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
@@ -16,6 +15,7 @@ import {MonitorPageComponent} from "./components/product-pages/monitor-page/moni
 import {SmartWatchPageComponent} from "./components/product-pages/smart-watch-page/smart-watch-page.component";
 import {SmartphonePageComponent} from "./components/product-pages/smartphone-page/smartphone-page.component";
 import {TvPageComponent} from "./components/product-pages/tv-page/tv-page.component";
+import { ProductCardInBasketComponent } from './components/product-card-in-basket/product-card-in-basket.component';
 
 const routes: Routes = [
   {path: '', component: AllProductsComponent},
@@ -30,7 +30,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     ProductCardComponent,
-    ProductPageComponent,
     AllProductsComponent,
     ComputerPageComponent,
     ConsolePageComponent,
@@ -38,7 +37,8 @@ const routes: Routes = [
     MonitorPageComponent,
     SmartWatchPageComponent,
     SmartphonePageComponent,
-    TvPageComponent
+    TvPageComponent,
+    ProductCardInBasketComponent
   ],
   imports: [
     CommonModule,
@@ -47,8 +47,10 @@ const routes: Routes = [
     NgbModule,
     RouterModule.forChild(routes),
   ],
-  exports: [
-  ],
+    exports: [
+        ProductCardComponent,
+        ProductCardInBasketComponent
+    ],
   providers: [
     ProductResolveService,
     ProductService

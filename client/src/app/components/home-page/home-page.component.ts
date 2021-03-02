@@ -12,9 +12,14 @@ import {IProductPage} from "../../product-module/models/productPageModel";
 export class HomePageComponent implements OnInit {
   products: IProduct[];
   totalElements: number;
+  userId: string;
+
 
   constructor(private  router: Router,) {
-    this.router.navigate(['allProducts'])
+    this.router.navigate(['allProducts']);
+    if (localStorage.getItem("id") != null) {
+      this.userId = localStorage.getItem("id")
+    }
   }
 
   public logout(): void {
@@ -27,12 +32,17 @@ export class HomePageComponent implements OnInit {
   public isAuthenticated(): boolean {
     return !!localStorage.getItem("token") === true;
   }
-  toHomePage(){
+
+  toHomePage() {
     this.router.navigate(["/"]);
   }
 
   toProductDetails(product: IProduct) {
     this.router.navigate(['allProducts/product', product.id], {state: {product}})
+  }
+
+  toBasket() {
+    this.router.navigate(['/basket/', this.userId])
   }
 
   ngOnInit(): void {

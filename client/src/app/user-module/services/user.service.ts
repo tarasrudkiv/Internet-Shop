@@ -42,4 +42,8 @@ export class UserService {
     return (this.httpClient.put<string>(`http://localhost:8080/user/changeRole/${id}`, role, {headers}));
   }
 
+  public getAllUsersByUserName(page: number, name: string): Observable<IUserPage> {
+    return (this.httpClient.get<IUserPage>(`http://localhost:8080/user/name/${name}/?page=${page}`));
+  }
+
 }

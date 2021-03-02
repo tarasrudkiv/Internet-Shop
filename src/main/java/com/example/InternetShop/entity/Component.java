@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Data
@@ -16,8 +18,11 @@ public class Component {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     @Column
+    @NotBlank
     String componentName;
+    @NotBlank
     String component_id;
+    @NotEmpty
     @OneToMany(cascade = CascadeType.ALL)
     List<ComponentValue> componentValues;
 }

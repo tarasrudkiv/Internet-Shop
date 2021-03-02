@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../user-module/services/user.service";
 import {IUser} from "../../user-module/model/userModel";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -9,20 +10,31 @@ import {IUser} from "../../user-module/model/userModel";
   styleUrls: ['./registration-page.component.css']
 })
 export class RegistrationPageComponent implements OnInit {
+  loading = "";
+  currentError: any;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
   }
 
   user: IUser = {
-    username: "",
+    userName: "",
     password: "",
     phoneNumber: "",
     email: ""
   };
 
   public saveUser() {
-    this.userService.save(this.user).subscribe()
+    this.loading = "LOADING...";
+    this.userService.save(this.user).subscribe(value => {
+      this.loading = "";
+      this.router.navigate(["/authentication"])
+    }, error => {
+      this.currentError = JSON.parse(error.error);
+      alert(this.currentError.message);
+      this.loading = "";
+    })
   }
+
   ngOnInit(): void {
   }
 

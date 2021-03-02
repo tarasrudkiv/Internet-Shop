@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-admin-page',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
+  }
+
+  toAllOrdersPage(): void {
+    this.router.navigate(['/order/allOrders']);
   }
 
 }

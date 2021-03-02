@@ -10,9 +10,9 @@ import {ProductService} from "../../../../product-module/services/product.servic
 export class AddConsoleComponent implements OnInit {
   console: IProduct =
     {
-      name: '',
+      productName: '',
       description: '',
-      price: 0,
+      price: null,
       status: '',
       category: 'console',
       components: [
@@ -41,7 +41,7 @@ export class AddConsoleComponent implements OnInit {
           ]
         },
         {
-          componentName: '',  // ram  name
+          componentName: '',
           component_id: 'ram',
           componentValues: [
             {
@@ -56,6 +56,7 @@ export class AddConsoleComponent implements OnInit {
   image: File;
   message: string;
   imgURL: any;
+  loading: string = '';
 
   constructor(private productService: ProductService) {
   }
@@ -80,18 +81,23 @@ export class AddConsoleComponent implements OnInit {
     }
   }
 
-  save():void{
+  save(): void {
+    this.loading = 'LOADING...';
     const formData: FormData = new FormData();
-    formData.append("file",this.image);
-    formData.append("product",JSON.stringify(this.console));
-    this.productService.save(formData).subscribe()
+    formData.append("file", this.image);
+    formData.append("product", JSON.stringify(this.console));
+    this.productService.save(formData).subscribe(value => {
+        this.loading = '';
+        alert('Success')
+      },
+      error => {
+        this.loading = '';
+        alert(error.error.message);
+      })
   }
-
-
-  print(): void {
-    console.log(this.console)
+  isImageTrue() {
+    return(this.image == null)
   }
-
   ngOnInit(): void {
   }
 

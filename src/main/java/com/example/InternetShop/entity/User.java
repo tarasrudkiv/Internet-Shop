@@ -1,11 +1,15 @@
 package com.example.InternetShop.entity;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -17,12 +21,15 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
+    @NotBlank
     String username;
-    String password;
+    @NotBlank
     String phoneNumber;
+    @NotBlank
     String email;
     String role;
-
+    @NotBlank
+    String password;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -45,9 +52,10 @@ public class User implements UserDetails {
     }
 
     @Override
-    public boolean isAccountNonLocked(){
+    public boolean isAccountNonLocked() {
         return true;
     }
+
     @Override
     public boolean isCredentialsNonExpired() {
         return true;

@@ -1,0 +1,51 @@
+<div>
+  <div>
+    <div>
+      <div>{{product.productName}}</div>
+      <div [ngClass]="{imageBlock:true}">
+        <img src="{{host+'/product/image/'+product.id}}" [ngClass]="{image:true}">
+      </div>
+    </div>
+    <div>
+      <button (click)="add()">+</button>
+      <p>{{numberOfProducts}}</p>
+      <button (click)="subtract()">-</button>
+    </div>
+    <div>
+      <p>{{totalPrice}}</p>
+    </div>
+  </div>
+  <div>
+    <form #orderForm="ngForm">
+      <p>First Name</p>
+      <input type="text" name="firstName" [(ngModel)]="orderedProduct.firstName" #firstName ="ngModel" required>
+      <p>Last Name</p>
+      <input type="text" name="lastName" [(ngModel)]="orderedProduct.lastName" #lastName ="ngModel" required>
+      <p>Email</p>
+      <input type="text" name="email" [(ngModel)]="orderedProduct.userEmail" #userEmail ="ngModel" required>
+      <p>Phone number</p>
+      <input type="number" name="number" [(ngModel)]="orderedProduct.userPhoneNumber" #userPhoneNumber ="ngModel" required>
+      <p>Type of delivery</p>
+      <select name="typeOfDelivery" [(ngModel)]="orderedProduct.typeOfDelivery" #typeOfDelivery ="ngModel" required>
+        <option>
+          delivery by mail
+        </option>
+        <option>
+          self-pickup from the place of issue
+        </option>
+        <option>
+          delivery to the specified address
+        </option>
+      </select>
+
+      <p>Address</p>
+      <input type="text" name="address" [(ngModel)]="orderedProduct.userAddress" #userAddress ="ngModel" required>
+      <p>Additional Information</p>
+      <textarea name="additionalInformation" [(ngModel)]="orderedProduct.additionalInformation"></textarea>
+    </form>
+<div>
+  <button (click)="order()" [disabled]="!orderForm.valid">Order</button>
+  <p>{{loading}}</p>
+</div>
+  </div>
+</div>

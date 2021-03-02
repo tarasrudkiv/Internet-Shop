@@ -11,14 +11,14 @@ export class AddMonitorComponent implements OnInit {
 
   monitor: IProduct =
     {
-      name: '',
+      productName: '',
       description: '',
-      price: 0,
+      price: null,
       status: '',
       category: 'monitor',
       components: [
         {
-          componentName: '',  // monitor  type
+          componentName: '',
           component_id: 'monitor',
           componentValues: [
             {
@@ -53,6 +53,7 @@ export class AddMonitorComponent implements OnInit {
   image: File;
   message: string;
   imgURL: any;
+  loading: string = '';
 
   constructor(private productService: ProductService) {
   }
@@ -77,17 +78,24 @@ export class AddMonitorComponent implements OnInit {
     }
   }
 
-  save():void{
+  save(): void {
+    this.loading = 'LOADING...';
     const formData: FormData = new FormData();
-    formData.append("file",this.image);
-    formData.append("product",JSON.stringify(this.monitor));
-    this.productService.save(formData).subscribe()
+    formData.append("file", this.image);
+    formData.append("product", JSON.stringify(this.monitor));
+    this.productService.save(formData).subscribe(value => {
+        this.loading = '';
+        alert('Success')
+      },
+      error => {
+        this.loading = '';
+        alert(error.error.message);
+      })
+  }
+  isImageTrue() {
+    return(this.image == null)
   }
 
-
-  print(): void {
-    console.log(this.monitor)
-  }
   ngOnInit(): void {
   }
 

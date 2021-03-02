@@ -3,6 +3,7 @@ package com.example.InternetShop.service.product;
 import com.example.InternetShop.dao.ProductDao;
 import com.example.InternetShop.dto.ProductPageDTO;
 import com.example.InternetShop.entity.Product;
+import com.example.InternetShop.exceptions.BlankFieldException;
 import com.example.InternetShop.exceptions.NotFoundException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -25,18 +26,20 @@ public class ProductService implements iProductService {
         final Page<Product> productPage = productDao.findAll(pageRequest);
         return new ProductPageDTO(productPage.getContent(), productPage.getTotalElements(), productPage.getTotalPages(), productPage.getSize());
     }
+
     @Override
-    public ProductPageDTO getAllProductsByCategory(PageRequest pageRequest,String category) {
+    public ProductPageDTO getAllProductsByCategory(PageRequest pageRequest, String category) {
         final Page<Product> productPage = productDao.findByCategoryName(category, pageRequest);
         System.out.println(category);
         return new ProductPageDTO(productPage.getContent(), productPage.getTotalElements(), productPage.getTotalPages(), productPage.getSize());
     }
+
     @Override
-    public ProductPageDTO getAllProductsByCProductName(PageRequest pageRequest,String productName) {
+    public ProductPageDTO getAllProductsByProductName(PageRequest pageRequest, String productName) {
         final Page<Product> productPage = productDao.findByProductName(productName, pageRequest);
-        System.out.println(productName);
         return new ProductPageDTO(productPage.getContent(), productPage.getTotalElements(), productPage.getTotalPages(), productPage.getSize());
     }
+
 
     @Override
     public Product getOneProduct(int id) {
@@ -50,16 +53,31 @@ public class ProductService implements iProductService {
 
     @Override
     public Product saveProduct(MultipartFile file, String product) {
-        Product productForReturn = null;
+        Product productForSave = null;
         try {
-            Product productForSave = new ObjectMapper().readValue(product, Product.class);
-            productForSave.setImage(file.getBytes());
-            productDao.save(productForSave);
-            productForReturn = productForSave;
+            productForSave = new ObjectMapper().readValue(product, Product.class);
+            if (productForSave.getProductName().equals("")) {
+                throw new BlankFieldException("Field 'ProductName'  must not be blank");
+            }
+            if (productForSave.getDescription().equals("")) {
+                throw new BlankFieldException("Field 'Description'  must not be blank");
+            }
+            if (productForSave.getPrice() <= 0) {
+                throw new BlankFieldException("Field 'Price'must not be blank or zero");
+            }
+            if (productForSave.getStatus().equals("")) {
+                throw new BlankFieldException("Field 'Status'must not be blank");
+            }
+            if (productForSave.getCategory().equals("")) {
+                throw new BlankFieldException("Field 'Category'must not be blank");
+            } else {
+                productForSave.setImage(file.getBytes());
+                productDao.save(productForSave);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return productForReturn;
+        return productForSave;
     }
 
     @Override
@@ -67,6 +85,21 @@ public class ProductService implements iProductService {
         Product productForReturn = null;
         try {
             Product productForUpdate = new ObjectMapper().readValue(product, Product.class);
+            if (productForUpdate.getProductName().equals("")) {
+                throw new BlankFieldException("Field 'ProductName'  must not be blank");
+            }
+            if (productForUpdate.getDescription().equals("")) {
+                throw new BlankFieldException("Field 'Description'  must not be blank");
+            }
+            if (productForUpdate.getPrice() <= 0) {
+                throw new BlankFieldException("Field 'Price'must not be blank or zero");
+            }
+            if (productForUpdate.getStatus().equals("")) {
+                throw new BlankFieldException("Field 'Status'must not be blank");
+            }
+            if (productForUpdate.getCategory().equals("")) {
+                throw new BlankFieldException("Field 'Category'must not be blank");
+            }
             productForUpdate.setId(id);
             if (file == null) {
                 Product productFromDatabase = productDao.findById(id).orElseThrow(NotFoundException::new);

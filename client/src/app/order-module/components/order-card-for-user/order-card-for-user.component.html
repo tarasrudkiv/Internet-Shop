@@ -1,0 +1,21 @@
+<div [ngClass]="{main:true}">
+  <div [ngClass]="{orderDetails:true}">
+    <div [ngClass]="{pictureBlock:true}">
+      <img src="{{host+'/product/image/'+order.productId}}" [ngClass]="{picture:true}">
+    </div>
+    <div [ngClass]="{productDetails:true}">
+      <p>Product id -  {{order.productId}}</p>
+      <p>Product name -  {{order.productName}}</p>
+      <p>Product price -  {{order.productPrice}}</p>
+      <p>Number of products -  {{order.numberOfProducts}}</p>
+      <p>Total price -  {{order.totalPrice}}</p>
+      <p>Type of delivery -  {{order.typeOfDelivery}}</p>
+    </div>
+  </div>
+  <div [ngClass]="{orderStatus:true}">
+    <p [ngClass]="{p:true}">order status - {{order.status}}</p>
+  </div>
+  <div>
+    <button (click)="cancelOrder(order.id)">Cancel the order</button>
+  </div>
+</div>

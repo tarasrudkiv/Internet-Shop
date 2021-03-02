@@ -1,33 +1,39 @@
 <form #TVForm="ngForm">
   <p>Product name</p>
-  <input type="text" name="TVName" [(ngModel)]="TV.name">
+  <input type="text" name="monitorName" [(ngModel)]="TV.productName" #productName="ngModel" required>
   <p>Product description</p>
-  <textarea type="text" name="TVDescription" [(ngModel)]="TV.description"></textarea>
+  <textarea type="text" name="monitorDescription" [(ngModel)]="TV.description" #description="ngModel" required></textarea>
   <p>Product price</p>
-  <input type="number" name="TVPrice" [(ngModel)]="TV.price">
+  <input type="number" name="monitorPrice" [(ngModel)]="TV.price" #price="ngModel" required>
   <p>Product status</p>
-  <select name="TVStatus" [(ngModel)]="TV.status">
+  <select name="monitorStatus" [(ngModel)]="TV.status" #status="ngModel" required>
     <option>In stock</option>
     <option>is over</option>
   </select>
+
+
   <p>Monitor type</p>
-  <input type="text" name="monitorType" [(ngModel)]="TV.components[0].componentName">
+  <input type="text" name="monitorType" [(ngModel)]="TV.components[0].componentName" #monitorType="ngModel" required>
   <p>screen diagonal</p>
-  <input type="number" name="screenDiagonal" [(ngModel)]="TV.components[0].componentValues[0].propertyValue">
+  <input type="number" name="screenDiagonal" [(ngModel)]="TV.components[0].componentValues[0].propertyValue" #screenDiagonal="ngModel" required>
   <p>screen extension</p>
-  <input type="text" name="screenExtension" [(ngModel)]="TV.components[0].componentValues[1].propertyValue">
+  <input type="text" name="screenExtension" [(ngModel)]="TV.components[0].componentValues[1].propertyValue" #screenExtension="ngModel" required>
+
 
   <p>Operating system type</p>
-  <input type="text" name="operatingSystemType" [(ngModel)]="TV.components[1].componentName">
+  <input type="text" name="operatingSystemType" [(ngModel)]="TV.components[1].componentName" #operatingSystemType="ngModel" required>
   <p>Operating system version</p>
-  <input type="number" name="operatingSystemVersion" [(ngModel)]="TV.components[1].componentValues[0].propertyValue">
+  <input type="number" name="operatingSystemVersion" [(ngModel)]="TV.components[1].componentValues[0].propertyValue" #operatingSystemVersion="ngModel" required>
+
 
   <p>Image</p>
   <input type="file" name="productImage" (change)="onSelectFile($event)">
   <p>{{message}}</p>
 </form>
-<button (click)="print()">print</button>
-<button (click)="save()">save</button>
+<div>
+  <button (click)="save()" [disabled]="!TVForm.valid || isImageTrue()">save</button>
+  <p>{{loading}}</p>
+</div>
 <div>
   <img [src]="imgURL" height="200" *ngIf="imgURL">
 </div>

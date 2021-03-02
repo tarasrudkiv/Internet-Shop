@@ -10,9 +10,9 @@ import {ProductService} from "../../../../product-module/services/product.servic
 export class AddComputerComponent implements OnInit {
   computer: IProduct =
     {
-      name: '',
+      productName: '',
       description: '',
-      price: 0,
+      price: null,
       status: '',
       category: 'computer',
       components: [
@@ -41,7 +41,7 @@ export class AddComputerComponent implements OnInit {
           ]
         },
         {
-          componentName: '',  // ram  name
+          componentName: '',
           component_id: 'ram',
           componentValues: [
             {
@@ -56,6 +56,7 @@ export class AddComputerComponent implements OnInit {
   image: File;
   message: string;
   imgURL: any;
+  loading: string = '';
 
   constructor(private productService: ProductService) {
   }
@@ -68,7 +69,7 @@ export class AddComputerComponent implements OnInit {
         this.message = "only images are supported";
         return
       } else {
-        this.message="";
+        this.message = "";
         const file = event.target.files[0];
         this.image = file;
         let reader = new FileReader();
@@ -80,18 +81,23 @@ export class AddComputerComponent implements OnInit {
     }
   }
 
-  save():void{
+  save(): void {
+    this.loading = 'LOADING...';
     const formData: FormData = new FormData();
-    formData.append("file",this.image);
-    formData.append("product",JSON.stringify(this.computer));
-    this.productService.save(formData).subscribe()
+    formData.append("file", this.image);
+    formData.append("product", JSON.stringify(this.computer));
+    this.productService.save(formData).subscribe(value => {
+        this.loading = '';
+        alert('Success')
+      },
+      error => {
+        this.loading = '';
+        alert(error.error.message);
+      })
   }
-
-
-  print(): void {
-    console.log(this.computer)
+  isImageTrue() {
+    return(this.image == null)
   }
-
   ngOnInit(): void {
   }
 }

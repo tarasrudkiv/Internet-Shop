@@ -1,14 +1,12 @@
 <div>
-  <div>
-      <p>"role "{{singleUser.role}}</p>
-    <div *ngIf="isMainAdmin()">
-      <p>print one of the roles: ROLE_USER, ROLE_ADMIN </p>
-    <form>
-      <input type="text" name="role" [(ngModel)]="role">
-      <button (click)="changeRole()">change</button>
+  <p>{{singleUser.userName}}</p>
+  <p>"role "{{singleUser.role}}</p>
+  <div *ngIf="isMainAdmin()">
+    <p>print one of the roles: ROLE_USER, ROLE_ADMIN </p>
+    <form #userRoleForm="ngForm">
+      <input type="text" name="role" [(ngModel)]="role" #userRole="ngModel" required>
+      <button (click)="changeRole()" [disabled]="!userRoleForm.valid">change</button>
     </form>
-    </div>
-    <p>{{singleUser.username}}</p>
   </div>
-  <div>products</div>
 </div>
+

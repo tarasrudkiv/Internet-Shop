@@ -3,6 +3,7 @@ import {IUser} from "../../user-module/model/userModel";
 import {UserService} from "../../user-module/services/user.service";
 import {Router} from "@angular/router";
 import {IAuthentication} from "../../user-module/model/authenticationModel";
+import {NgModel} from "@angular/forms";
 
 @Component({
   selector: 'app-authentication-page',
@@ -13,8 +14,9 @@ export class AuthenticationPageComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router) {
   }
+
   user: IAuthentication = {
-    username: "",
+    userName: "",
     password: ""
   };
   public login() {
@@ -22,8 +24,8 @@ export class AuthenticationPageComponent implements OnInit {
       localStorage.removeItem("token");
       this.userService.generateToken(this.user).subscribe(value => {
           localStorage.setItem("token", value.token);
-          localStorage.setItem("userName", this.user.username);
-          this.router.navigate(["/"])
+          localStorage.setItem("userName", this.user.userName);
+          this.router.navigate(["userPage"])
         },
         error => {
           alert("Wrong login or password")
@@ -31,14 +33,16 @@ export class AuthenticationPageComponent implements OnInit {
     } else {
       this.userService.generateToken(this.user).subscribe(value => {
           localStorage.setItem("token", value.token);
-          localStorage.setItem("userName", this.user.username);
-          this.router.navigate(["/"])
+          localStorage.setItem("userName", this.user.userName);
+          this.router.navigate(["userPage"])
         },
         error => {
+          console.log(error);
           alert("Wrong login or password")
         });
     }
   };
+
   ngOnInit(): void {
   }
 

@@ -23,14 +23,16 @@ import {UpdateSmartphoneComponent} from './components/update-products/update-sma
 import {UpdateMonitorComponent} from './components/update-products/update-monitor/update-monitor.component';
 import {UpdateTvComponent} from './components/update-products/update-tv/update-tv.component';
 import {UpdateSmartWatchComponent} from './components/update-products/update-smart-watch/update-smart-watch.component';
-
+import {AllUsersComponent} from "../user-module/components/all-users/all-users.component";
+import {UserPageForAdminComponent} from "../user-module/components/user-page-for-admin/user-page-for-admin.component";
 
 const routes: Routes = [
 
   {
     path: '', component: AdminPageComponent, children: [
       {path: 'productDetails', component: ProductDetailsComponent, resolve: {allProducts: ProductResolveService}},
-      {path: 'allUsers', loadChildren: () => import('../user-module/user.module').then(m => m.UserModule)},
+      {path: 'allUsers', component: AllUsersComponent},
+      {path: 'allUsers/user/:id', component: UserPageForAdminComponent},
       {path: 'update/computer/:id', component: UpdateComputerComponent},
       {path: 'update/laptop/:id', component: UpdateLaptopComponent},
       {path: 'update/console/:id', component: UpdateConsoleComponent},

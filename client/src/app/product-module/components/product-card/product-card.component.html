@@ -1,11 +1,18 @@
-<div  (click)="showDetails()" [ngClass]="{card:true}">
-  <div [ngClass]="{pictureBlock:true}">
-    <img src="{{host+'/product/image/'+product.id}}" alt="" [ngClass]="{picture:true}">
+<div  [ngClass]="{card:true}">
+  <div (click)="showDetails()">
+    <div [ngClass]="{pictureBlock:true}">
+      <img src="{{host+'/product/image/'+product.id}}" alt="" [ngClass]="{picture:true}">
+    </div>
+    <div>
+      <p>{{product.category+" "+ product.productName}}</p>
+      <p>{{product.status}}</p>
+      <p>price - {{product.price}}</p>
+    </div>
   </div>
-  <div>
-    <p>{{product.category+" "+ product.name}}</p>
-    <p>{{product.status}}</p>
-    <p>{{product.price}}</p>
+  <div [ngClass]="{buttonsBlock:true}">
+    <div><button *ngIf="isAuthenticated()" (click)="addProductToBasket()">add to basket</button></div>
+    {{loading}}
+    <div><button *ngIf="isAuthenticated()" (click)="orderProduct(product)">buy</button></div>
   </div>
 </div>
 

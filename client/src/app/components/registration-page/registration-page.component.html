@@ -1,14 +1,17 @@
 <div [ngClass]="{forms:true}">
   <form [ngClass]="{form:true}" #registrationForm="ngForm">
     <p>Username</p>
-    <input type="text" name="Username" [(ngModel)]="user.username">
+    <input type="text" name="Username" [(ngModel)]="user.userName" #username="ngModel" required>
     <p>Password</p>
-    <input type="password" name="password" [(ngModel)]="user.password">
+    <input type="password" name="password" [(ngModel)]="user.password" #password="ngModel" required>
     <p>Email</p>
-    <input type="email" name="email" [(ngModel)]="user.email">
+    <input type="email" name="email" [(ngModel)]="user.email" #email="ngModel" required>
     <p>PhoneNumber</p>
-    <input type="number" name="number" [(ngModel)]="user.phoneNumber">
-    <button (click)="saveUser()">add user</button>
+    <input type="number" name="number" [(ngModel)]="user.phoneNumber" #phoneNumber="ngModel" required>
+    <button (click)="saveUser()" [disabled]="!registrationForm.valid">add user</button>
   </form>
+  <p>{{loading}}</p>
+  <div>
+  </div>
 </div>
 

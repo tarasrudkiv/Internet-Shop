@@ -15,13 +15,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
-
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserService userDetailsService;
     @Autowired
-    private  JwtFilter jwtFilter;
+    private JwtFilter jwtFilter;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -29,6 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().withUser("admin").password("admin").roles("ADMIN")
                 .and().and().userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -46,15 +46,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().cors().disable().authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/").permitAll()
                 .antMatchers(HttpMethod.GET, "/product").permitAll()
+                .antMatchers(HttpMethod.GET, "/product/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/product").hasAnyRole("MAIN_ADMIN", "ADMIN")
                 .antMatchers(HttpMethod.PUT, "/product/**").hasAnyRole("MAIN_ADMIN", "ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/product/**").hasAnyRole("MAIN_ADMIN", "ADMIN")
                 .antMatchers(HttpMethod.POST, "/user").anonymous()
-//                .antMatchers(HttpMethod.POST, "/user").permitAll()
                 .antMatchers(HttpMethod.POST, "/user/authenticate").anonymous()
                 .antMatchers(HttpMethod.GET, "/user").hasAnyRole("MAIN_ADMIN", "ADMIN")
-                .antMatchers(HttpMethod.GET, "/user/name").hasAnyRole("MAIN_ADMIN","ADMIN","USER")
+                .antMatchers(HttpMethod.GET, "/user/name").hasAnyRole("MAIN_ADMIN", "ADMIN", "USER")
                 .antMatchers(HttpMethod.PUT, "/user/changeRole/**").hasAnyRole("MAIN_ADMIN")
+                .antMatchers(HttpMethod.POST, "/basket").authenticated()
+                .antMatchers(HttpMethod.GET, "/basket/**").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/basket/**").authenticated()
+                .antMatchers(HttpMethod.POST, "/order").authenticated()
+                .antMatchers(HttpMethod.GET, "/order").hasAnyRole("MAIN_ADMIN", "ADMIN")
+                .antMatchers(HttpMethod.GET, "/order/**").authenticated()
+                .antMatchers(HttpMethod.PUT, "/order/status/**").hasAnyRole("ADMIN", "MAIN_ADMIN")
+                .antMatchers(HttpMethod.GET, "/order/find/**").hasAnyRole("ADMIN", "MAIN_ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/order/delete/**").authenticated()
                 .and()
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

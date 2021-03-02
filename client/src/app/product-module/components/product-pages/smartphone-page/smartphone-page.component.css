@@ -1,4 +1,8 @@
-.picture{
+.picture {
+  height: 100%;
+}
+
+.pictureBlock {
   height: 500px;
   width: 800px;
 }

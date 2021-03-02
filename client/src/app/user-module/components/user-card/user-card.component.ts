@@ -8,7 +8,8 @@ import {IUser} from '../../model/userModel';
   styleUrls: ['./user-card.component.css']
 })
 export class UserCardComponent implements OnInit {
-  @Input() user: IUser;
+  @Input()
+  user: IUser;
 
   constructor() {
   }

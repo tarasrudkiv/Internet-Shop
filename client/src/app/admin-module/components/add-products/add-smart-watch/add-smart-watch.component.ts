@@ -10,9 +10,9 @@ import {ProductService} from "../../../../product-module/services/product.servic
 export class AddSmartWatchComponent implements OnInit {
   smartWatch: IProduct =
     {
-      name: '',
+      productName: '',
       description: '',
-      price: 0,
+      price: null,
       status: '',
       category: 'smartWatch',
       components: [
@@ -31,7 +31,7 @@ export class AddSmartWatchComponent implements OnInit {
           ]
         },
         {
-          componentName: 'memory',  // ram  name
+          componentName: 'memory',
           component_id: 'memory',
           componentValues: [
             {
@@ -45,7 +45,7 @@ export class AddSmartWatchComponent implements OnInit {
           ]
         },
         {
-          componentName: '',  // monitor  type
+          componentName: '',
           component_id: 'display',
           componentValues: [
             {
@@ -64,7 +64,7 @@ export class AddSmartWatchComponent implements OnInit {
           ]
         },
         {
-          componentName: '',  // battery type
+          componentName: '',
           component_id: 'battery',
           componentValues: [
             {
@@ -75,7 +75,7 @@ export class AddSmartWatchComponent implements OnInit {
           ]
         },
         {
-          componentName: '',  //  operating system name type
+          componentName: '',
           component_id: ' operatingSystem',
           componentValues: [
             {
@@ -91,6 +91,7 @@ export class AddSmartWatchComponent implements OnInit {
   image: File;
   message: string;
   imgURL: any;
+  loading: string = '';
 
   constructor(private productService: ProductService) {
   }
@@ -115,16 +116,22 @@ export class AddSmartWatchComponent implements OnInit {
     }
   }
 
-  save():void{
+  save(): void {
+    this.loading = 'LOADING...';
     const formData: FormData = new FormData();
-    formData.append("file",this.image);
-    formData.append("product",JSON.stringify(this.smartWatch));
-    this.productService.save(formData).subscribe()
+    formData.append("file", this.image);
+    formData.append("product", JSON.stringify(this.smartWatch));
+    this.productService.save(formData).subscribe(value => {
+        this.loading = '';
+        alert('Success')
+      },
+      error => {
+        this.loading = '';
+        alert(error.error.message);
+      })
   }
-
-
-  print(): void {
-    console.log(this.smartWatch)
+  isImageTrue() {
+    return(this.image == null)
   }
   ngOnInit(): void {
   }

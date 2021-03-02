@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Data
 @AllArgsConstructor
@@ -15,6 +16,8 @@ public class ComponentValue {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     @Column
+    @NotBlank
     String propertyName;
+    @NotBlank
     String propertyValue;
 }

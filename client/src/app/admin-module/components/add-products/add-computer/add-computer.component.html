@@ -1,36 +1,54 @@
-<form #computerForm="ngForm"  >
+<form #computerForm="ngForm">
   <p>Product name</p>
-  <input type="text" name="computerName" [(ngModel)]="computer.name">
+  <input type="text" name="computerName" [(ngModel)]="computer.productName" #productName="ngModel" required>
   <p>Product description</p>
-  <textarea type="text" name="computerDescription" [(ngModel)]="computer.description"></textarea>
+  <textarea type="text" name="computerDescription" [(ngModel)]="computer.description" #description="ngModel"
+            required></textarea>
   <p>Product price</p>
-  <input type="number" name="computerPrice" [(ngModel)]="computer.price">
+  <input type="number" name="computerPrice" [(ngModel)]="computer.price" #price="ngModel" required>
   <p>Product status</p>
-  <select name="computerStatus" [(ngModel)]="computer.status">
+  <select name="computerStatus" [(ngModel)]="computer.status" #status="ngModel" required>
     <option>In stock</option>
     <option>is over</option>
   </select>
-  <p>processor name</p>
-  <input type="text" name="cpuName" [(ngModel)]="computer.components[0].componentName">
+
+
+  <p>Processor name</p>
+  <input type="text" name="cpuName" [(ngModel)]="computer.components[0].componentName" #cpuName="ngModel" required>
   <p>Processor clock speed</p>
-  <input type="number" name="cpuClockSpeed" [(ngModel)]="computer.components[0].componentValues[0].propertyValue">
+  <input type="number" name="cpuClockSpeed" [(ngModel)]="computer.components[0].componentValues[0].propertyValue"
+         #cpuClockSpeed="ngModel" required>
   <p>Processor number of cores</p>
-  <input type="number" name="cpuNumberOfCores" [(ngModel)]="computer.components[0].componentValues[1].propertyValue">
+  <input type="number" name="cpuNumberOfCores" [(ngModel)]="computer.components[0].componentValues[1].propertyValue"
+         #cpuNumberOfCores="ngModel" required>
+
+
   <p>Graphics card name </p>
-  <input type=" text" name="graphicsCardName" [(ngModel)]="computer.components[1].componentName">
+  <input type="text" name="graphicsCardName" [(ngModel)]="computer.components[1].componentName"
+         #graphicsCardName="ngModel" required>
   <p>Graphics card amount of video memory</p>
-  <input type="number" name="graphicsCardAmountOfVideoMemory" [(ngModel)]="computer.components[1].componentValues[0].propertyValue">
+  <input type="number" name="graphicsCardAmountOfVideoMemory"
+         [(ngModel)]="computer.components[1].componentValues[0].propertyValue"
+         #graphicsCardAmountOfVideoMemory="ngModel" required>
+
+
   <p>RAM name</p>
-  <input type="text" name="ramName" [(ngModel)]="computer.components[2].componentName">
+  <input type="text" name="ramName" [(ngModel)]="computer.components[2].componentName" #ramName="ngModel" required>
   <p>Amount of RAM memory</p>
-  <input type="number" name="amountOfRamMemory" [(ngModel)]="computer.components[2].componentValues[0].propertyValue">
-  <p>Image</p>
-  <input type="file" name="productImage"  (change)="onSelectFile($event)">
-  <p>{{message}}</p>
+  <input type="number" name="amountOfRamMemory" [(ngModel)]="computer.components[2].componentValues[0].propertyValue"
+         #amountOfRamMemory="ngModel" required>
+
+
+<p>Image</p>
+<input type="file" name="productImage" (change)="onSelectFile($event)">
+<p>{{message}}</p>
 </form>
-<button (click)="print()">print</button>
-<button (click)="save()">save</button>
 <div>
-  <img [src]="imgURL" height="200"  *ngIf="imgURL">
+  <button (click)="save()" [disabled]="!computerForm.valid || isImageTrue()">save</button>
+  <p>{{loading}}</p>
+</div>
+
+<div>
+  <img [src]="imgURL" height="200" *ngIf="imgURL">
 </div>
 

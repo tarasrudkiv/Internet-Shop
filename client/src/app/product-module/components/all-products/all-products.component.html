@@ -14,8 +14,8 @@
   <div [ngClass]="{productsAndPagination:true}">
     <div>
       <form #findProductForm="ngForm" [ngClass]="{form:true}">
-        <input type="text" name="productName" [(ngModel)]="productName">
-        <button (click)="getProductByProductName()">find</button>
+        <input type="text" name="productName" [(ngModel)]="productName" #name="ngModel" required>
+        <button (click)="getProductByProductName()" [disabled]="!findProductForm.valid">find</button>
       </form>
     </div>
     <div *ngIf="products" [ngClass]="{products:true}">
@@ -26,7 +26,7 @@
     <div>
       <ngb-pagination class="d-flex justify-content-center"
                       [collectionSize]="totalElements"
-                      pageSize="20"
+                      pageSize="24"
                       maxSize="10"
                       [(page)]="page"
                       (pageChange)="onPageChange($event)" [boundaryLinks]="true"></ngb-pagination>

@@ -5,9 +5,13 @@ import com.example.InternetShop.entity.ComponentValue;
 import java.util.List;
 
 public interface IComponentValueService {
-    public List<ComponentValue> getAllComponentValues();
-    public ComponentValue getOneComponentValue(int id);
-    public ComponentValue insertComponentValue(ComponentValue componentValue);
-    public ComponentValue updateComponentValue(ComponentValue componentValue);
-    public void deleteComponentValue(int id);
+    List<ComponentValue> getAllComponentValues();
+
+    ComponentValue getOneComponentValue(int id);
+
+    ComponentValue insertComponentValue(ComponentValue componentValue);
+
+    ComponentValue updateComponentValue(ComponentValue componentValue);
+
+    void deleteComponentValue(int id);
 }

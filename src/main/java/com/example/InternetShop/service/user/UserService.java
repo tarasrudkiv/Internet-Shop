@@ -2,14 +2,13 @@ package com.example.InternetShop.service.user;
 
 import com.example.InternetShop.dao.UserDao;
 import com.example.InternetShop.dto.UserDTO;
-import com.example.InternetShop.dto.UserRoleDTO;
 import com.example.InternetShop.dto.UsersPageDTO;
-import com.example.InternetShop.entity.Product;
 import com.example.InternetShop.entity.User;
 import com.example.InternetShop.exceptions.NotFoundException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.InternetShop.exceptions.NotValidEmailException;
+import com.example.InternetShop.exceptions.NotValidPhoneNumberException;
+import com.example.InternetShop.exceptions.NotValidUserNameException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.configurationprocessor.json.JSONStringer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,10 +17,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.io.NotActiveException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService implements iUserService, UserDetailsService {
@@ -37,29 +34,52 @@ public class UserService implements iUserService, UserDetailsService {
 
     @Override
     public String createUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        User userFromDatabase = userDao.save(user);
-        int userId = userFromDatabase.getId();
-        if (userId == 1) {
-            userFromDatabase.setRole("ROLE_MAIN_ADMIN");
-        } else {
-            userFromDatabase.setRole("ROLE_USER");
+        if (userDao.findByUsername(user.getUsername()) != null) {
+            throw new NotValidUserNameException("User with this username is already registered");
         }
-        userDao.save(userFromDatabase);
-        return userFromDatabase.getUsername();
-    }
-
-
-        @Override
-    public UsersPageDTO getAllUsers(PageRequest pageRequest) {
-        final Page<User> userPage = userDao.findAll(pageRequest);
-        return new UsersPageDTO(userPage.getContent(), userPage.getTotalElements(), userPage.getTotalPages(), userPage.getSize());
+        if (userDao.findByPhoneNumber(user.getPhoneNumber()) != null) {
+            throw new NotValidPhoneNumberException("User with this phone number is already registered");
+        }
+        if (userDao.findByEmail(user.getEmail()) != null) {
+            throw new NotValidEmailException("User with this email is already registered");
+        } else {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            User userFromDatabase = userDao.save(user);
+            int userId = userFromDatabase.getId();
+            if (userId == 1) {
+                userFromDatabase.setRole("ROLE_MAIN_ADMIN");
+            } else {
+                userFromDatabase.setRole("ROLE_USER");
+            }
+            userDao.save(userFromDatabase);
+            return userFromDatabase.getUsername();
+        }
     }
 
     @Override
-    public User getUserByUserName(String name) {
-        return userDao.findByUsername(name);
+    public UsersPageDTO getAllUsers(PageRequest pageRequest) {
+        final Page<User> userPage = userDao.findAll(pageRequest);
+        List<UserDTO> userDTOS = new ArrayList<>();
+        List<UserDTO> userDtoList = convertUserListToUserDtoList(userPage.getContent(), userDTOS);
+        System.out.println(new UsersPageDTO(userDtoList, userPage.getTotalElements(), userPage.getTotalPages(), userPage.getSize()));
+        return new UsersPageDTO(userDtoList, userPage.getTotalElements(), userPage.getTotalPages(), userPage.getSize());
+
     }
+
+    @Override
+    public UsersPageDTO getAllUsersByUserName(PageRequest pageRequest, String userName) {
+        final Page<User> userPage = userDao.findByUsername(userName, pageRequest);
+        List<UserDTO> userDTOS = new ArrayList<>();
+        List<UserDTO> userDtoList = convertUserListToUserDtoList(userPage.getContent(), userDTOS);
+        return new UsersPageDTO(userDtoList, userPage.getTotalElements(), userPage.getTotalPages(), userPage.getSize());
+    }
+
+    @Override
+    public UserDTO getUserByUserName(String name) {
+        final User user = userDao.findByUsername(name);
+        return new UserDTO(user.getId(), user.getUsername(), user.getPhoneNumber(), user.getEmail(), user.getRole());
+    }
+
     @Override
     public User changeRole(String role, int id) {
         User userFromDatabase = null;
@@ -70,11 +90,25 @@ public class UserService implements iUserService, UserDetailsService {
         }
         if (userFromDatabase != null) {
             userFromDatabase.setId(id);
-        userFromDatabase.setRole(role);
-        userDao.save(userFromDatabase);
+            userFromDatabase.setRole(role);
+            userDao.save(userFromDatabase);
         }
 
         return userFromDatabase;
+    }
+
+    @Override
+    public List<UserDTO> convertUserListToUserDtoList(List<User> users, List<UserDTO> userDTOS) {
+        for (User user : users) {
+            UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getPhoneNumber(), user.getEmail(), user.getRole());
+            userDTOS.add(userDTO);
+        }
+        return userDTOS;
+    }
+
+    @Override
+    public void deleteUser(int id) {
+        userDao.deleteById(id);
     }
 
 }

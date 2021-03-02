@@ -10,14 +10,14 @@ import {ProductService} from "../../../../product-module/services/product.servic
 export class AddTVComponent implements OnInit {
   TV: IProduct =
     {
-      name: '',
+      productName: '',
       description: '',
-      price: 0,
+      price: null,
       status: '',
       category: 'TV',
       components: [
         {
-          componentName: '',  // monitor  type
+          componentName: '',
           component_id: 'monitor',
           componentValues: [
             {
@@ -32,7 +32,7 @@ export class AddTVComponent implements OnInit {
           ]
         },
         {
-          componentName: '',  //  operating system name type
+          componentName: '',
           component_id: ' operatingSystem',
           componentValues: [
             {
@@ -48,6 +48,7 @@ export class AddTVComponent implements OnInit {
   image: File;
   message: string;
   imgURL: any;
+  loading: string = '';
 
   constructor(private productService: ProductService) {
   }
@@ -72,16 +73,22 @@ export class AddTVComponent implements OnInit {
     }
   }
 
-  save():void{
+  save(): void {
+    this.loading = 'LOADING...';
     const formData: FormData = new FormData();
-    formData.append("file",this.image);
-    formData.append("product",JSON.stringify(this.TV));
-    this.productService.save(formData).subscribe()
+    formData.append("file", this.image);
+    formData.append("product", JSON.stringify(this.TV));
+    this.productService.save(formData).subscribe(value => {
+        this.loading = '';
+        alert('Success')
+      },
+      error => {
+        this.loading = '';
+        alert(error.error.message);
+      })
   }
-
-
-  print(): void {
-    console.log(this.TV)
+  isImageTrue() {
+    return(this.image == null)
   }
   ngOnInit(): void {
   }

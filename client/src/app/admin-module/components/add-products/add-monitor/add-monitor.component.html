@@ -1,35 +1,41 @@
 <form #monitorForm="ngForm">
   <p>Product name</p>
-  <input type="text" name="monitorName" [(ngModel)]="monitor.name">
+  <input type="text" name="monitorName" [(ngModel)]="monitor.productName" #productName="ngModel" required>
   <p>Product description</p>
-  <textarea type="text" name="monitorDescription" [(ngModel)]="monitor.description"></textarea>
+  <textarea type="text" name="monitorDescription" [(ngModel)]="monitor.description" #description="ngModel" required></textarea>
   <p>Product price</p>
-  <input type="number" name="monitorPrice" [(ngModel)]="monitor.price">
+  <input type="number" name="monitorPrice" [(ngModel)]="monitor.price" #price="ngModel" required>
   <p>Product status</p>
-  <select name="monitorStatus" [(ngModel)]="monitor.status">
+  <select name="monitorStatus" [(ngModel)]="monitor.status" #status="ngModel" required>
     <option>In stock</option>
     <option>is over</option>
   </select>
+
+
   <p>Monitor type</p>
-  <input type="text" name="monitorType" [(ngModel)]="monitor.components[0].componentName">
+  <input type="text" name="monitorType" [(ngModel)]="monitor.components[0].componentName" #monitorType="ngModel" required>
   <p>Screen diagonal</p>
-  <input type="number" name="screenDiagonal" [(ngModel)]="monitor.components[0].componentValues[0].propertyValue">
+  <input type="number" name="screenDiagonal" [(ngModel)]="monitor.components[0].componentValues[0].propertyValue" #screenDiagonal="ngModel" required>
   <p>Screen extension</p>
-  <input type="text" name="screenExtension" [(ngModel)]="monitor.components[0].componentValues[1].propertyValue">
+  <input type="text" name="screenExtension" [(ngModel)]="monitor.components[0].componentValues[1].propertyValue" #screenExtension="ngModel" required>
   <p>Frame rate</p>
-  <input type="number" name="frameRate" [(ngModel)]="monitor.components[0].componentValues[2].propertyValue">
+  <input type="number" name="frameRate" [(ngModel)]="monitor.components[0].componentValues[2].propertyValue" #frameRate="ngModel" required>
   <p>Display brightness</p>
-  <input type="number" name="displayBrightness" [(ngModel)]="monitor.components[0].componentValues[3].propertyValue">
+  <input type="number" name="displayBrightness" [(ngModel)]="monitor.components[0].componentValues[3].propertyValue" #displayBrightness="ngModel" required>
   <p>Display contrast</p>
-  <input type="number" name="displayContrast" [(ngModel)]="monitor.components[0].componentValues[4].propertyValue">
+  <input type="number" name="displayContrast" [(ngModel)]="monitor.components[0].componentValues[4].propertyValue" #displayContrast="ngModel" required>
   <p>Matrix reaction time</p>
-  <input type="number" name="matrixReactionTime" [(ngModel)]="monitor.components[0].componentValues[5].propertyValue">
+  <input type="number" name="matrixReactionTime" [(ngModel)]="monitor.components[0].componentValues[5].propertyValue" #matrixReactionTime="ngModel" required>
+
+
   <p>Image</p>
   <input type="file" name="productImage" (change)="onSelectFile($event)">
   <p>{{message}}</p>
 </form>
-<button (click)="print()">print</button>
-<button (click)="save()">save</button>
+<div>
+  <button (click)="save()" [disabled]="!monitorForm.valid || isImageTrue()">save</button>
+  <p>{{loading}}</p>
+</div>
 <div>
   <img [src]="imgURL" height="200" *ngIf="imgURL">
 </div>

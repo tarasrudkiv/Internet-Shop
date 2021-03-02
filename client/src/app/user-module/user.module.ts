@@ -5,14 +5,20 @@ import {UserCardComponent} from './components/user-card/user-card.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule, Routes} from '@angular/router';
-import {UserResolveService} from './services/user-resolve.service';
-import {UserPageForAdminComponent } from './components/user-page-for-admin/user-page-for-admin.component';
+import {UserPageForAdminComponent} from './components/user-page-for-admin/user-page-for-admin.component';
 import {UserPageComponent} from "./components/user-page/user-page.component";
 import {FormsModule} from "@angular/forms";
+import {MyOrdersComponent} from "../order-module/components/my-orders/my-orders.component";
+import {BasketComponent} from "../components/basket/basket.component";
 
 const routes: Routes = [
-  {path: '', component: AllUsersComponent, resolve: {allUsers: UserResolveService}},
-  {path: 'user/:name', component: UserPageForAdminComponent},
+  {
+    path: '', component: UserPageComponent, children: [
+      {path: 'order/myOrders', component: MyOrdersComponent},
+      {path: 'basket', component: BasketComponent}
+    ]
+  },
+  {path: 'admin', loadChildren: () => import('../admin-module/admin.module').then(m => m.AdminModule)},
 ];
 
 @NgModule({
@@ -22,13 +28,13 @@ const routes: Routes = [
     UserPageComponent,
     UserPageForAdminComponent
   ],
-    imports: [
-        CommonModule,
-        HttpClientModule,
-        NgbModule,
-        RouterModule.forChild(routes),
-        FormsModule
-    ]
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    NgbModule,
+    RouterModule.forChild(routes),
+    FormsModule
+  ]
 })
 export class UserModule {
 }

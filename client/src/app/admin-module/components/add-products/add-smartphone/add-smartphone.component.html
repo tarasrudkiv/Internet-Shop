@@ -1,59 +1,69 @@
 <form #smartphoneForm="ngForm">
   <p>Product name</p>
-  <input type="text" name="smartphoneName" [(ngModel)]="smartphone.name">
+  <input type="text" name="monitorName" [(ngModel)]="smartphone.productName" #productName="ngModel" required>
   <p>Product description</p>
-  <textarea type="text" name="smartphoneDescription" [(ngModel)]="smartphone.description"></textarea>
+  <textarea type="text" name="monitorDescription" [(ngModel)]="smartphone.description" #description="ngModel" required></textarea>
   <p>Product price</p>
-  <input type="number" name="smartphonePrice" [(ngModel)]="smartphone.price">
+  <input type="number" name="monitorPrice" [(ngModel)]="smartphone.price" #price="ngModel" required>
   <p>Product status</p>
-  <select name="smartphoneStatus" [(ngModel)]="smartphone.status">
+  <select name="monitorStatus" [(ngModel)]="smartphone.status" #status="ngModel" required>
     <option>In stock</option>
     <option>is over</option>
   </select>
-  <p>processor name</p>
-  <input type="text" name="cpuName" [(ngModel)]="smartphone.components[0].componentName">
+
+
+  <p>Processor name</p>
+  <input type="text" name="cpuName" [(ngModel)]="smartphone.components[0].componentName" #cpuName="ngModel" required>
   <p>Processor clock speed</p>
-  <input type="number" name="cpuClockSpeed" [(ngModel)]="smartphone.components[0].componentValues[0].propertyValue">
+  <input type="number" name="cpuClockSpeed" [(ngModel)]="smartphone.components[0].componentValues[0].propertyValue" #cpuClockSpeed="ngModel" required>
   <p>Processor number of cores</p>
-  <input type="number" name="cpuNumberOfCores" [(ngModel)]="smartphone.components[0].componentValues[1].propertyValue">
+  <input type="number" name="cpuNumberOfCores" [(ngModel)]="smartphone.components[0].componentValues[1].propertyValue" #cpuNumberOfCores="ngModel" required>
+
 
   <p>Camera name </p>
-  <input type="text" name="cameraName" [(ngModel)]="smartphone.components[1].componentName">
+  <input type="text" name="cameraName" [(ngModel)]="smartphone.components[1].componentName" #cameraName="ngModel" required>
   <p>Number of cameras</p>
   <input type="number" name="numberOfCameras"
-         [(ngModel)]="smartphone.components[1].componentValues[0].propertyValue">
-  <p>number of megapixels of the front camera</p>
+         [(ngModel)]="smartphone.components[1].componentValues[0].propertyValue" #numberOfCameras="ngModel" required>
+  <p>Number of megapixels of the front camera</p>
   <input type="number" name="numberOFMegapixelsFrontCamera"
-         [(ngModel)]="smartphone.components[1].componentValues[1].propertyValue">
+         [(ngModel)]="smartphone.components[1].componentValues[1].propertyValue" #numberOFMegapixelsFrontCamera="ngModel" required>
+
+
   <p>Amount of memory</p>
-  <input type="number" name="amountOfMemory" [(ngModel)]="smartphone.components[2].componentValues[0].propertyValue">
+  <input type="number" name="amountOfMemory" [(ngModel)]="smartphone.components[2].componentValues[0].propertyValue" #amountOfMemory="ngModel" required>
   <p>Amount of RAM memory</p>
-  <input type="number" name="amountOfRamMemory" [(ngModel)]="smartphone.components[2].componentValues[1].propertyValue">
+  <input type="number" name="amountOfRamMemory" [(ngModel)]="smartphone.components[2].componentValues[1].propertyValue" #amountOfRamMemory="ngModel" required>
+
 
   <p>Display type</p>
-  <input type="text" name="monitorType" [(ngModel)]="smartphone.components[3].componentName">
+  <input type="text" name="monitorType" [(ngModel)]="smartphone.components[3].componentName" #monitorType="ngModel" required>
   <p>screen diagonal</p>
-  <input type="number" name="screenDiagonal" [(ngModel)]="smartphone.components[3].componentValues[0].propertyValue">
+  <input type="number" name="screenDiagonal" [(ngModel)]="smartphone.components[3].componentValues[0].propertyValue" #screenDiagonal="ngModel" required>
   <p>screen extension</p>
-  <input type="text" name="screenExtension" [(ngModel)]="smartphone.components[3].componentValues[1].propertyValue">
+  <input type="text" name="screenExtension" [(ngModel)]="smartphone.components[3].componentValues[1].propertyValue" #screenExtension="ngModel" required>
   <p>frame rate</p>
-  <input type="number" name="frameRate" [(ngModel)]="smartphone.components[3].componentValues[2].propertyValue">
+  <input type="number" name="frameRate" [(ngModel)]="smartphone.components[3].componentValues[2].propertyValue" #frameRate="ngModel" required>
+
 
   <p>Battery type</p>
-  <input type="text" name="batteryType" [(ngModel)]="smartphone.components[4].componentName">
+  <input type="text" name="batteryType" [(ngModel)]="smartphone.components[4].componentName" #batteryType="ngModel" required>
   <p>Battery capacity</p>
-  <input type="number" name="batteryCapacity" [(ngModel)]="smartphone.components[4].componentValues[0].propertyValue">
+  <input type="number" name="batteryCapacity" [(ngModel)]="smartphone.components[4].componentValues[0].propertyValue" #batteryCapacity="ngModel" required>
   <p>Operating system type</p>
-  <input type="text" name="operatingSystemType" [(ngModel)]="smartphone.components[5].componentName">
+  <input type="text" name="operatingSystemType" [(ngModel)]="smartphone.components[5].componentName" #operatingSystemType="ngModel" required>
   <p>Operating system version</p>
-  <input type="number" name="operatingSystemVersion" [(ngModel)]="smartphone.components[5].componentValues[0].propertyValue">
+  <input type="number" name="operatingSystemVersion" [(ngModel)]="smartphone.components[5].componentValues[0].propertyValue" #operatingSystemVersion="ngModel" required>
+
 
   <p>Image</p>
   <input type="file" name="productImage" (change)="onSelectFile($event)">
   <p>{{message}}</p>
 </form>
-<button (click)="print()">print</button>
-<button (click)="save()">save</button>
+<div>
+  <button (click)="save()" [disabled]="!smartphoneForm.valid || isImageTrue()">save</button>
+  <p>{{loading}}</p>
+</div>
 <div>
   <img [src]="imgURL" height="200" *ngIf="imgURL">
 </div>
