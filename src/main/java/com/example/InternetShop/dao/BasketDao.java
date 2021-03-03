@@ -11,5 +11,8 @@ import java.util.List;
 public interface BasketDao extends JpaRepository<Basket, Integer> {
     @Query("select b from Basket b where b.userName=?1")
     Page<Basket> getProductsByUserName(String userName, PageRequest pageRequest);
+
     Basket findById(int id);
+
+    Basket findByProductIdAndUserName(int productId, String username);
 }

@@ -16,7 +16,7 @@ public class BasketService implements IBasketService {
 
     @Override
     public Basket saveProductToBasket(Basket productForBasket) {
-        if (basketDao.findById(productForBasket.getId()) != null) {
+        if (basketDao.findByProductIdAndUserName(productForBasket.getProductId(), productForBasket.getUserName()) != null) {
             throw new ProductAlreadyInBasketException("The product is already in the basket");
         } else {
             return basketDao.save(productForBasket);

@@ -40,11 +40,11 @@ export class OrderService {
     return (this.httpClient.get<IOrderPage>(`http://localhost:8080/order/find/${keyword}/?page=${page}`, {headers}))
   }
 
-  public setStatus(status: string, id: number): Observable<string> {
+  public setStatus(status: string, id: number): Observable<IOrderedProduct> {
     let token = localStorage.getItem("token");
     let tokenSTR = 'Bearer ' + token;
     const headers = new HttpHeaders().set("Authorization", tokenSTR);
-    return (this.httpClient.put<string>(`http://localhost:8080/order/status/${id}`, status, {headers}))
+    return (this.httpClient.put<IOrderedProduct>(`http://localhost:8080/order/status/${id}`, status, {headers}))
   }
 
   public deleteOrder(orderId: number) {

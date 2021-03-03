@@ -61,7 +61,6 @@ public class OrderService implements IOrderService {
             productFromDatabase.setStatus(status);
             orderDao.save(productFromDatabase);
         }
-
         return productFromDatabase;
     }
 

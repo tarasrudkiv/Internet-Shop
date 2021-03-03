@@ -35,11 +35,11 @@ export class UserService {
     return (this.httpClient.post<IToken>('http://localhost:8080/user/authenticate', user, {responseType: 'json'}));
   }
 
-  public changeRole(role: string, id: number): Observable<string> {
+  public changeRole(role: string, id: number): Observable<IUser> {
     let token = localStorage.getItem('token');
     let tokenSTR = 'Bearer ' + token;
     const headers = new HttpHeaders().set('Authorization', tokenSTR);
-    return (this.httpClient.put<string>(`http://localhost:8080/user/changeRole/${id}`, role, {headers}));
+    return (this.httpClient.put<IUser>(`http://localhost:8080/user/changeRole/${id}`, role, {headers}));
   }
 
   public getAllUsersByUserName(page: number, name: string): Observable<IUserPage> {

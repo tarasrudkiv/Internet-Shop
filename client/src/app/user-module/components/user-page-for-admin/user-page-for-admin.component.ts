@@ -11,6 +11,7 @@ export class UserPageForAdminComponent implements OnInit {
   singleUser: IUser;
   role: string;
   name:string;
+  loading='';
 
   constructor(private userService: UserService) {
     this.singleUser = history.state.user;
@@ -22,9 +23,15 @@ export class UserPageForAdminComponent implements OnInit {
   }
 
   changeRole() {
+    this.loading='LOADING...';
     if (this.role === "ROLE_USER" || this.role === "ROLE_ADMIN") {
-      this.userService.changeRole(this.role, this.singleUser.id).subscribe();
+      this.userService.changeRole(this.role, this.singleUser.id).subscribe(value => {
+        this.singleUser.role=value.role;
+      this.loading='';
+      alert("Success")
+      });
     } else {
+      this.loading='';
       alert("print correct role")
     }
   }

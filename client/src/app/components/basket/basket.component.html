@@ -1,6 +1,6 @@
 <div [ngClass]="{basket:true}">
   <div [ngClass]="{cards:true}">
-    <app-product-card-in-basket *ngFor="let p of products" [product]="p" (productSelected)="toProductDetails(p,p.id)"
+    <app-product-card-in-basket *ngFor="let p of products" [product]="p" (productSelected)="toProductDetails(p,p.productId)"
                                 (productDeleted)="deleteProduct(p.id)"></app-product-card-in-basket>
   </div>
   <ngb-pagination class="d-flex justify-content-center"

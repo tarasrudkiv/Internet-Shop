@@ -1,5 +1,6 @@
 export interface IProductInBasket {
-  id: number;
+  id?: number;
+  productId: number;
   userName: string;
   category: string;
   productName: string;

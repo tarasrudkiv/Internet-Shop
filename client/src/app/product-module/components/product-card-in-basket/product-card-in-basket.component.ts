@@ -27,6 +27,7 @@ export class ProductCardInBasketComponent implements OnInit {
   }
 
   orderProduct(product: IProductInBasket) {
+    product.id = product.productId;
     this.router.navigate(["order"], {state: {product}})
   }
 

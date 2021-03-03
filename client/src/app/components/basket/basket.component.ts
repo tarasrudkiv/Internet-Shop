@@ -20,9 +20,11 @@ export class BasketComponent implements OnInit {
     this.getProductsFromBasket(0, localStorage.getItem("userName"));
   }
 
+  // toProductDetails(product: IProductInBasket, id: number) {
+  //   this.router.navigate(['allProducts/product', product.category, product.id], {state: {id}})
+  // }
   toProductDetails(product: IProductInBasket, id: number) {
-    this.router.navigate(['allProducts/product', product.category, product.id], {state: {id}})
-
+    this.router.navigate(['allProducts/product', product.category, product.productId], {state: {id}})
   }
 
   deleteProduct(id: number) {

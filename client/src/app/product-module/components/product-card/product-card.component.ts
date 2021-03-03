@@ -15,7 +15,7 @@ export class ProductCardComponent implements OnInit {
   @Output() productSelected: EventEmitter<IProduct> = new EventEmitter;
   public host: string = "http://localhost:8080";
   productForBasket: IProductInBasket = {
-    id: null,
+    productId: null,
     userName: "",
     category: "",
     productName: "",
@@ -41,7 +41,7 @@ export class ProductCardComponent implements OnInit {
 
   public addProductToBasket() {
     this.loading = "LOADING...";
-    this.productForBasket.id = this.product.id;
+    this.productForBasket.productId = this.product.id;
     this.productForBasket.userName = localStorage.getItem("userName");
     this.productForBasket.category = this.product.category;
     this.productForBasket.productName = this.product.productName;

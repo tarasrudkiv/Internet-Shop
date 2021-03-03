@@ -12,12 +12,18 @@ export class OrderCardForAdminComponent implements OnInit {
   @Input()
   order: IOrderedProduct;
   status: string;
+  loading='';
 
   constructor(private orderService: OrderService) {
   }
 
   public setStatus() {
-    this.orderService.setStatus(this.status, this.order.id).subscribe()
+    this.loading='LOADING...';
+    this.orderService.setStatus(this.status, this.order.id).subscribe(value => {
+this.order.status=value.status;
+      this.loading='';
+      alert('Success')
+    })
   }
 
   ngOnInit(): void {
