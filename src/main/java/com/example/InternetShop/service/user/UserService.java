@@ -106,9 +106,4 @@ public class UserService implements iUserService, UserDetailsService {
         return userDTOS;
     }
 
-    @Override
-    public void deleteUser(int id) {
-        userDao.deleteById(id);
-    }
-
 }

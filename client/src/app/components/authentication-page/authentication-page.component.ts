@@ -19,25 +19,32 @@ export class AuthenticationPageComponent implements OnInit {
     username: "",
     password: ""
   };
+  loading = null;
+
   public login() {
+    this.loading = 'LOADING...';
     if (!!localStorage.getItem("token") === true) {
       localStorage.removeItem("token");
       this.userService.generateToken(this.user).subscribe(value => {
           localStorage.setItem("token", value.token);
           localStorage.setItem("userName", this.user.username);
+          this.loading = '';
           this.router.navigate(["userPage"])
         },
         error => {
+          this.loading = null;
           alert("Wrong login or password")
         });
     } else {
       this.userService.generateToken(this.user).subscribe(value => {
           localStorage.setItem("token", value.token);
           localStorage.setItem("userName", this.user.username);
+          this.loading = '';
           this.router.navigate(["userPage"])
         },
         error => {
-          console.log(error);
+        console.log(error);
+          this.loading = null;
           alert("Wrong login or password")
         });
     }

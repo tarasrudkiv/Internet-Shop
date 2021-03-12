@@ -1,13 +1,8 @@
-<button (click)="toAllOrdersPage()">All orders</button>
-<ul>
-  <a routerLink="/admin/addProduct">
-    <li>add product</li>
-  </a>
-  <a routerLink="/admin/productDetails">
-    <li>Product details</li>
-  </a>
-  <a routerLink="/admin/allUsers">
-    <li>All users</li>
-  </a>
-</ul>
+<div [ngClass]="{navigation:true}">
+  <button [ngClass]="{button:true}" (click)="toAddProductPage()">Add product</button>
+  <button [ngClass]="{button:true}" (click)="toProductDetailsPage()">Product details</button>
+  <button [ngClass]="{button:true}" (click)="toAllOrdersPage()">All orders</button>
+  <button [ngClass]="{button:true}" (click)="toAllUsersPage()">All users</button>
+</div>
+
 <router-outlet></router-outlet>

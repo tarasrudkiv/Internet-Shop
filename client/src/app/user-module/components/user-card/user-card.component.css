@@ -1,15 +1,64 @@
-.card {
+.main {
+  width: 1220px;
+  margin-bottom: 5px;
+  height: 45px;
   display: flex;
   flex-direction: row;
-  border: solid black 1px;
-  width: 400px;
+  border: none;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.82);
 }
-.id{
-  width:40px;
+
+.id {
+  margin-left: 10px;
+  width: 40px;
+  font-size: large;
 }
-.name{
+
+.name {
+  margin-left: 10px;
+  width: 250px;
+  font-size: large;
+  text-transform: capitalize;
+}
+
+.email {
+  margin-left: 10px;
+  width: 250px;
+  font-size: large;
+  text-transform: capitalize;
+}
+
+.number {
+  margin-left: 10px;
+  width: 150px;
+  font-size: large;
+}
+
+.role {
+  margin-left: 10px;
+  width: 150px;
+  font-size: large;
+}
+
+.select {
+  display: flex;
+  flex-direction: row;
   width: 100px;
+  font-size: large;
+  text-transform: capitalize;
 }
-.role{
-  width: 200px;
+
+
+.button {
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 15px/15px;
+  border: none;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.82);
 }
+
+.button:hover {
+  opacity: 50%;
+}
+
+

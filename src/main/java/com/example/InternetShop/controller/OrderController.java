@@ -1,6 +1,5 @@
 package com.example.InternetShop.controller;
 
-import com.example.InternetShop.dto.BasketPageDTO;
 import com.example.InternetShop.dto.OrderPageDTO;
 import com.example.InternetShop.entity.ProductOrder;
 import com.example.InternetShop.service.order.OrderService;
@@ -10,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @CrossOrigin("http://localhost:4200")
 @RestController
@@ -35,10 +33,16 @@ public class OrderController {
         return (this.orderService.getAllOrdersOfOneUser(userName, pageRequest));
     }
 
-    @GetMapping(value = "find/{keyword}")
-    public OrderPageDTO findOrder(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size, @PathVariable String keyword) {
+    @GetMapping(value = "status/{status}")
+    public OrderPageDTO findOrderByStatus(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size, @PathVariable String status) {
         final PageRequest pageRequest = PageRequest.of(page, size);
-        return (this.orderService.findOrder(keyword, pageRequest));
+        return (this.orderService.findOrderByStatus(status, pageRequest));
+    }
+
+    @GetMapping(value = "productName/{productName}")
+    public OrderPageDTO findOrderByProductName(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size, @PathVariable String productName) {
+        final PageRequest pageRequest = PageRequest.of(page, size);
+        return (this.orderService.findOrderByProductName(productName, pageRequest));
     }
 
 

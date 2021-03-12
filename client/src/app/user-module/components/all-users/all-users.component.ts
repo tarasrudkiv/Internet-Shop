@@ -38,7 +38,8 @@ export class AllUsersComponent implements OnInit {
       this.users = value.usersList;
       this.totalElements = value.totalElements;
       this.searchType = "all";
-      this.setPageNumber()
+      this.setPageNumber();
+      this.userName = null
     })
   }
 

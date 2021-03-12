@@ -1,32 +1,38 @@
-<div>
-  <div>
+<div [ngClass]="{main:true}">
+  <div [ngClass]="{formBlock:true}">
+    <div><h2 [ngClass]="{header:true}">Order {{product.category}}</h2></div>
     <div>
-      <div>{{product.productName}}</div>
+      <div><h3 [ngClass]="{productName:true}">{{product.productName}}</h3></div>
       <div [ngClass]="{imageBlock:true}">
         <img src="{{host+'/product/image/'+product.id}}" [ngClass]="{image:true}">
       </div>
     </div>
-    <div>
-      <button (click)="add()">+</button>
-      <p>number of products {{ numberOfProducts}}</p>
-      <button (click)="subtract()">-</button>
+    <div [ngClass]="{priceSettings:true}">
+      <div [ngClass]="{buttonsBlock:true}">
+        <button (click)="add()">+</button>
+        <p>Number of products <span [ngClass]="{numberOfProducts:true}">{{numberOfProducts}}</span></p>
+        <button (click)="subtract()">-</button>
+      </div>
+      <div>
+        <p>Product price {{price}}  Total price {{totalPrice}}</p>
+      </div>
     </div>
-    <div>
-      <p> price {{totalPrice}}</p>
-    </div>
-  </div>
-  <div>
-    <form #orderForm="ngForm">
-      <p>First Name</p>
-      <input type="text" name="firstName" [(ngModel)]="orderedProduct.firstName" #firstName ="ngModel" required>
-      <p>Last Name</p>
-      <input type="text" name="lastName" [(ngModel)]="orderedProduct.lastName" #lastName ="ngModel" required>
-      <p>Email</p>
-      <input type="text" name="email" [(ngModel)]="orderedProduct.userEmail" #userEmail ="ngModel" required>
-      <p>Phone number</p>
-      <input type="number" name="number" [(ngModel)]="orderedProduct.userPhoneNumber" #userPhoneNumber ="ngModel" required>
-      <p>Type of delivery</p>
-      <select name="typeOfDelivery" [(ngModel)]="orderedProduct.typeOfDelivery" #typeOfDelivery ="ngModel" required>
+    <form [ngClass]="{form:true}" #orderForm="ngForm">
+      <p [ngClass]="{p:true}">First Name</p>
+      <input [ngClass]="{input:true}" type="text" name="firstName" [(ngModel)]="orderedProduct.firstName"
+             #firstName="ngModel" required>
+      <p [ngClass]="{p:true}">Last Name</p>
+      <input [ngClass]="{input:true}" type="text" name="lastName" [(ngModel)]="orderedProduct.lastName"
+             #lastName="ngModel" required>
+      <p [ngClass]="{p:true}">Email</p>
+      <input [ngClass]="{input:true}" type="text" name="email" [(ngModel)]="orderedProduct.userEmail"
+             #userEmail="ngModel" required>
+      <p [ngClass]="{p:true}">Phone number</p>
+      <input [ngClass]="{input:true}" type="number" name="number" [(ngModel)]="orderedProduct.userPhoneNumber"
+             #userPhoneNumber="ngModel" required>
+      <p [ngClass]="{p:true}">Type of delivery</p>
+      <select [ngClass]="{select:true}" name="typeOfDelivery" [(ngModel)]="orderedProduct.typeOfDelivery"
+              #typeOfDelivery="ngModel" required>
         <option>
           delivery by mail
         </option>
@@ -38,14 +44,20 @@
         </option>
       </select>
 
-      <p>Address</p>
-      <input type="text" name="address" [(ngModel)]="orderedProduct.userAddress" #userAddress ="ngModel" required>
-      <p>Additional Information</p>
-      <textarea name="additionalInformation" [(ngModel)]="orderedProduct.additionalInformation"></textarea>
+      <p [ngClass]="{p:true}">Address</p>
+      <input [ngClass]="{input:true}" type="text" name="address" [(ngModel)]="orderedProduct.userAddress"
+             #userAddress="ngModel" required>
+      <p [ngClass]="{p:true}">Additional Information</p>
+      <textarea [ngClass]="{textArea:true}" name="additionalInformation"
+                [(ngModel)]="orderedProduct.additionalInformation"></textarea>
     </form>
-<div>
-  <button (click)="order()" [disabled]="!orderForm.valid">Order</button>
-  <p>{{loading}}</p>
-</div>
+
+    <div>
+      <button [ngClass]="{button:true}" (click)="order()" [disabled]="!orderForm.valid||loading">Order</button>
+      <p>{{loading}}</p>
+    </div>
   </div>
 </div>
+
+
+

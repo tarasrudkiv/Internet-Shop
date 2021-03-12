@@ -18,7 +18,6 @@ public class ProductOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    @Column
     @NotBlank
     String status;
     @NotNull
@@ -50,6 +49,7 @@ public class ProductOrder {
     String typeOfDelivery;
     @NotBlank
     String userEmail;
+    @Column(length = 1000)
     String additionalInformation;
     @NotBlank
     String date;

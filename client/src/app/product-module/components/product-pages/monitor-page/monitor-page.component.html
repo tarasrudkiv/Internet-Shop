@@ -1,26 +1,41 @@
-<div *ngIf="singleProduct">
-  <h2>{{singleProduct.productName}}</h2>
-  <div [ngClass]="{pictureBlock:true}">
-    <img src="{{host+'/product/image/'+singleProduct.id}}" alt="" [ngClass]="{picture:true}">
-  </div>
-  <button (click)="orderProduct(singleProduct)">Buy</button>
-  <p>{{singleProduct.price}}</p>
-  <p>{{singleProduct.description}}</p>
-  <p>{{singleProduct.status}}</p>
+<div *ngIf="singleProduct" [ngClass]="{main:true}">
+  <h1>{{singleProduct.category }} {{singleProduct.productName}}</h1>
   <div>
-    <h2>Screen</h2>
-    <p>{{singleProduct.components[0].componentName}}</p>
-    <p>{{singleProduct.components[0].componentValues[0].propertyName}}</p>
-    <p>{{singleProduct.components[0].componentValues[0].propertyValue}}</p>
-    <p>{{singleProduct.components[0].componentValues[1].propertyName}}</p>
-    <p>{{singleProduct.components[0].componentValues[1].propertyValue}}</p>
-    <p>{{singleProduct.components[0].componentValues[2].propertyName}}</p>
-    <p>{{singleProduct.components[0].componentValues[2].propertyValue}}</p>
-    <p>{{singleProduct.components[0].componentValues[3].propertyName}}</p>
-    <p>{{singleProduct.components[0].componentValues[3].propertyValue}}</p>
-    <p>{{singleProduct.components[0].componentValues[4].propertyName}}</p>
-    <p>{{singleProduct.components[0].componentValues[4].propertyValue}}</p>
-    <p>{{singleProduct.components[0].componentValues[5].propertyName}}</p>
-    <p>{{singleProduct.components[0].componentValues[5].propertyValue}}</p>
+    <div [ngClass]="{imageAndDescription:true}">
+      <div [ngClass]="{pictureBlock:true}">
+        <img src="{{host+'/product/image/'+singleProduct.id}}" alt="" [ngClass]="{picture:true}">
+      </div>
+      <div>
+        <h3>{{singleProduct.status}}</h3>
+        <h3>{{singleProduct.price}}</h3>
+        <p [ngClass]="{description:true}">{{singleProduct.description}}</p>
+        <button [ngClass]="{button:true}" (click)="orderProduct(singleProduct)">Buy</button>
+      </div>
+    </div>
+    <div>
+      <button [ngClass]="{button:true}" (click)="openCloseCharacteristics()">Characteristics</button>
+      <div *ngIf="isCharacteristicsOpen" [ngClass]="{characteristics:true}">
+        <div>
+          <div>
+            <h2>Monitor</h2>
+            <p>Screen .....  {{singleProduct.components[0].componentName}}</p>
+            <p>{{singleProduct.components[0].componentValues[0].propertyName}}
+              .....  {{singleProduct.components[0].componentValues[0].propertyValue}}</p>
+            <p>{{singleProduct.components[0].componentValues[1].propertyName}}
+              .....  {{singleProduct.components[0].componentValues[1].propertyValue}}</p>
+            <p>{{singleProduct.components[0].componentValues[2].propertyName}}
+              .....  {{singleProduct.components[0].componentValues[2].propertyValue}}</p>
+            <p>{{singleProduct.components[0].componentValues[3].propertyName}}
+              .....  {{singleProduct.components[0].componentValues[3].propertyValue}}</p>
+            <p>{{singleProduct.components[0].componentValues[4].propertyName}}
+              .....  {{singleProduct.components[0].componentValues[4].propertyValue}}</p>
+            <p>{{singleProduct.components[0].componentValues[5].propertyName}}
+              .....  {{singleProduct.components[0].componentValues[5].propertyValue}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+

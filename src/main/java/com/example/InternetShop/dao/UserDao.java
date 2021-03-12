@@ -1,6 +1,5 @@
 package com.example.InternetShop.dao;
 
-import com.example.InternetShop.dto.UserDTO;
 import com.example.InternetShop.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

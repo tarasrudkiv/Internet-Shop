@@ -33,11 +33,17 @@ export class OrderService {
     return (this.httpClient.get<IOrderPage>(`http://localhost:8080/order/${userName}/?page=${page}`, {headers}))
   }
 
-  public findOrder(keyword: string, page: number): Observable<IOrderPage> {
+  public findOrderByStatus(status: string, page: number): Observable<IOrderPage> {
     let token = localStorage.getItem("token");
     let tokenSTR = 'Bearer ' + token;
     const headers = new HttpHeaders().set("Authorization", tokenSTR);
-    return (this.httpClient.get<IOrderPage>(`http://localhost:8080/order/find/${keyword}/?page=${page}`, {headers}))
+    return (this.httpClient.get<IOrderPage>(`http://localhost:8080/order/status/${status}/?page=${page}`, {headers}))
+  }
+  public findOrderByProductName(productName: string, page: number): Observable<IOrderPage> {
+    let token = localStorage.getItem("token");
+    let tokenSTR = 'Bearer ' + token;
+    const headers = new HttpHeaders().set("Authorization", tokenSTR);
+    return (this.httpClient.get<IOrderPage>(`http://localhost:8080/order/productName/${productName}/?page=${page}`, {headers}))
   }
 
   public setStatus(status: string, id: number): Observable<IOrderedProduct> {

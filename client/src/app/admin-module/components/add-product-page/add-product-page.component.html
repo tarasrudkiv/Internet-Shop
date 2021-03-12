@@ -1,25 +1,16 @@
-<ul>
-  <a routerLink="/admin/addProduct/addComputer">
-    <li>add computer</li>
-  </a>
-  <a routerLink="/admin/addProduct/addConsole">
-    <li>add console</li>
-  </a>
-  <a routerLink="/admin/addProduct/addSmartphone">
-    <li>add smartphone</li>
-  </a>
-  <a routerLink="/admin/addProduct/addLaptop">
-    <li>add laptop</li>
-  </a>
-  <a routerLink="/admin/addProduct/addTV">
-    <li>add TV</li>
-  </a>
-  <a routerLink="/admin/addProduct/addSmartWatch">
-    <li>add smart watch</li>
-  </a>
-  <a routerLink="/admin/addProduct/addMonitor">
-    <li>add monitor</li>
-  </a>
+<div [ngClass]="{main:true}">
+  <div [ngClass]="{navigation:true}">
+    <h3 [ngClass]="{categoriesLogo:true}">Categories</h3>
+    <button [ngClass]="{button:true}" (click)="toAddComputerPage()">Add Computer</button>
+    <button [ngClass]="{button:true}" (click)="toAddConsolePage()">Add Console</button>
+    <button [ngClass]="{button:true}" (click)="toAAddSmartphone()">Add Smartphone</button>
+    <button [ngClass]="{button:true}" (click)="toAddAddLaptop()">Add Laptop</button>
+    <button [ngClass]="{button:true}" (click)="toAddAddTVPage()">Add TV</button>
+    <button [ngClass]="{button:true}" (click)="toAddSmartWatchPage()">Add Smart-watch</button>
+    <button [ngClass]="{button:true}" (click)="toAddMonitorPage()">Add Monitor</button>
+  </div>
+  <div [ngClass]="{routerOutlet:true}">
+    <router-outlet></router-outlet>
+  </div>
+</div>
 
-</ul>
-<router-outlet></router-outlet>

@@ -1,17 +1,13 @@
 package com.example.InternetShop.service.order;
 
 import com.example.InternetShop.dao.ProductOrderDao;
-import com.example.InternetShop.dto.BasketPageDTO;
 import com.example.InternetShop.dto.OrderPageDTO;
-import com.example.InternetShop.entity.Basket;
 import com.example.InternetShop.entity.ProductOrder;
 import com.example.InternetShop.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class OrderService implements IOrderService {
@@ -34,9 +30,18 @@ public class OrderService implements IOrderService {
         );
     }
 
+
     @Override
-    public OrderPageDTO findOrder(String keyword, PageRequest pageRequest) {
-        final Page<ProductOrder> orderPage = orderDao.findOrder(keyword, pageRequest);
+    public OrderPageDTO findOrderByStatus(String status, PageRequest pageRequest) {
+        final Page<ProductOrder> orderPage = orderDao.findOrderByStatus(status, pageRequest);
+        return (
+                new OrderPageDTO(orderPage.getContent(), orderPage.getTotalElements(), orderPage.getTotalPages(), orderPage.getSize())
+        );
+    }
+
+    @Override
+    public OrderPageDTO findOrderByProductName(String productName, PageRequest pageRequest) {
+        final Page<ProductOrder> orderPage = orderDao.findOrderByProductName(productName, pageRequest);
         return (
                 new OrderPageDTO(orderPage.getContent(), orderPage.getTotalElements(), orderPage.getTotalPages(), orderPage.getSize())
         );

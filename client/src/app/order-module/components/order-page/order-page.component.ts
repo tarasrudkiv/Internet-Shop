@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {IProduct} from "../../../product-module/models/productModel";
-import {ProductService} from "../../../product-module/services/product.service";
 import {IOrderedProduct} from "../../models/orderedProductModel";
 import {OrderService} from "../../services/order.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-order-page',
@@ -15,9 +15,9 @@ export class OrderPageComponent implements OnInit {
   totalPrice: number;
   numberOfProducts: number;
   public host: string = "http://localhost:8080";
-  loading: string = '';
+  loading: string = null;
 
-  constructor(private orderService: OrderService) {
+  constructor(private orderService: OrderService, private router: Router) {
     this.product = history.state.product;
     this.price = this.product.price;
     this.numberOfProducts = 1;
@@ -58,8 +58,8 @@ export class OrderPageComponent implements OnInit {
   }
 
   public order() {
-    this.loading='LOADING...';
- this.orderedProduct.productName=this.product.productName;
+    this.loading = 'LOADING...';
+    this.orderedProduct.productName = this.product.productName;
     this.orderedProduct.productId = this.product.id;
     this.orderedProduct.numberOfProducts = this.numberOfProducts;
     this.orderedProduct.productPrice = this.price;
@@ -67,14 +67,16 @@ export class OrderPageComponent implements OnInit {
     this.orderedProduct.userName = localStorage.getItem("userName");
     this.orderedProduct.date = JSON.stringify(new Date());
     this.orderService.orderProduct(this.orderedProduct).subscribe(value => {
-      this.loading='';
-      alert('Success')
-    },error => {
-      this.loading='';
+      this.loading = null;
+      alert('Success');
+      this.router.navigate(['allProducts/product', this.product.category, this.product.id], {state: this.product})
+    }, error => {
+      this.loading = null;
       alert(error.error.message)
     })
 
   }
+
   ngOnInit(): void {
   }
 

@@ -15,9 +15,9 @@ export class OrderCardForUserComponent implements OnInit {
   status: string;
   @Output() orderDeleted: EventEmitter<IProduct> = new EventEmitter;
 
-  constructor(private orderService: OrderService) {
+  constructor() {
   }
-  public cancelOrder(orderId: number){
+  public cancelOrder(){
     this.orderDeleted.emit()
   }
 

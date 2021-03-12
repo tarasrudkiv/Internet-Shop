@@ -1,0 +1,60 @@
+<div [ngClass]="{main:true}">
+  <div [ngClass]="{orderStatus:true}">
+    <div [ngClass]="{pictureBlock:true}">
+      <img src="{{host+'/product/image/'+order.productId}}" alt=""
+           [ngClass]="{picture:true}"></div>
+    <div>
+      <p [ngClass]="{p:true}">Order status - {{order.status}}</p>
+      <form #selectForm="ngForm">
+        <select name="selectStatus" [ngClass]="{select:true}" [(ngModel)]="status" required>
+          <option>approved</option>
+          <option>declined</option>
+          <option>sent</option>
+          <option>expired</option>
+          <option>canceled</option>
+        </select>
+        <button [disabled]="loading||!selectForm.valid||!status" (click)="setStatus()" [ngClass]="{button:true}">set
+          status
+        </button>
+        <p>{{loading}}</p>
+      </form>
+    </div>
+  </div>
+  <div [ngClass]="{orderDetails:true}">
+    <div [ngClass]="{productDetails:true}">
+      <h3>Product info</h3>
+      <h4>Product id</h4>
+      <p>{{order.productId}}</p>
+      <h4>Product name</h4>
+      <p>{{order.productName}}</p>
+      <h4>Product price</h4>
+      <p>{{order.productPrice}}</p>
+      <h4>Number of products</h4>
+      <p>{{order.numberOfProducts}}</p>
+      <h4>Total price</h4>
+      <p>{{order.totalPrice}}</p>
+      <h4>Type of delivery</h4>
+      <p>{{order.typeOfDelivery}}</p>
+      <h4>Date</h4>
+      <p>{{order.date}}</p>
+    </div>
+    <div [ngClass]="{userDetails:true}">
+      <h3>Buyer info</h3>
+      <h4>First name</h4>
+
+      <p>{{order.firstName}}</p>
+      <h4>Last name</h4>
+      <p>{{order.lastName}}</p>
+      <h4>Phone number</h4>
+      <p>{{order.userPhoneNumber}}</p>
+      <h4>Email</h4>
+      <p>{{order.userEmail}}</p>
+      <h4>Address</h4>
+      <p>{{order.userAddress}}</p>
+    </div>
+    <div [ngClass]="{additionalInfo:true}">
+      <h3>Additional information</h3>
+      <p [ngClass]="{information:true}">{{order.additionalInformation}}</p>
+    </div>
+  </div>
+</div>

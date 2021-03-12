@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IProduct} from "../../../models/productModel";
 import {ProductService} from "../../../services/product.service";
 import {Router} from "@angular/router";
@@ -10,7 +10,9 @@ import {Router} from "@angular/router";
 })
 export class LaptopPageComponent implements OnInit {
   singleProduct: IProduct;
-  public host: string ="http://localhost:8080";
+  public host: string = "http://localhost:8080";
+  isCharacteristicsOpen = false;
+
   constructor(private productService: ProductService, private router: Router) {
     if (!!history.state.product) {
       this.singleProduct = history.state.product
@@ -19,9 +21,14 @@ export class LaptopPageComponent implements OnInit {
     }
   }
 
+  public openCloseCharacteristics() {
+    this.isCharacteristicsOpen = !this.isCharacteristicsOpen
+  }
+
   orderProduct(product: IProduct) {
     this.router.navigate(["order"], {state: {product}})
   }
+
   ngOnInit(): void {
   }
 

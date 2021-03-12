@@ -10,7 +10,6 @@ import {HttpClientModule} from "@angular/common/http";
 import {RouterModule, Routes} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import {ProductResolveService} from "../product-module/services/product-resolve.service";
 import {AddLaptopComponent} from './components/add-products/add-laptop/add-laptop.component';
 import {AddSmartphoneComponent} from './components/add-products/add-smartphone/add-smartphone.component';
 import {AddTVComponent} from './components/add-products/add-tv/add-tv.component';
@@ -24,15 +23,15 @@ import {UpdateMonitorComponent} from './components/update-products/update-monito
 import {UpdateTvComponent} from './components/update-products/update-tv/update-tv.component';
 import {UpdateSmartWatchComponent} from './components/update-products/update-smart-watch/update-smart-watch.component';
 import {AllUsersComponent} from "../user-module/components/all-users/all-users.component";
-import {UserPageForAdminComponent} from "../user-module/components/user-page-for-admin/user-page-for-admin.component";
+import {AllOrdersComponent} from "../order-module/components/all-orders/all-orders.component";
 
 const routes: Routes = [
 
   {
     path: '', component: AdminPageComponent, children: [
-      {path: 'productDetails', component: ProductDetailsComponent, resolve: {allProducts: ProductResolveService}},
+      {path: 'productDetails', component: ProductDetailsComponent},
+      {path: 'order/allOrders', component: AllOrdersComponent},
       {path: 'allUsers', component: AllUsersComponent},
-      {path: 'allUsers/user/:id', component: UserPageForAdminComponent},
       {path: 'update/computer/:id', component: UpdateComputerComponent},
       {path: 'update/laptop/:id', component: UpdateLaptopComponent},
       {path: 'update/console/:id', component: UpdateConsoleComponent},

@@ -1,13 +1,45 @@
-/*.reg{*/
-/*  display: flex;*/
-/*  justify-content: center;*/
-/*  margin-left: 10px;*/
-/*}*/
-.form{
-  width: 190px;
-  height: 500px;
-background-color: #e8eee3;
-}
-.forms{
+.main {
+  background-color: #f0f0f0;
   display: flex;
+  justify-content: center;
+  height: 768px;
 }
+
+.form {
+  justify-content: center;
+}
+.p {
+  font-size: 20px;
+}
+.button {
+  margin-top:20px;
+  cursor: pointer;
+  height: 30px;
+  border: none;
+  text-transform: uppercase;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.82);
+}
+.button:hover {
+  opacity: 80%;
+}
+.input {
+  border: none;
+  height: 40px;
+  width: 400px;
+  padding-left: 15px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.82);
+}
+.input:focus {
+  border: 2px solid black;
+}
+.registration {
+  display: flex;
+  justify-content: center;
+  background-color: #555555;
+  color: white;
+  font-weight: bold;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.82);
+}
+
+
+

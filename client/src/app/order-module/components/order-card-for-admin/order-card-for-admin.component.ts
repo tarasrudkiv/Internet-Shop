@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IOrderedProduct} from "../../models/orderedProductModel";
-import {OrderService} from "../../services/order.service";
+import {IProduct} from "../../../product-module/models/productModel";
 
 @Component({
   selector: 'app-order-card-for-admin',
@@ -11,19 +11,14 @@ export class OrderCardForAdminComponent implements OnInit {
   public host: string = "http://localhost:8080";
   @Input()
   order: IOrderedProduct;
+  @Output() orderSelected: EventEmitter<IProduct> = new EventEmitter;
   status: string;
-  loading='';
+  loading = null;
 
-  constructor(private orderService: OrderService) {
+  constructor() {
   }
-
-  public setStatus() {
-    this.loading='LOADING...';
-    this.orderService.setStatus(this.status, this.order.id).subscribe(value => {
-this.order.status=value.status;
-      this.loading='';
-      alert('Success')
-    })
+  showDetails() {
+    this.orderSelected.emit();
   }
 
   ngOnInit(): void {

@@ -1,6 +1,6 @@
 <div [ngClass]="{page:true}">
   <div [ngClass]="{categories:true}">
-    <h3 [ngClass]="{categories:true}">Categories</h3>
+    <h3 [ngClass]="{categoriesLogo:true}">Categories</h3>
     <button [ngClass]="{button:true}" (click)="(getAllProducts())">all</button>
     <button [ngClass]="{button:true}" (click)="getProductByCategory(0,'computer')">computers</button>
     <button [ngClass]="{button:true}" (click)="getProductByCategory(0,'smartphone')">smartphones</button>
@@ -10,11 +10,13 @@
     <button [ngClass]="{button:true}" (click)="getProductByCategory(0,'smartWatch')">smart watch</button>
     <button [ngClass]="{button:true}" (click)="getProductByCategory(0,'console')">consoles</button>
   </div>
-  <div>
+  <div [ngClass]="{productWithSettings:true}">
     <div>
       <form #findProductForm="ngForm" [ngClass]="{form:true}">
-        <input type="text" name="productName" [(ngModel)]="productName">
-        <button (click)="getProductByProductName()">find</button>
+        <input [ngClass]="{input:true}" type="text" name="productName" [(ngModel)]="productName" required>
+        <button [ngClass]="{findButton:true}" [disabled]="!findProductForm.valid" (click)="getProductByProductName()">
+          find
+        </button>
       </form>
     </div>
     <app-product-with-settings

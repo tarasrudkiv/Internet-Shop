@@ -15,7 +15,6 @@ public class ComponentValue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    @Column
     @NotBlank
     String propertyName;
     @NotBlank

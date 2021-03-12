@@ -21,5 +21,4 @@ public interface iUserService {
 
     List<UserDTO> convertUserListToUserDtoList(List<User> users, List<UserDTO> userDTOS);
 
-    void deleteUser(int id);
 }

@@ -1,0 +1,87 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.orderDetails {
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+}
+
+.productDetails {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 20px;
+}
+
+.userDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 20px;
+}
+
+.additionalInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.information {
+  width: 550px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 20px;
+}
+
+.orderStatus {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30px;
+}
+
+.p {
+  width: 330px;
+  font-size: 25px;
+}
+
+.select {
+  width: 200px;
+}
+
+.button {
+  width: 200px;
+}
+
+.picture {
+  height: 100%;
+  width: 98%;
+}
+
+.pictureBlock {
+  height: 500px;
+  width: 750px;
+  margin-left: 5px
+}
+
+.button {
+  cursor: pointer;
+  height: 30px;
+  text-transform: capitalize;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.82);
+  border-radius: 20px/20px;
+  border: none;
+  font-size: large;
+  width: 130px;
+  margin-left: 10px;
+}
+
+.button:hover {
+  opacity: 80%;
+}

@@ -2,20 +2,12 @@ package com.example.InternetShop.controller;
 
 import com.example.InternetShop.dto.ErrorResponse;
 import com.example.InternetShop.exceptions.*;
-import org.springframework.boot.configurationprocessor.json.JSONStringer;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.multipart.support.MissingServletRequestPartException;
-
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class ErrorController {
@@ -57,6 +49,4 @@ public class ErrorController {
         String message = ex.getMessage();
         return new ErrorResponse(HttpStatus.BAD_REQUEST.value(), "invalid input data", message);
     }
-
-
 }

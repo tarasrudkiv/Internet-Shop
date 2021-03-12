@@ -22,7 +22,7 @@ public class BasketController {
     }
 
     @GetMapping(value = "/{userName}")
-    public BasketPageDTO getProductsFromBasket(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "24") int size, @PathVariable String userName) {
+    public BasketPageDTO getProductsFromBasket(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "25") int size, @PathVariable String userName) {
         final PageRequest pageRequest = PageRequest.of(page, size);
         return (basketService.getProductsFromBasket(userName, pageRequest));
     }

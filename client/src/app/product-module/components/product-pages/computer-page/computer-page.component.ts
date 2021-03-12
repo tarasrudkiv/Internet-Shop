@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 export class ComputerPageComponent implements OnInit {
   singleProduct: IProduct;
   public host: string = "http://localhost:8080";
+  isCharacteristicsOpen = false;
 
   constructor(private productService: ProductService, private router: Router) {
     if (!!history.state.product) {
@@ -22,6 +23,10 @@ export class ComputerPageComponent implements OnInit {
 
   orderProduct(product: IProduct) {
     this.router.navigate(["order"], {state: {product}})
+  }
+
+  public openCloseCharacteristics() {
+    this.isCharacteristicsOpen = !this.isCharacteristicsOpen
   }
 
   ngOnInit(): void {

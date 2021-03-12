@@ -10,11 +10,11 @@ import {ProductService} from "../../../../product-module/services/product.servic
 })
 export class UpdateComputerComponent implements OnInit {
   productForUpdate: IProduct;
-  image: File;
-  imgURL: any;
+  image: File = null;
+  imgURL: any = null;
+  loading: string = null;
   message: string;
   public host: string = "http://localhost:8080";
-  loading: string = "";
 
   constructor(private productService: ProductService,) {
     this.productForUpdate = history.state.product;
@@ -47,10 +47,15 @@ export class UpdateComputerComponent implements OnInit {
     formData.append("file", this.image);
     formData.append("product", JSON.stringify(this.productForUpdate));
     this.productService.update(formData, this.productForUpdate.id).subscribe(value => {
-      this.loading = '';
+      this.productForUpdate = value;
+      this.loading = null;
+      this.image = null;
+      this.imgURL = null;
       alert('Success')
     }, error => {
-      this.loading = '';
+      this.image = null;
+      this.imgURL = null;
+      this.loading = null;
       alert(error.error.message)
     });
   }

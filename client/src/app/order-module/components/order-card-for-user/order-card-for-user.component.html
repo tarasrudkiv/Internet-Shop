@@ -1,7 +1,15 @@
 <div [ngClass]="{main:true}">
   <div [ngClass]="{orderDetails:true}">
-    <div [ngClass]="{pictureBlock:true}">
+    <div [ngClass]="{pictureAndStatusBlock:true}">
       <img src="{{host+'/product/image/'+order.productId}}" [ngClass]="{picture:true}">
+      <div [ngClass]="{orderStatusAndButton:true}">
+        <div>
+          <p [ngClass]="{p:true}">Order status - <span [ngClass]="{status:true}">{{order.status}}</span></p>
+        </div>
+        <div>
+          <button [ngClass]="{button:true}" (click)="cancelOrder()">Cancel the order</button>
+        </div>
+      </div>
     </div>
     <div [ngClass]="{productDetails:true}">
       <p>Product id -  {{order.productId}}</p>
@@ -10,12 +18,7 @@
       <p>Number of products -  {{order.numberOfProducts}}</p>
       <p>Total price -  {{order.totalPrice}}</p>
       <p>Type of delivery -  {{order.typeOfDelivery}}</p>
+      <p>Date -  {{order.date}}</p>
     </div>
-  </div>
-  <div [ngClass]="{orderStatus:true}">
-    <p [ngClass]="{p:true}">order status - {{order.status}}</p>
-  </div>
-  <div>
-    <button (click)="cancelOrder(order.id)">Cancel the order</button>
   </div>
 </div>

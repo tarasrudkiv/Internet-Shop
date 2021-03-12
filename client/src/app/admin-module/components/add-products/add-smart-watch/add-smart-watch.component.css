@@ -1,0 +1,68 @@
+.main {
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  justify-content: center;
+}
+
+.buttonBlock {
+  display: flex;
+  justify-content: space-around;
+}
+
+.p {
+  font-size: 20px;
+}
+
+.button {
+  cursor: pointer;
+  padding: 10px 30px;
+  height: 50px;
+  border: none;
+  text-transform: uppercase;
+  font-size: 15px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.82);
+}
+
+.button:hover {
+  opacity: 80%;
+}
+
+.input {
+  border: none;
+  height: 40px;
+  width: 400px;
+  padding-left: 15px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.82);
+}
+
+.input:focus {
+  border: 2px solid black;
+}
+
+.textArea {
+  border: none;
+  height: 400px;
+  width: 400px;
+  padding-left: 15px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.82);
+}
+
+.select {
+  height: 40px;
+  border: none;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.82);
+}
+
+.addSmartWatch {
+  display: flex;
+  justify-content: center;
+  background-color: #555555;
+  color: white;
+  font-weight: bold;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.82);
+}
+

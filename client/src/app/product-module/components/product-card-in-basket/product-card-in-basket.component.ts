@@ -1,8 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IProduct} from "../../models/productModel";
 import {IProductInBasket} from "../../../models/productInBasketModel";
-import {ProductService} from "../../services/product.service";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-product-card-in-basket',
@@ -15,7 +13,7 @@ export class ProductCardInBasketComponent implements OnInit {
   @Output() productDeleted: EventEmitter<IProduct> = new EventEmitter;
   public host: string = "http://localhost:8080";
 
-  constructor(private productService: ProductService, private router: Router) {
+  constructor() {
   }
 
   showDetails() {
@@ -25,12 +23,6 @@ export class ProductCardInBasketComponent implements OnInit {
   removeProduct() {
     this.productDeleted.emit()
   }
-
-  orderProduct(product: IProductInBasket) {
-    product.id = product.productId;
-    this.router.navigate(["order"], {state: {product}})
-  }
-
   ngOnInit(): void {
   }
 

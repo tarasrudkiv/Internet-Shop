@@ -1,13 +1,13 @@
 <div>
-  <div>
-    <button (click)="getAllUsers()">all</button>
-  </div>
-  <form #findUserForm="ngForm" [ngClass]="{form:true}" >
-    <input type="text" name="userName" [(ngModel)]="userName" #name="ngModel" required>
-    <button (click)="getUserByUserName()" [disabled]="!findUserForm.valid">find</button>
+<div [ngClass]="{formBlock:true}">
+  <form  #findUserForm="ngForm" [ngClass]="{form:true}">
+    <button [ngClass]="{button:true}" (click)="getAllUsers()">All</button>
+    <input [ngClass]="{input:true}" type="text" name="userName" [(ngModel)]="userName" #name="ngModel" required>
+    <button [ngClass]="{button:true}" (click)="getUserByUserName()" [disabled]="!findUserForm.valid">Find</button>
   </form>
-  <app-user-card *ngFor="let user of users" [user]="user" (click)="toUserPage(user)"></app-user-card>
+</div>
+  <app-user-card *ngFor="let user of users" [user]="user"></app-user-card>
   <ngb-pagination class="d-flex justify-content-center" [collectionSize]="totalElements" maxSize="10"
                   [(page)]="page"
-                  (pageChange)="onPageChange($event)"  [boundaryLinks]="true"></ngb-pagination>
+                  (pageChange)="onPageChange($event)" [boundaryLinks]="true"></ngb-pagination>
 </div>

@@ -34,7 +34,8 @@ export class AllProductsComponent implements OnInit {
       this.products = value.productList;
       this.totalElements = value.totalElements;
       this.searchType = "all";
-      this.setPageNumber()
+      this.setPageNumber();
+      this.productName = null
     })
   }
 

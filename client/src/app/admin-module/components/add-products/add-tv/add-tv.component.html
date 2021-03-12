@@ -1,40 +1,53 @@
-<form #TVForm="ngForm">
-  <p>Product name</p>
-  <input type="text" name="monitorName" [(ngModel)]="TV.productName" #productName="ngModel" required>
-  <p>Product description</p>
-  <textarea type="text" name="monitorDescription" [(ngModel)]="TV.description" #description="ngModel" required></textarea>
-  <p>Product price</p>
-  <input type="number" name="monitorPrice" [(ngModel)]="TV.price" #price="ngModel" required>
-  <p>Product status</p>
-  <select name="monitorStatus" [(ngModel)]="TV.status" #status="ngModel" required>
-    <option>In stock</option>
-    <option>is over</option>
-  </select>
+<div [ngClass]="{main:true}">
+  <div [ngClass]="{formBlock:true}">
+    <div><h2 [ngClass]="{addTV:true}">Add TV</h2></div>
+    <form [ngClass]="{form:true}" #TVForm="ngForm">
+      <p [ngClass]="{p:true}">Product name</p>
+      <input [ngClass]="{input:true}" maxlength="128" type="text" name="TVName" [(ngModel)]="TV.productName"
+             #productName="ngModel"
+             required>
+      <p [ngClass]="{p:true}">Product description</p>
+      <textarea [ngClass]="{textArea:true}" maxlength="1000" type="text" name="TVDescription"
+                [(ngModel)]="TV.description"
+                #description="ngModel"
+                required></textarea>
+      <p [ngClass]="{p:true}">Product price</p>
+      <input [ngClass]="{input:true}" type="number" name="TVPrice"
+             [(ngModel)]="TV.price" #price="ngModel">
+      <p [ngClass]="{p:true}">Product status</p>
+      <select [ngClass]="{select:true}" name="TVStatus" [(ngModel)]="TV.status" #status="ngModel" required>
+        <option>In stock</option>
+        <option>is over</option>
+      </select>
+
+      <p [ngClass]="{p:true}">Monitor type</p>
+      <input [ngClass]="{input:true}" type="text" name="monitorType" [(ngModel)]="TV.components[0].componentName"
+             #monitorType="ngModel" required>
+      <p [ngClass]="{p:true}">screen diagonal</p>
+      <input [ngClass]="{input:true}" type="number" name="screenDiagonal"
+             [(ngModel)]="TV.components[0].componentValues[0].propertyValue" #screenDiagonal="ngModel" required>
+      <p [ngClass]="{p:true}">screen extension</p>
+      <input [ngClass]="{input:true}" type="text" name="screenExtension"
+             [(ngModel)]="TV.components[0].componentValues[1].propertyValue" #screenExtension="ngModel" required>
 
 
-  <p>Monitor type</p>
-  <input type="text" name="monitorType" [(ngModel)]="TV.components[0].componentName" #monitorType="ngModel" required>
-  <p>screen diagonal</p>
-  <input type="number" name="screenDiagonal" [(ngModel)]="TV.components[0].componentValues[0].propertyValue" #screenDiagonal="ngModel" required>
-  <p>screen extension</p>
-  <input type="text" name="screenExtension" [(ngModel)]="TV.components[0].componentValues[1].propertyValue" #screenExtension="ngModel" required>
+      <p [ngClass]="{p:true}">Operating system type</p>
+      <input [ngClass]="{input:true}" type="text" name="operatingSystemType"
+             [(ngModel)]="TV.components[1].componentName" #operatingSystemType="ngModel" required>
+      <p [ngClass]="{p:true}">Operating system version</p>
+      <input [ngClass]="{input:true}" type="number" name="operatingSystemVersion"
+             [(ngModel)]="TV.components[1].componentValues[0].propertyValue" #operatingSystemVersion="ngModel" required>
 
+      <p [ngClass]="{p:true}">Image</p>
+      <input type="file" name="productImage" (change)="onSelectFile($event)">
+      <p [ngClass]="{p:true}">{{message}}</p>
+    </form>
 
-  <p>Operating system type</p>
-  <input type="text" name="operatingSystemType" [(ngModel)]="TV.components[1].componentName" #operatingSystemType="ngModel" required>
-  <p>Operating system version</p>
-  <input type="number" name="operatingSystemVersion" [(ngModel)]="TV.components[1].componentValues[0].propertyValue" #operatingSystemVersion="ngModel" required>
-
-
-  <p>Image</p>
-  <input type="file" name="productImage" (change)="onSelectFile($event)">
-  <p>{{message}}</p>
-</form>
-<div>
-  <button (click)="save()" [disabled]="!TVForm.valid || isImageTrue()">save</button>
-  <p>{{loading}}</p>
+    <button [ngClass]="{button:true}" (click)="save()" [disabled]="!TVForm.valid ||!image||loading">save</button>
+    <p [ngClass]="{p:true}">{{loading}}</p>
+    <img [src]="imgURL" height="200" *ngIf="imgURL">
+  </div>
 </div>
-<div>
-  <img [src]="imgURL" height="200" *ngIf="imgURL">
-</div>
+
+
 

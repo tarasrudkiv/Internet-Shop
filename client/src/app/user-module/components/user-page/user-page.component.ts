@@ -17,7 +17,9 @@ export class UserPageComponent implements OnInit {
       this.user = value;
       localStorage.setItem('role', this.user.role);
       localStorage.setItem('id', JSON.stringify(this.user.id));
-      this.toOrdersPage();
+      this.toBasket();
+    }, error => {
+      console.log(error);
     });
   }
 

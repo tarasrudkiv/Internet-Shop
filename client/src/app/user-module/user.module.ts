@@ -5,7 +5,6 @@ import {UserCardComponent} from './components/user-card/user-card.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule, Routes} from '@angular/router';
-import {UserPageForAdminComponent} from './components/user-page-for-admin/user-page-for-admin.component';
 import {UserPageComponent} from "./components/user-page/user-page.component";
 import {FormsModule} from "@angular/forms";
 import {MyOrdersComponent} from "../order-module/components/my-orders/my-orders.component";
@@ -26,7 +25,6 @@ const routes: Routes = [
     AllUsersComponent,
     UserCardComponent,
     UserPageComponent,
-    UserPageForAdminComponent
   ],
   imports: [
     CommonModule,

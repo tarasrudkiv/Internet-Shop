@@ -5,7 +5,6 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {RouterModule, Routes} from "@angular/router";
-import {ProductResolveService} from "./services/product-resolve.service";
 import {ProductService} from "./services/product.service";
 import { AllProductsComponent } from './components/all-products/all-products.component';
 import {ComputerPageComponent} from "./components/product-pages/computer-page/computer-page.component";
@@ -52,7 +51,6 @@ const routes: Routes = [
         ProductCardInBasketComponent
     ],
   providers: [
-    ProductResolveService,
     ProductService
   ]
 })

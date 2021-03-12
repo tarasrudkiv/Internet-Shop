@@ -1,20 +1,38 @@
-<div>
-  <div>
-    <form #findOrderForm="ngForm">
-      <button (click)="getAllOrders()">all</button>
-      <input type="text" name="findOrder" [(ngModel)]="keyword" #word="ngModel" required>
-      <button (click)="findOrder()" [disabled]="!findOrderForm.valid">Find</button>
-    </form>
+<div [ngClass]="{main:true}">
+
+  <div [ngClass]="{orderStatus:true}">
+    <h3 [ngClass]="{orderStatusLogo:true}">Order status</h3>
+    <button [ngClass]="{button:true}" (click)="(getAllOrders())">All</button>
+    <button [ngClass]="{button:true}" (click)="findOrderByStatus(0,'Ordered')">Ordered</button>
+    <button [ngClass]="{button:true}" (click)="findOrderByStatus(0,'Approved')">Approved</button>
+    <button [ngClass]="{button:true}" (click)="findOrderByStatus(0,'Declined')">Declined</button>
+    <button [ngClass]="{button:true}" (click)="findOrderByStatus(0,'Sent')">Sent</button>
+    <button [ngClass]="{button:true}" (click)="findOrderByStatus(0,'Expired')">Expired</button>
+    <button [ngClass]="{button:true}" (click)="findOrderByStatus(0,'Canceled')">Canceled</button>
   </div>
-  <div>
+
+  <div [ngClass]="{ordersAndInput:true}">
     <div>
-      <app-order-card-for-admin *ngFor="let o of orders" [order]="o"></app-order-card-for-admin>
+      <form #findOrderForm="ngForm">
+        <input [ngClass]="{input:true}" type="text" name="findOrder" [(ngModel)]="productName" required>
+        <button [ngClass]="{findButton:true}" (click)="findOrderByProductName()" [disabled]="!findOrderForm.valid">
+          Find
+        </button>
+      </form>
     </div>
-    <ngb-pagination class="d-flex justify-content-center"
-                    [collectionSize]="totalElements"
-                    pageSize="20"
-                    maxSize="10"
-                    [(page)]="page"
-                    (pageChange)="onPageChange($event)" [boundaryLinks]="true"></ngb-pagination>
+    <div>
+      <div [ngClass]="{orders:true}">
+        <app-order-card-for-admin *ngFor="let o of orders" [order]="o"
+                                  (orderSelected)="toOrderDetails(o)"></app-order-card-for-admin>
+      </div>
+      <ngb-pagination class="d-flex justify-content-center"
+                      [collectionSize]="totalElements"
+                      pageSize="20"
+                      maxSize="10"
+                      [(page)]="page"
+                      (pageChange)="onPageChange($event)" [boundaryLinks]="true"></ngb-pagination>
+    </div>
+
   </div>
+
 </div>

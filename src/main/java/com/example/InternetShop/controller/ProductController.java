@@ -3,16 +3,12 @@ package com.example.InternetShop.controller;
 import com.example.InternetShop.dto.ProductPageDTO;
 import com.example.InternetShop.entity.Product;
 import com.example.InternetShop.service.product.ProductService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.validation.Valid;
 
 @CrossOrigin("http://localhost:4200")
 @RestController

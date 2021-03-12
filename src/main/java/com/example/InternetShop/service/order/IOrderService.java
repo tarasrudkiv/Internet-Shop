@@ -4,14 +4,14 @@ import com.example.InternetShop.dto.OrderPageDTO;
 import com.example.InternetShop.entity.ProductOrder;
 import org.springframework.data.domain.PageRequest;
 
-import java.util.List;
-
 public interface IOrderService {
     OrderPageDTO getAllOrders(PageRequest pageRequest);
 
     OrderPageDTO getAllOrdersOfOneUser(String userName, PageRequest pageRequest);
 
-    OrderPageDTO findOrder(String keyword, PageRequest pageRequest);
+    OrderPageDTO findOrderByStatus(String status, PageRequest pageRequest);
+
+    OrderPageDTO findOrderByProductName(String status, PageRequest pageRequest);
 
     ProductOrder insertOrder(ProductOrder order);
 

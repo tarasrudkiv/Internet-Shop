@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./registration-page.component.css']
 })
 export class RegistrationPageComponent implements OnInit {
-  loading = "";
+  loading = null;
   currentError: any;
 
   constructor(private userService: UserService, private router: Router) {
@@ -26,12 +26,12 @@ export class RegistrationPageComponent implements OnInit {
   public saveUser() {
     this.loading = "LOADING...";
     this.userService.save(this.user).subscribe(value => {
-      this.loading = "";
+      this.loading = null;
       this.router.navigate(["/authentication"])
     }, error => {
       this.currentError = JSON.parse(error.error);
       alert(this.currentError.message);
-      this.loading = "";
+      this.loading = null;
     })
   }
 

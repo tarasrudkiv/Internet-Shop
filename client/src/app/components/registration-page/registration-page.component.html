@@ -1,17 +1,25 @@
-<div [ngClass]="{forms:true}">
-  <form [ngClass]="{form:true}" #registrationForm="ngForm">
-    <p>Username</p>
-    <input type="text" name="Username" [(ngModel)]="user.username" #username="ngModel" required>
-    <p>Password</p>
-    <input type="password" name="password" [(ngModel)]="user.password" #password="ngModel" required>
-    <p>Email</p>
-    <input type="email" name="email" [(ngModel)]="user.email" #email="ngModel" required>
-    <p>PhoneNumber</p>
-    <input type="number" name="number" [(ngModel)]="user.phoneNumber" #phoneNumber="ngModel" required>
-    <button (click)="saveUser()" [disabled]="!registrationForm.valid">add user</button>
-  </form>
-  <p>{{loading}}</p>
-  <div>
+<div [ngClass]="{main:true}">
+  <div [ngClass]="{formBlock:true}">
+    <div><h2 [ngClass]="{registration:true}">Registration</h2></div>
+    <form [ngClass]="{form:true}" #registrationForm="ngForm">
+      <p [ngClass]="{p:true}">Username</p>
+      <input [ngClass]="{input:true}" type="text" name="Username" [(ngModel)]="user.username" #username="ngModel"
+             required>
+      <p [ngClass]="{p:true}">Password</p>
+      <input [ngClass]="{input:true}" type="password" name="password" [(ngModel)]="user.password" #password="ngModel"
+             required>
+      <p [ngClass]="{p:true}">Email</p>
+      <input [ngClass]="{input:true}" type="email" name="email" [(ngModel)]="user.email" #email="ngModel" required>
+      <p [ngClass]="{p:true}">PhoneNumber</p>
+      <input [ngClass]="{input:true}" type="number" name="number" [(ngModel)]="user.phoneNumber" #phoneNumber="ngModel"
+             required>
+
+    </form>
+    <button [ngClass]="{button:true}" (click)="saveUser()" [disabled]="!registrationForm.valid||loading">Register
+    </button>
+    <p>{{loading}}</p>
   </div>
 </div>
+
+
 

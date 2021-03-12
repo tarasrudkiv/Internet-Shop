@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {OrderService} from "../../services/order.service";
 import {IOrderedProduct} from "../../models/orderedProductModel";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-all-orders',
@@ -10,24 +11,33 @@ import {IOrderedProduct} from "../../models/orderedProductModel";
 export class AllOrdersComponent implements OnInit {
   orders: IOrderedProduct[];
   totalElements: number;
-  keyword: string;
+  productName: string;
+  orderStatus: string;
   page: number;
   searchType: string;
 
 
-  constructor(private orderService: OrderService) {
+  constructor(private orderService: OrderService, private router: Router) {
     this.page = 1;
     this.getAllOrders();
   }
 
-  public findOrder() {
-    this.orderService.findOrder(this.keyword, 0).subscribe(value => {
+  public findOrderByProductName() {
+    this.orderService.findOrderByProductName(this.productName, 0).subscribe(value => {
       this.orders = value.orderList;
       this.totalElements = value.totalElements;
     });
-    this.searchType = "byKeyword";
+    this.searchType = "byProductName";
     this.page = 1
+  }
 
+  public findOrderByStatus(pageNumber: number, orderStatus: string) {
+    this.orderService.findOrderByStatus(orderStatus, 0).subscribe(value => {
+      this.orders = value.orderList;
+      this.totalElements = value.totalElements;
+    });
+    this.searchType = "byOrderStatus";
+    this.page = 1
   }
 
   public getAllOrders() {
@@ -35,7 +45,8 @@ export class AllOrdersComponent implements OnInit {
       this.orders = value.orderList;
       this.totalElements = value.totalElements;
       this.searchType = "all";
-      this.page = 1
+      this.page = 1;
+      this.productName = null;
     })
   }
 
@@ -46,12 +57,22 @@ export class AllOrdersComponent implements OnInit {
         this.totalElements = value.totalElements;
       })
     }
-    if (this.searchType == "byKeyword") {
-      this.orderService.findOrder(this.keyword, pageNumber - 1).subscribe(value => {
+    if (this.searchType == "byProductName") {
+      this.orderService.findOrderByProductName(this.productName, pageNumber - 1).subscribe(value => {
         this.orders = value.orderList;
         this.totalElements = value.totalElements;
       });
     }
+    if (this.searchType == "byOrderStatus") {
+      this.orderService.findOrderByStatus(this.orderStatus, pageNumber - 1).subscribe(value => {
+        this.orders = value.orderList;
+        this.totalElements = value.totalElements;
+      });
+    }
+  }
+
+  toOrderDetails(order: IOrderedProduct) {
+    this.router.navigate(["order/orderInfoPage"], {state: {order}})
   }
 
   ngOnInit(): void {

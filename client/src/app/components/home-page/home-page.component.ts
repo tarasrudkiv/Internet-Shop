@@ -37,6 +37,17 @@ export class HomePageComponent implements OnInit {
     this.router.navigate(["/"]);
   }
 
+  toRegistrationPage() {
+    this.router.navigate(["/registration"]);
+  }
+
+  toAuthenticationPage() {
+    this.router.navigate(["/authentication"]);
+  }
+  toUserPage() {
+    this.router.navigate(["/userPage"]);
+  }
+
   toProductDetails(product: IProduct) {
     this.router.navigate(['allProducts/product', product.id], {state: {product}})
   }

@@ -22,9 +22,9 @@ export class ProductCardComponent implements OnInit {
     status: "",
     price: null,
   };
-  loading = "";
+  loading = null;
 
-  constructor(private productService: ProductService, private router: Router) {
+  constructor(private productService: ProductService) {
   }
 
   public isAuthenticated(): boolean {
@@ -34,11 +34,6 @@ export class ProductCardComponent implements OnInit {
   showDetails() {
     this.productSelected.emit();
   }
-
-  orderProduct(product: IProduct) {
-    this.router.navigate(["order"], {state: {product}})
-  }
-
   public addProductToBasket() {
     this.loading = "LOADING...";
     this.productForBasket.productId = this.product.id;
@@ -48,10 +43,10 @@ export class ProductCardComponent implements OnInit {
     this.productForBasket.status = this.product.status;
     this.productForBasket.price = this.product.price;
     this.productService.addToBasket(this.productForBasket).subscribe(value => {
-      this.loading = "";
+      this.loading = null;
     }, error => {
       alert(error.error.message);
-      this.loading = "";
+      this.loading = null;
     })
   }
 

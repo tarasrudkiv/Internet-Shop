@@ -1,12 +1,14 @@
 <div [ngClass]="{main:true}">
   <div [ngClass]="{header:true}">
-    <button [ngClass]="{home:true}" (click)="toHomePage()">Home</button>
-    <div [ngClass]="{auth:true}">
-      <div [ngClass]="{block:true}" *ngIf="isAuthenticated()"><a routerLink="userPage">User page</a></div>
-      <div [ngClass]="{form:true}"><a routerLink="registration" *ngIf="!isAuthenticated()">Registration</a></div>
-      <div [ngClass]="{form:true}"><a routerLink="authentication" *ngIf="!isAuthenticated()">Authentication</a></div>
-      <button *ngIf="isAuthenticated()" (click)="logout()">logOut</button>
+    <button [ngClass]="{home:true}" (click)="toHomePage()">Internet Shop</button>
+    <div [ngClass]="{navigation:true}">
+      <a [ngClass]="{a:true}" (click)="toUserPage()" *ngIf="isAuthenticated()">User page</a>
+      <a [ngClass]="{a:true}" (click)="toRegistrationPage()" *ngIf="!isAuthenticated()">Registration</a>
+      <a [ngClass]="{a:true}" (click)="toAuthenticationPage()" *ngIf="!isAuthenticated()">Authentication
+      </a>
+      <a [ngClass]="{a:true}" (click)="logout()" *ngIf="isAuthenticated()">LogOut</a>
     </div>
   </div>
   <router-outlet></router-outlet>
 </div>
+

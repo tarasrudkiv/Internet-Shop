@@ -45,10 +45,10 @@ export class AddTVComponent implements OnInit {
       ],
     };
   id: number;
-  image: File;
   message: string;
-  imgURL: any;
-  loading: string = '';
+  image: File = null;
+  imgURL: any = null;
+  loading: string = null;
 
   constructor(private productService: ProductService) {
   }
@@ -79,11 +79,15 @@ export class AddTVComponent implements OnInit {
     formData.append("file", this.image);
     formData.append("product", JSON.stringify(this.TV));
     this.productService.save(formData).subscribe(value => {
-        this.loading = '';
+        this.loading = null;
+        this.image = null;
+        this.imgURL = null;
         alert('Success')
       },
       error => {
-        this.loading = '';
+        this.loading = null;
+        this.image = null;
+        this.imgURL = null;
         alert(error.error.message);
       })
   }

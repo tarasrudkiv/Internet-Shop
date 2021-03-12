@@ -4,17 +4,14 @@
       <img src="{{host+'/product/image/'+product.productId}}" alt="" [ngClass]="{picture:true}">
     </div>
     <div>
-      <p>{{product.category + " " + product.productName}}</p>
+      <p [ngClass]="{productName:true}">{{product.category + " " + product.productName}}</p>
       <p>{{product.status}}</p>
       <p>{{product.price}}</p>
     </div>
   </div>
   <div [ngClass]="{buttonsBlock:true}">
     <div>
-      <button (click)="removeProduct()">Remove from basket</button>
-    </div>
-    <div>
-      <button (click)="orderProduct(product)">Buy</button>
+      <button [ngClass]="{button:true}" (click)="removeProduct()">Remove from basket</button>
     </div>
   </div>
 </div>

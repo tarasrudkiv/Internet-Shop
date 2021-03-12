@@ -1,13 +1,11 @@
-<div>
-    <table>
-      <tr>
-        <td [ngClass]="{id:true}">{{product.id}}</td>
-        <td [ngClass]="{name:true}" >{{product.productName}}</td>
-        <td [ngClass]="{category:true}">{{product.category}}</td>
-        <td [ngClass]="{status:true}"> {{product.status}}</td>
-        <td><button (click)="deleteProduct(product.id)">delete</button></td>
-        <td><button (click)="openUpdatePage()">update</button></td>
-      </tr>
-    </table>
+<div [ngClass]="{main:true}">
+  <p [ngClass]="{id:true}">{{product.id}}</p>
+  <p [ngClass]="{name:true}">{{product.productName}}</p>
+  <p [ngClass]="{category:true}">{{product.category}}</p>
+  <p [ngClass]="{price:true}">{{product.price}}</p>
+  <p [ngClass]="{status:true}">{{product.status}}</p>
+  <button [ngClass]="{button:true}" (click)="openUpdatePage()">Update</button>
+  <button [ngClass]="{button:true}" (click)="deleteProduct(product.id)">Delete</button>
 </div>
+
 

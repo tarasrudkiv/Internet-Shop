@@ -1,39 +1,14 @@
-<div [ngClass]="{main:true}">
-  <div [ngClass]="{orderDetails:true}">
-    <div [ngClass]="{pictureBlock:true}"><img src="{{host+'/product/image/'+order.productId}}" alt=""
-                                              [ngClass]="{picture:true}"></div>
-    <div [ngClass]="{productDetails:true}">
-      <p>Product id -  {{order.productId}}</p>
-      <p>Product name -  {{order.productName}}</p>
-      <p>Product price -  {{order.productPrice}}</p>
-      <p>Number of products -  {{order.numberOfProducts}}</p>
-      <p>Total price -  {{order.totalPrice}}</p>
-      <p>Type of delivery -  {{order.typeOfDelivery}}</p>
-    </div>
-    <div [ngClass]="{userDetails:true}">
-      <p>First name -  {{order.firstName}}</p>
-      <p>Last name -  {{order.lastName}}</p>
-      <p>Phone number -  {{order.userPhoneNumber}}</p>
-      <p>Email -  {{order.userEmail}}</p>
-      <p>Address -  {{order.userAddress}}</p>
-    </div>
-    <div>
-      <p>Additional information</p>
-      <p [ngClass]="{information:true}">{{order.additionalInformation}}</p>
-    </div>
+<div [ngClass]="{card:true}" (click)="showDetails()">
+  <div [ngClass]="{pictureBlock:true}">
+    <img src="{{host+'/product/image/'+order.productId}}" [ngClass]="{picture:true}">
   </div>
-  <div [ngClass]="{orderStatus:true}">
-    <p [ngClass]="{p:true}">order status - {{order.status}}</p>
-    <form #selectForm="ngForm">
-      <select name="selectStatus" [ngClass]="{select:true}" [(ngModel)]="status">
-        <option>approved</option>
-        <option>declined</option>
-        <option>sent</option>
-        <option>expired</option>
-        <option>canceled</option>
-      </select>
-      <button (click)="setStatus()" [ngClass]="{button:true}">set status</button>
-      <p>{{loading}}</p>
-    </form>
+  <div>
+    <p [ngClass]="{productName:true}">{{order.productName}}</p>
+    <h5>Status - {{order.status}}</h5>
+    <h5>Product price - {{order.productPrice}}</h5>
+    <h5>Number of products - {{order.numberOfProducts}}</h5>
+    <h5>Total price - {{order.totalPrice}}</h5>
   </div>
 </div>
+
+

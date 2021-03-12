@@ -1,26 +1,59 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  border: solid black 1px;
-  width: 500px;
+  align-content: space-between;
+  width: 630px;
   height: 400px;
   margin: 20px;
+  background-color: white;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.82);
 }
 
 .picture {
-  height: 100%;
-  width: 98%;
-  margin: auto;
+  height: 188px;
+  width: 298px;
 }
 
-.pictureBlock {
-  height: 250px;
-  width: 375px;
+.pictureAndStatusBlock {
+  margin-left: 5px;
+  height: 630px;
+  width: 300px;
+}
+
+.productDetails {
+
 }
 
 .orderDetails {
   display: flex;
   flex-direction: row;
+}
+
+.orderStatusAndButton {
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  margin-right: 20px;
+  border-radius: 20px/20px;
+  border: none;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.82);
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+.button:hover {
+  opacity: 80%;
+}
+
+.p {
+  margin-left: 20px;
+  font-size: large;
+}
+
+.status {
+  font-size: large;
+  font-weight: bold;
 }
 

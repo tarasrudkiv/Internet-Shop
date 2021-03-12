@@ -1,44 +1,70 @@
-<div *ngIf="productForUpdate">
-  <img src="{{host+'/product/image/'+productForUpdate.id}}" alt="" [ngClass]="{picture:true}">
-  <form #updateMonitorForm="ngForm">
-    <p>Product name</p>
-    <input type="text" name="computerName" [(ngModel)]="productForUpdate.productName" #productName="ngModel" required>
-    <p>Product description</p>
-    <textarea type="text" name="computerDescription" [(ngModel)]="productForUpdate.description" #description="ngModel" required></textarea>
-    <p>Product price</p>
-    <input type="number" name="computerPrice" [(ngModel)]="productForUpdate.price" #price="ngModel" required>
-    <p>Product status</p>
-    <select name="computerStatus" [(ngModel)]="productForUpdate.status" #status="ngModel" required>
-      <option>In stock</option>
-      <option>is over</option>
-    </select>
-
-    <p>Monitor type</p>
-    <input type="text" name="monitorType" [(ngModel)]="productForUpdate.components[0].componentName" #monitorType="ngModel" required>
-    <p>Screen diagonal</p>
-    <input type="number" name="screenDiagonal" [(ngModel)]="productForUpdate.components[0].componentValues[0].propertyValue" #screenDiagonal="ngModel" required>
-    <p>Screen extension</p>
-    <input type="text" name="screenExtension" [(ngModel)]="productForUpdate.components[0].componentValues[1].propertyValue" #screenExtension="ngModel" required>
-    <p>Frame rate</p>
-    <input type="number" name="frameRate" [(ngModel)]="productForUpdate.components[0].componentValues[2].propertyValue" #frameRate="ngModel" required>
-    <p>Display brightness</p>
-    <input type="number" name="displayBrightness" [(ngModel)]="productForUpdate.components[0].componentValues[3].propertyValue" #displayBrightness="ngModel" required>
-    <p>Display contrast</p>
-    <input type="number" name="displayContrast" [(ngModel)]="productForUpdate.components[0].componentValues[4].propertyValue" #displayContrast="ngModel" required>
-    <p>Matrix reaction time</p>
-    <input type="number" name="matrixReactionTime" [(ngModel)]="productForUpdate.components[0].componentValues[5].propertyValue" #matrixReactionTime="ngModel" required>
-
-
-    <p>Image</p>
-    <input type="file" name="productImage" (change)="onSelectFile($event)">
-    <p>{{message}}</p>
-  </form>
+<div *ngIf="productForUpdate" [ngClass]="{main:true}">
+    <div><h2 [ngClass]="{updateMonitor:true}">Update monitor</h2></div>
   <div>
-    <img [src]="imgURL" height="200"  *ngIf="imgURL">
+    <img src="{{host+'/product/image/'+productForUpdate.id}}" alt="" [ngClass]="{picture:true}">
   </div>
-  <div>
-    <button (click)="updateProduct()" [disabled]="!updateMonitorForm.valid">update</button>
-    <p>{{loading}}</p>
+  <div [ngClass]="{formBlock:true}">
+    <form [ngClass]="{form:true}" #updateMonitorForm="ngForm">
+      <p [ngClass]="{p:true}">Product name</p>
+      <input [ngClass]="{input:true}" maxlength="128" type="text" name="productForUpdateName"
+             [(ngModel)]="productForUpdate.productName"
+             #productName="ngModel"
+             required>
+      <p [ngClass]="{p:true}">Product description</p>
+      <textarea [ngClass]="{textArea:true}" maxlength="1000" type="text" name="productForUpdateDescription"
+                [(ngModel)]="productForUpdate.description"
+                #description="ngModel"
+                required></textarea>
+      <p [ngClass]="{p:true}">Product price</p>
+      <input [ngClass]="{input:true}" type="number" name="productForUpdatePrice"
+             [(ngModel)]="productForUpdate.price" #price="ngModel">
+      <p [ngClass]="{p:true}">Product status</p>
+      <select [ngClass]="{select:true}" name="productForUpdateStatus" [(ngModel)]="productForUpdate.status"
+              #status="ngModel" required>
+        <option>In stock</option>
+        <option>is over</option>
+      </select>
+
+      <p [ngClass]="{p:true}">Monitor type</p>
+      <input [ngClass]="{input:true}" type="text" name="productForUpdateType"
+             [(ngModel)]="productForUpdate.components[0].componentName"
+             #productForUpdateType="ngModel" required>
+      <p [ngClass]="{p:true}">Screen diagonal</p>
+      <input [ngClass]="{input:true}" type="number" name="screenDiagonal"
+             [(ngModel)]="productForUpdate.components[0].componentValues[0].propertyValue" #screenDiagonal="ngModel"
+             required>
+      <p [ngClass]="{p:true}">Screen extension</p>
+      <input [ngClass]="{input:true}" type="text" name="screenExtension"
+             [(ngModel)]="productForUpdate.components[0].componentValues[1].propertyValue" #screenExtension="ngModel"
+             required>
+      <p [ngClass]="{p:true}">Frame rate</p>
+      <input [ngClass]="{input:true}" type="number" name="frameRate"
+             [(ngModel)]="productForUpdate.components[0].componentValues[2].propertyValue" #frameRate="ngModel"
+             required>
+      <p [ngClass]="{p:true}">Display brightness</p>
+      <input [ngClass]="{input:true}" type="number" name="displayBrightness"
+             [(ngModel)]="productForUpdate.components[0].componentValues[3].propertyValue" #displayBrightness="ngModel"
+             required>
+      <p [ngClass]="{p:true}">Display contrast</p>
+      <input [ngClass]="{input:true}" type="number" name="displayContrast"
+             [(ngModel)]="productForUpdate.components[0].componentValues[4].propertyValue" #displayContrast="ngModel"
+             required>
+      <p [ngClass]="{p:true}">Matrix reaction time</p>
+      <input [ngClass]="{input:true}" type="number" name="matrixReactionTime"
+             [(ngModel)]="productForUpdate.components[0].componentValues[5].propertyValue" #matrixReactionTime="ngModel"
+             required>
+
+
+      <p [ngClass]="{p:true}">Image</p>
+      <input type="file" name="productImage" (change)="onSelectFile($event)">
+      <p [ngClass]="{p:true}">{{message}}</p>
+    </form>
+
+    <button [ngClass]="{button:true}" (click)="updateProduct()" [disabled]="!updateMonitorForm.valid||loading">update</button>
+    <p [ngClass]="{p:true}">{{loading}}</p>
+    <img [src]="imgURL" height="200" *ngIf="imgURL">
   </div>
 </div>
+
+
 

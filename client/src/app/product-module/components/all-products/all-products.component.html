@@ -1,21 +1,24 @@
 <div [ngClass]="{page:true}">
   <div [ngClass]="{categories:true}">
-    <h3 [ngClass]="{categories:true}">Categories</h3>
+    <h3 [ngClass]="{categoriesLogo:true}">Categories</h3>
     <button [ngClass]="{button:true}" (click)="(getAllProducts())">all</button>
-    <button [ngClass]="{button:true}" (click)="getProductByCategory(0,'computer')">computers</button>
-    <button [ngClass]="{button:true}" (click)="getProductByCategory(0,'smartphone')">smartphones</button>
-    <button [ngClass]="{button:true}" (click)="getProductByCategory(0,'laptop')">laptops</button>
+    <button [ngClass]="{button:true}" (click)="getProductByCategory(0,'computer')">Computers</button>
+    <button [ngClass]="{button:true}" (click)="getProductByCategory(0,'smartphone')">Smartphones</button>
+    <button [ngClass]="{button:true}" (click)="getProductByCategory(0,'laptop')">Laptops</button>
     <button [ngClass]="{button:true}" (click)="getProductByCategory(0,'tv')">TV</button>
-    <button [ngClass]="{button:true}" (click)="getProductByCategory(0,'monitor')">monitors</button>
-    <button [ngClass]="{button:true}" (click)="getProductByCategory(0,'smartWatch')">smart watch</button>
-    <button [ngClass]="{button:true}" (click)="getProductByCategory(0,'console')">consoles</button>
+    <button [ngClass]="{button:true}" (click)="getProductByCategory(0,'monitor')">Monitors</button>
+    <button [ngClass]="{button:true}" (click)="getProductByCategory(0,'smartWatch')">Smart watch</button>
+    <button [ngClass]="{button:true}" (click)="getProductByCategory(0,'console')">Consoles</button>
   </div>
 
   <div [ngClass]="{productsAndPagination:true}">
     <div>
       <form #findProductForm="ngForm" [ngClass]="{form:true}">
-        <input type="text" name="productName" [(ngModel)]="productName" #name="ngModel" required>
-        <button (click)="getProductByProductName()" [disabled]="!findProductForm.valid">find</button>
+        <input [ngClass]="{input:true}" type="text" name="productName" [(ngModel)]="productName" #name="ngModel"
+               required>
+        <button [ngClass]="{findButton:true}" (click)="getProductByProductName()" [disabled]="!findProductForm.valid">
+          find
+        </button>
       </form>
     </div>
     <div *ngIf="products" [ngClass]="{products:true}">

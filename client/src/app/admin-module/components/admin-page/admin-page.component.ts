@@ -9,13 +9,26 @@ import {Router} from "@angular/router";
 export class AdminPageComponent implements OnInit {
 
   constructor(private router: Router) {
+    this.toAddProductPage()
   }
 
   ngOnInit(): void {
   }
 
   toAllOrdersPage(): void {
-    this.router.navigate(['/order/allOrders']);
+    this.router.navigate(['/admin/order/allOrders']);
+  }
+
+  toAddProductPage(): void {
+    this.router.navigate(['/admin/addProduct']);
+  }
+
+  toProductDetailsPage(): void {
+    this.router.navigate(['/admin/productDetails']);
+  }
+
+  toAllUsersPage(): void {
+    this.router.navigate(['/admin/allUsers']);
   }
 
 }

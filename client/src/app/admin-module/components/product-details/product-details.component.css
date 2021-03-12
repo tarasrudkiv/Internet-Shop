@@ -2,41 +2,85 @@
   display: flex;
   flex-direction: row;
 }
+
 .categories {
   display: flex;
   flex-direction: column;
   width: 200px;
-  margin-right: 20px;
-  background-color: #fafafa;
 }
-
+.categoriesLogo {
+  display: flex;
+  justify-content: center;
+  background-color: #555555;
+  color: white;
+  font-weight: bold;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.82);
+}
 .button {
-  width: 140px;
-  height: 40px;
+  width: 180px;
   margin-left: 30px;
   margin-bottom: 10px;
-  background-color: #f4ffea;
-}
-.categories{
-  margin-left:30px;
+  margin-right: 20px;
+  border-radius: 20px/20px;
+  border: none;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.82);
+  font-size: 28px;
+  text-transform: capitalize;
 }
 
-
+.button:hover {
+  box-shadow: none;
+}
 .productsAndPagination {
   width: 80%;
   display: flex;
   flex-direction: column;
 }
-.form{
+
+.form {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
+
 .products {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
+}
+
+.input {
+  border: none;
+  height: 30px;
+  width: 300px;
+  padding-left: 15px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.82);
+}
+
+.input:focus {
+  border: 2px solid black;
+}
+
+.findButton {
+  cursor: pointer;
+  height: 30px;
+  text-transform: capitalize;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.82);
+  border-radius: 20px/20px;
+  border: none;
+  font-size: large;
+  width: 60px;
+  margin-left: 10px;
+}
+
+.findButton:hover {
+  opacity: 80%;
+}
+
+.productWithSettings {
+  margin-right: auto;
+  margin-left: auto;
 }
 
 

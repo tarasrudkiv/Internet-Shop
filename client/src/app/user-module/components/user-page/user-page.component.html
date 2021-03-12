@@ -1,14 +1,21 @@
-<div [ngClass]="{userInfo:true}" *ngIf="user">
-  <p>  {{user.username}}</p>
-  <p>  {{user.role}}</p>
-  <p>  {{user.phoneNumber}}</p>
-  <p>  {{user.email}}</p>
-  <div>
-    <button *ngIf="isAdmin()" (click)="toAdminPage()">Admin Page</button>
+<div [ngClass]="{main:true}" *ngIf="user">
+  <div [ngClass]="{userInfoAndAdminButton:true}">
+    <div [ngClass]="{adminButtonBlock:true}">
+      <button [ngClass]="{adminButton:true}" *ngIf="isAdmin()" (click)="toAdminPage()">Admin Page</button>
+    </div>
+    <div [ngClass]="{userInfo:true}">
+      <h3> User name -  {{user.username}}</h3>
+      <h3> {{user.role}}</h3>
+      <h3> Phone number -  {{user.phoneNumber}}</h3>
+      <h3> Email - {{user.email}}</h3>
+    </div>
   </div>
-  <div [ngClass]="{buttons:true}">
-    <button (click)="toOrdersPage()">My orders</button>
-    <button (click)="toBasket()">Basket</button>
+  <div [ngClass]="{buttonsAndLine:true}">
+    <div [ngClass]="{buttons:true}">
+      <button [ngClass]="{basketButton:true}" (click)="toBasket()">Basket</button>
+      <button [ngClass]="{ordersButton:true}" (click)="toOrdersPage()">My orders</button>
+    </div>
+    <div [ngClass]="{line:true}"></div>
   </div>
+  <router-outlet></router-outlet>
 </div>
-<router-outlet></router-outlet>
