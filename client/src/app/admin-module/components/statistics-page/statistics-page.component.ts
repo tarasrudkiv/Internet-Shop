@@ -12,6 +12,7 @@ export class StatisticsPageComponent implements OnInit {
   ordersDataList: INumberOfOrdersForEachCategory[];
   productDataList: IMostPopularProduct[];
   totalOrders: number;
+  message = null;
 
   constructor(private orderService: OrderService) {
     this.getStatisticsDataForAllTime();
@@ -22,6 +23,11 @@ export class StatisticsPageComponent implements OnInit {
       this.ordersDataList = value.ordersDataList;
       this.productDataList = value.productDataList;
       this.totalOrders = value.totalOrders;
+      if (this.totalOrders === 0) {
+        this.message = "No orders"
+      } else {
+        this.message = null
+      }
     }, error => alert(error.error.message))
   }
 
@@ -30,7 +36,16 @@ export class StatisticsPageComponent implements OnInit {
       this.ordersDataList = value.ordersDataList;
       this.productDataList = value.productDataList;
       this.totalOrders = value.totalOrders;
+      if (this.totalOrders === 0) {
+        this.message = "No orders"
+      } else {
+        this.message = null
+      }
     }, error => alert(error.error.message))
+  }
+
+  isOrdersNotNull() {
+    return this.totalOrders !== 0
   }
 
   ngOnInit(): void {
