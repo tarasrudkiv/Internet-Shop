@@ -11,12 +11,13 @@ export class MyOrdersComponent implements OnInit {
   orders: IOrderedProduct[];
   totalElements: number;
 
+
   constructor(private  orderService: OrderService) {
-    this.getAllOrdersByUserName(1)
+    this.getAllOrdersByUserId(1)
   }
 
-  private getAllOrdersByUserName(pageNumber: number) {
-    this.orderService.getAllOrdersByUserName(localStorage.getItem("userName"), pageNumber - 1).subscribe(value => {
+  private getAllOrdersByUserId(pageNumber: number) {
+    this.orderService.getAllOrdersByUserId(JSON.parse(localStorage.getItem("id")), pageNumber - 1).subscribe(value => {
       this.orders = value.orderList;
       this.totalElements = value.totalElements;
     })
@@ -31,7 +32,7 @@ export class MyOrdersComponent implements OnInit {
   }
 
   onPageChange(pageNumber: number) {
-    this.getAllOrdersByUserName(pageNumber)
+    this.getAllOrdersByUserId(pageNumber)
   }
 
   ngOnInit(): void {

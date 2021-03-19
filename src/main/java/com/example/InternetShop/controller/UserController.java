@@ -74,4 +74,10 @@ public class UserController {
         return (
                 userService.changeRole(role, id));
     }
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public User updateUser(@RequestBody User user, @PathVariable int id) {
+        return (
+                userService.updateUser(user, id));
+    }
 }

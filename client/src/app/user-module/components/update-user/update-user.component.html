@@ -1,0 +1,35 @@
+<div [ngClass]="{main:true}">
+  <div [ngClass]="{formBlock:true}">
+    <div><h2 [ngClass]="{update:true}">Update</h2></div>
+    <form [ngClass]="{form:true}" #updateUserForm="ngForm">
+      <input [ngClass]="{input:true}" type="text" name="firstName" placeholder="First name"
+             [(ngModel)]="userForUpdate.firstName"
+             #firstName="ngModel"
+             required>
+      <input [ngClass]="{input:true}" type="text" name="lastName" placeholder="Last name"
+             [(ngModel)]="userForUpdate.lastName"
+             #lastName="ngModel"
+             required>
+      <input [ngClass]="{input:true}" type="text" name="Username" placeholder="Username" (change)="checkUsername()"
+             (keyup)="checkUsername()"
+             [(ngModel)]="userForUpdate.username"
+             #username="ngModel"
+             required>
+      <p [ngClass]="{message:true}">{{message}}</p>
+      <input [ngClass]="{input:true}" type="email" name="email" placeholder="Email" [(ngModel)]="userForUpdate.email"
+             #email="ngModel" required>
+      <input [ngClass]="{input:true}" type="number" name="number" placeholder="Phone number"
+             [(ngModel)]="userForUpdate.phoneNumber" #phoneNumber="ngModel"
+             required>
+    </form>
+    <button [ngClass]="{button:true}" (click)="updateUser()" [disabled]="!updateUserForm.valid||loading">
+      Update
+    </button>
+    <p>{{loading}}</p>
+  </div>
+</div>
+
+
+
+
+

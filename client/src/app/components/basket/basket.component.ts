@@ -17,12 +17,9 @@ export class BasketComponent implements OnInit {
 
 
   constructor(private productService: ProductService, private router: Router) {
-    this.getProductsFromBasket(0, localStorage.getItem("userName"));
+    this.getProductsFromBasket(0);
   }
 
-  // toProductDetails(product: IProductInBasket, id: number) {
-  //   this.router.navigate(['allProducts/product', product.category, product.id], {state: {id}})
-  // }
   toProductDetails(product: IProductInBasket, id: number) {
     this.router.navigate(['allProducts/product', product.category, product.productId], {state: {id}})
   }
@@ -34,15 +31,21 @@ export class BasketComponent implements OnInit {
     this.products.splice(deleteIndex, 1);
   }
 
-  private getProductsFromBasket(page: number, userName: string) {
-    this.productService.getProductsFromBasket(userName, page).subscribe(value => {
+  // private getProductsFromBasket(page: number, userId: number) {
+  //   this.productService.getProductsFromBasket(userId, page).subscribe(value => {
+  //     this.products = value.productList;
+  //     this.totalElements = value.totalElements;
+  //   })
+  // }
+  private getProductsFromBasket(page: number) {
+    this.productService.getProductsFromBasket(JSON.parse(localStorage.getItem("id")), page).subscribe(value => {
       this.products = value.productList;
       this.totalElements = value.totalElements;
     })
   }
 
   onPageChange(pageNumber: number) {
-    this.getProductsFromBasket(pageNumber - 1, localStorage.getItem("userName"));
+    this.getProductsFromBasket(pageNumber - 1);
   }
 
   ngOnInit(): void {

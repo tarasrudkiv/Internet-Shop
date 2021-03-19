@@ -16,9 +16,13 @@ public interface iUserService {
 
     UserDTO getUserByUserName(String name);
 
-
     User changeRole(String role, int id);
 
+    User updateUser(User user, int id);
+
     List<UserDTO> convertUserListToUserDtoList(List<User> users, List<UserDTO> userDTOS);
+
+    void checkUser(User user);
+    void checkUserForUpdate(User user);
 
 }

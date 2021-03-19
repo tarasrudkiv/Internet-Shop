@@ -9,6 +9,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
+import java.util.Date;
 
 @Entity
 @Data
@@ -20,6 +21,8 @@ public class ProductOrder {
     int id;
     @NotBlank
     String status;
+    @NotBlank
+    String category;
     @NotNull
     @PositiveOrZero
     int productId;
@@ -35,12 +38,14 @@ public class ProductOrder {
     @PositiveOrZero
     @NotNull
     int totalPrice;
-    @NotBlank
-    String userName;
+    @NotNull
+    int userId;
     @NotBlank
     String firstName;
     @NotBlank
     String lastName;
+    @NotBlank
+    String userName;
     @NotBlank
     String userPhoneNumber;
     @NotBlank
@@ -51,6 +56,7 @@ public class ProductOrder {
     String userEmail;
     @Column(length = 1000)
     String additionalInformation;
-    @NotBlank
-    String date;
+//    @NotBlank
+//    String date;
+    Date date;
 }

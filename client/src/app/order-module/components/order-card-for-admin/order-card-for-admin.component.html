@@ -3,7 +3,7 @@
     <img src="{{host+'/product/image/'+order.productId}}" [ngClass]="{picture:true}">
   </div>
   <div>
-    <p [ngClass]="{productName:true}">{{order.productName}}</p>
+    <p [ngClass]="{productName:true}">{{order.category}} {{order.productName}}</p>
     <h5>Status - {{order.status}}</h5>
     <h5>Product price - {{order.productPrice}}</h5>
     <h5>Number of products - {{order.numberOfProducts}}</h5>

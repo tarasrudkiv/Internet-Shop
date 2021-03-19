@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {IOrderedProduct} from "../models/orderedProductModel";
 import {IOrderPage} from "../models/orderPageModel";
+import {IStatisticData} from "../models/statisticDataModel";
 
 @Injectable({
   providedIn: 'root'
@@ -19,18 +20,32 @@ export class OrderService {
     return (this.httpClient.post<IOrderedProduct>("http://localhost:8080/order", orderedProduct, {headers}))
   }
 
-  public getAllOrders(page:number): Observable<IOrderPage> {
+  public getAllOrders(page: number): Observable<IOrderPage> {
     let token = localStorage.getItem("token");
     let tokenSTR = 'Bearer ' + token;
     const headers = new HttpHeaders().set("Authorization", tokenSTR);
     return (this.httpClient.get<IOrderPage>(`http://localhost:8080/order/?page=${page}`, {headers}))
   }
 
-  public getAllOrdersByUserName(userName: string, page: number): Observable<IOrderPage> {
+  public getAllOrdersByUserId(userId: number, page: number): Observable<IOrderPage> {
     let token = localStorage.getItem("token");
     let tokenSTR = 'Bearer ' + token;
     const headers = new HttpHeaders().set("Authorization", tokenSTR);
-    return (this.httpClient.get<IOrderPage>(`http://localhost:8080/order/${userName}/?page=${page}`, {headers}))
+    return (this.httpClient.get<IOrderPage>(`http://localhost:8080/order/${userId}/?page=${page}`, {headers}))
+  }
+
+  public getStatisticDataForAllTime(): Observable<IStatisticData> {
+    let token = localStorage.getItem("token");
+    let tokenSTR = 'Bearer ' + token;
+    const headers = new HttpHeaders().set("Authorization", tokenSTR);
+    return (this.httpClient.get<IStatisticData>(`http://localhost:8080/order/statistics`, {headers}))
+  }
+
+  public getStatisticDataForPeriodOfTime(periodOfTime:string): Observable<IStatisticData> {
+    let token = localStorage.getItem("token");
+    let tokenSTR = 'Bearer ' + token;
+    const headers = new HttpHeaders().set("Authorization", tokenSTR);
+    return (this.httpClient.get<IStatisticData>(`http://localhost:8080/order/statistics/${periodOfTime}`, {headers}))
   }
 
   public findOrderByStatus(status: string, page: number): Observable<IOrderPage> {
@@ -39,6 +54,7 @@ export class OrderService {
     const headers = new HttpHeaders().set("Authorization", tokenSTR);
     return (this.httpClient.get<IOrderPage>(`http://localhost:8080/order/status/${status}/?page=${page}`, {headers}))
   }
+
   public findOrderByProductName(productName: string, page: number): Observable<IOrderPage> {
     let token = localStorage.getItem("token");
     let tokenSTR = 'Bearer ' + token;

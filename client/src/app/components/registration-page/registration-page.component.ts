@@ -11,17 +11,30 @@ import {Router} from "@angular/router";
 })
 export class RegistrationPageComponent implements OnInit {
   loading = null;
-  currentError: any;
-
+  currentError=null;
   constructor(private userService: UserService, private router: Router) {
   }
 
   user: IUser = {
+    firstName: "",
+    lastName: "",
     username: "",
-    password: "",
+    password: null,
     phoneNumber: "",
     email: ""
   };
+  controlPassword = null;
+  message = null;
+
+  public checkPassword(password: string) {
+    if (password !== null && this.controlPassword !== null) {
+      if (password === this.controlPassword) {
+        this.message = null
+      } else {
+        this.message = "Passwords are different"
+      }
+    }
+  }
 
   public saveUser() {
     this.loading = "LOADING...";
@@ -31,6 +44,7 @@ export class RegistrationPageComponent implements OnInit {
     }, error => {
       this.currentError = JSON.parse(error.error);
       alert(this.currentError.message);
+      this.loading = null;
       this.loading = null;
     })
   }

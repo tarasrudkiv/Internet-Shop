@@ -36,11 +36,11 @@ export class ProductService {
     return (this.httpClient.post<IProductInBasket>("http://localhost:8080/basket", productForBasket, {headers}))
   }
 
-  public getProductsFromBasket(userName: string, page: number): Observable<IBasketPage> {
+  public getProductsFromBasket(userId: number, page: number): Observable<IBasketPage> {
     let token = localStorage.getItem("token");
     let tokenSTR = 'Bearer ' + token;
     const headers = new HttpHeaders().set("Authorization", tokenSTR);
-    return (this.httpClient.get<IBasketPage>(`http://localhost:8080/basket/${userName}/?page=${page}`, {headers}))
+    return (this.httpClient.get<IBasketPage>(`http://localhost:8080/basket/${userId}/?page=${page}`, {headers}))
   }
 
   public deleteProductFromBasket(id: number) {

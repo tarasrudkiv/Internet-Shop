@@ -9,6 +9,7 @@ import {UserPageComponent} from "./components/user-page/user-page.component";
 import {FormsModule} from "@angular/forms";
 import {MyOrdersComponent} from "../order-module/components/my-orders/my-orders.component";
 import {BasketComponent} from "../components/basket/basket.component";
+import {UpdateUserComponent} from './components/update-user/update-user.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
     ]
   },
   {path: 'admin', loadChildren: () => import('../admin-module/admin.module').then(m => m.AdminModule)},
+  {path: 'updateUser', component: UpdateUserComponent}
 ];
 
 @NgModule({
@@ -25,6 +27,7 @@ const routes: Routes = [
     AllUsersComponent,
     UserCardComponent,
     UserPageComponent,
+    UpdateUserComponent,
   ],
   imports: [
     CommonModule,

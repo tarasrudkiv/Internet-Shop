@@ -24,8 +24,9 @@ public class Basket {
     @NotNull
     @Positive
     int productId;
-    @NotBlank
-    String userName;
+    @NotNull
+    @Positive
+    int userId;
     @NotBlank
     String category;
     @NotBlank

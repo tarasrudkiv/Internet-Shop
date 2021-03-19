@@ -26,6 +26,7 @@ export class HomePageComponent implements OnInit {
     localStorage.removeItem("token");
     localStorage.removeItem("userName");
     localStorage.removeItem("role");
+    localStorage.removeItem("id");
     this.router.navigate(['/'])
   }
 

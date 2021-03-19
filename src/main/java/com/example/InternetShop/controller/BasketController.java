@@ -21,10 +21,10 @@ public class BasketController {
         this.basketService = basketService;
     }
 
-    @GetMapping(value = "/{userName}")
-    public BasketPageDTO getProductsFromBasket(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "25") int size, @PathVariable String userName) {
+    @GetMapping(value = "/{userId}")
+    public BasketPageDTO getProductsFromBasket(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "25") int size, @PathVariable int userId) {
         final PageRequest pageRequest = PageRequest.of(page, size);
-        return (basketService.getProductsFromBasket(userName, pageRequest));
+        return (basketService.getProductsFromBasket(userId, pageRequest));
     }
 
 
@@ -36,7 +36,7 @@ public class BasketController {
 
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void saveProductToBasket(@PathVariable int id) {
+    public void deleteProductFromBasket(@PathVariable int id) {
         basketService.deleteProduct(id);
     }
 

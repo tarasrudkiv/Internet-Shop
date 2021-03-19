@@ -17,12 +17,12 @@ export class UserCardComponent implements OnInit {
   constructor(private userService: UserService) {
   }
 
-  public isCurrentUserMainAdmin(): boolean {
-    return (localStorage.getItem("role") === "ROLE_MAIN_ADMIN")
+  public isCurrentUserAdmin(): boolean {
+    return (localStorage.getItem("role") === "ROLE_ADMIN")
   }
 
-  public isUserMainAdmin(): boolean {
-    return (this.user.role === "ROLE_MAIN_ADMIN")
+  public isUserAdmin(): boolean {
+    return (this.user.role === "ROLE_ADMIN")
   }
 
   print() {
@@ -31,7 +31,7 @@ export class UserCardComponent implements OnInit {
 
   changeRole() {
     this.loading = 'LOADING...';
-    if (this.role === "ROLE_USER" || this.role === "ROLE_ADMIN") {
+    if (this.role === "ROLE_USER" || this.role === "ROLE_MANAGER") {
       this.userService.changeRole(this.role, this.user.id).subscribe(value => {
         this.user.role = value.role;
         this.loading = null;
@@ -39,7 +39,6 @@ export class UserCardComponent implements OnInit {
       });
     } else {
       this.loading = null;
-      alert("print correct role")
     }
   }
 

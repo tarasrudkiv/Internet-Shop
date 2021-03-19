@@ -11,24 +11,30 @@ import {Router} from "@angular/router";
 export class UserPageComponent implements OnInit {
 
   user: IUser;
+  role: string;
 
   constructor(private userService: UserService, private router: Router) {
     this.userService.getOneUser(localStorage.getItem('userName')).subscribe(value => {
       this.user = value;
       localStorage.setItem('role', this.user.role);
       localStorage.setItem('id', JSON.stringify(this.user.id));
+      this.role = this.user.role.slice(5);
       this.toBasket();
     }, error => {
       console.log(error);
     });
   }
 
-  isAdmin(): boolean {
-    return (localStorage.getItem('role') === 'ROLE_ADMIN' || localStorage.getItem('role') === 'ROLE_MAIN_ADMIN');
+  isAdminOrManager(): boolean {
+    return (localStorage.getItem('role') === 'ROLE_ADMIN' || localStorage.getItem('role') === 'ROLE_MANAGER');
   }
 
   toAdminPage(): void {
     this.router.navigate(['/userPage/admin']);
+  }
+
+  toUpdatePage(user: IUser): void {
+    this.router.navigate(['/userPage/updateUser'], {state: {user}});
   }
 
   toOrdersPage(): void {

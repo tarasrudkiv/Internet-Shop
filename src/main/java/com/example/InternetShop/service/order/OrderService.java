@@ -1,13 +1,17 @@
 package com.example.InternetShop.service.order;
 
 import com.example.InternetShop.dao.ProductOrderDao;
-import com.example.InternetShop.dto.OrderPageDTO;
+import com.example.InternetShop.dto.*;
 import com.example.InternetShop.entity.ProductOrder;
 import com.example.InternetShop.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class OrderService implements IOrderService {
@@ -23,8 +27,8 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public OrderPageDTO getAllOrdersOfOneUser(String userName, PageRequest pageRequest) {
-        final Page<ProductOrder> orderPage = orderDao.findOrdersByUserName(userName, pageRequest);
+    public OrderPageDTO getAllOrdersOfOneUser(int userId, PageRequest pageRequest) {
+        final Page<ProductOrder> orderPage = orderDao.findOrdersByUserId(userId, pageRequest);
         return (
                 new OrderPageDTO(orderPage.getContent(), orderPage.getTotalElements(), orderPage.getTotalPages(), orderPage.getSize())
         );
@@ -49,6 +53,7 @@ public class OrderService implements IOrderService {
 
     @Override
     public ProductOrder insertOrder(ProductOrder order) {
+        order.setDate(new Date(System.currentTimeMillis()));
         return (orderDao.save(order));
     }
 
@@ -67,6 +72,61 @@ public class OrderService implements IOrderService {
             orderDao.save(productFromDatabase);
         }
         return productFromDatabase;
+    }
+
+    @Override
+    public StatisticsDataDTO getStatisticsData() {
+        TotalOrdersDTO totalOrders = orderDao.getTotalOrders();
+        List<NumberOfOrdersForEachCategoryDTO> orders = orderDao.getNumberOfOrdersForEachCategory();
+        List<StatisticOfOrdersForEachCategoryDTO> statisticOfOrders = new ArrayList<>();
+        for (NumberOfOrdersForEachCategoryDTO order : orders) {
+            String orderCategory = order.getOrderCategory();
+            long numberOfOrders = order.getNumberOfOrders();
+            float percentageOfOrdersFloat = ((float) numberOfOrders / (float) totalOrders.getTotalOrders() * 100);
+            long percentageOfOrders = (long) percentageOfOrdersFloat;
+            StatisticOfOrdersForEachCategoryDTO statisticOfOrdersTemporary = new StatisticOfOrdersForEachCategoryDTO(orderCategory, numberOfOrders, percentageOfOrders);
+            statisticOfOrders.add(statisticOfOrdersTemporary);
+        }
+        PageRequest pageRequest = PageRequest.of(0, 10);
+        final Page<MostPopularProductDTO> productPage = orderDao.getMostPopularProduct(pageRequest);
+        return new StatisticsDataDTO(statisticOfOrders, productPage.getContent(), totalOrders.getTotalOrders());
+    }
+
+    @Override
+    public StatisticsDataDTO getStatisticsDataForPeriodOfTime(String periodOfTime) {
+        long period=0;
+        switch (periodOfTime) {
+            case  ("year"):
+                period=31536000000L;
+                break;
+            case ("month"):
+                period=2592000000L;
+                break;
+            case ("week"):
+                period=604800000;
+                break;
+            case ("day"):
+                period=86400000;
+                break;
+            case ("hour"):
+                period=3600000;
+                break;
+        }
+        Date date = (new Date(System.currentTimeMillis() - period));
+        TotalOrdersDTO totalOrders = orderDao.getTotalOrdersForPeriodOfTime(date);
+        List<NumberOfOrdersForEachCategoryDTO> orders = orderDao.getNumberOfOrdersForEachCategoryForPeriodOfTime(date);
+        List<StatisticOfOrdersForEachCategoryDTO> statisticOfOrders = new ArrayList<>();
+        for (NumberOfOrdersForEachCategoryDTO order : orders) {
+            String orderCategory = order.getOrderCategory();
+            long numberOfOrders = order.getNumberOfOrders();
+            float percentageOfOrdersFloat = ((float) numberOfOrders / (float) totalOrders.getTotalOrders() * 100);
+            long percentageOfOrders = (long) percentageOfOrdersFloat;
+            StatisticOfOrdersForEachCategoryDTO statisticOfOrdersTemporary = new StatisticOfOrdersForEachCategoryDTO(orderCategory, numberOfOrders, percentageOfOrders);
+            statisticOfOrders.add(statisticOfOrdersTemporary);
+        }
+        PageRequest pageRequest = PageRequest.of(0, 10);
+        final Page<MostPopularProductDTO> productPage = orderDao.getMostPopularProductForPeriodOfTime(date, pageRequest);
+        return new StatisticsDataDTO(statisticOfOrders, productPage.getContent(), totalOrders.getTotalOrders());
     }
 
     @Override

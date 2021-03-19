@@ -1,0 +1,38 @@
+.card {
+  width: 260px;
+  height: 290px;
+  background-color: #fafafa;
+  margin-top: 10px;
+  margin-left: 10px
+}
+
+.card:hover {
+  box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.82);
+}
+
+.pictureBlock {
+  width: 260px;
+  height: 175px;
+  display: flex;
+  justify-content: center;
+}
+
+.picture {
+  height: 100%;
+  width: 98%;
+  margin: auto;
+}
+.productName {
+  text-transform: capitalize;
+  font-size: large;
+  font-weight: bold;
+  height: 50px;
+  overflow: hidden;
+}
+.p{
+  text-transform: capitalize;
+  font-size: large;
+}
+.span{
+  font-weight: bold;
+}

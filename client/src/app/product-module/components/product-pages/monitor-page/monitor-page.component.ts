@@ -25,8 +25,16 @@ export class MonitorPageComponent implements OnInit {
     this.isCharacteristicsOpen = !this.isCharacteristicsOpen
   }
 
+  public isAuthenticated(): boolean {
+    return !!localStorage.getItem("token") === true;
+  }
+
   orderProduct(product: IProduct) {
-    this.router.navigate(["order"], {state: {product}})
+    if (this.isAuthenticated() === true) {
+      this.router.navigate(["order"], {state: {product}})
+    } else {
+      this.router.navigate(["/authentication"]);
+    }
   }
 
   ngOnInit(): void {

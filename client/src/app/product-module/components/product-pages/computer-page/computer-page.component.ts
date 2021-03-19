@@ -21,8 +21,16 @@ export class ComputerPageComponent implements OnInit {
     }
   }
 
+  public isAuthenticated(): boolean {
+    return !!localStorage.getItem("token") === true;
+  }
+
   orderProduct(product: IProduct) {
-    this.router.navigate(["order"], {state: {product}})
+    if (this.isAuthenticated() === true) {
+      this.router.navigate(["order"], {state: {product}})
+    } else {
+      this.router.navigate(["/authentication"]);
+    }
   }
 
   public openCloseCharacteristics() {

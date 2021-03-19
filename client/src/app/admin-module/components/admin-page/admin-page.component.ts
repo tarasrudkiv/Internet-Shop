@@ -30,5 +30,8 @@ export class AdminPageComponent implements OnInit {
   toAllUsersPage(): void {
     this.router.navigate(['/admin/allUsers']);
   }
+  toStatisticsPage(): void {
+    this.router.navigate(['/admin/statistics']);
+  }
 
 }

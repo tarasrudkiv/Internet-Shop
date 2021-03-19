@@ -2,13 +2,12 @@
   <div [ngClass]="{formBlock:true}">
     <div><h2 [ngClass]="{authentication:true}">Authentication</h2></div>
     <form [ngClass]="{form:true}" #authenticationForm="ngForm">
-      <p [ngClass]="{p:true}">Login</p>
-      <input [ngClass]="{input:true}" type="text" name="login" [(ngModel)]="user.username" #username="ngModel"
+      <input [ngClass]="{input:true}" type="text" name="login" placeholder="Login" [(ngModel)]="user.username"
+             #username="ngModel"
              required>
-      <p [ngClass]="{p:true}">Password</p>
-      <input [ngClass]="{input:true}" type="password" name="password" [(ngModel)]="user.password" #password="ngModel"
+      <input [ngClass]="{input:true}" type="password" name="password" placeholder="Password" [(ngModel)]="user.password"
+             #password="ngModel"
              required>
-
     </form>
     <button [ngClass]="{button:true}" (click)="login()" [disabled]="!authenticationForm.valid||loading">Login</button>
     <p>{{loading}}</p>

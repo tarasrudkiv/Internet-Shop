@@ -1,13 +1,13 @@
-<div *ngIf="!isCurrentUserMainAdmin()||!isUserMainAdmin()" [ngClass]="{main:true}">
+<div *ngIf="!isCurrentUserAdmin()||!isUserAdmin()" [ngClass]="{main:true}">
   <p [ngClass]="{id:true}">{{user.id}}</p>
   <p [ngClass]="{name:true}">{{user.username}}</p>
   <p [ngClass]="{email:true}">{{user.email}}</p>
   <p [ngClass]="{number:true}">{{user.phoneNumber}}</p>
   <p [ngClass]="{role:true}">{{user.role}}</p>
-  <div [ngClass]="{select:true}" *ngIf="isCurrentUserMainAdmin()">
+  <div [ngClass]="{select:true}" *ngIf="isCurrentUserAdmin()">
     <select name="role" [(ngModel)]="role">
       <option>ROLE_USER</option>
-      <option>ROLE_ADMIN</option>
+      <option>ROLE_MANAGER</option>
     </select>
     <button [disabled]="!role||loading" [ngClass]="{button:true}" (click)="changeRole()">Change</button>
     <p>{{loading}}</p>

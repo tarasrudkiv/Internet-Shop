@@ -1,0 +1,68 @@
+.categoryData {
+  display: flex;
+  flex-direction: row;
+  width: 1366px;
+}
+.categories {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  margin-right: 35px;
+}
+
+.categoriesLogo {
+  display: flex;
+  justify-content: center;
+  background-color: #555555;
+  color: white;
+  font-weight: bold;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.82);
+}
+.button {
+  width: 180px;
+  margin-left: 30px;
+  margin-bottom: 10px;
+  margin-right: 20px;
+  border-radius: 20px/20px;
+  border: none;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.82);
+  font-size: 28px;
+  text-transform: capitalize;
+}
+.button:hover {
+  box-shadow: none;
+}
+.data {
+  width: 630px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.dataElement {
+  font-size: 30px;
+}
+
+.span {
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.productData {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+.products {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: white;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

@@ -34,27 +34,28 @@ public class UserService implements iUserService, UserDetailsService {
 
     @Override
     public String createUser(User user) {
-        if (userDao.findByUsername(user.getUsername()) != null) {
-            throw new NotValidUserNameException("User with this username is already registered");
-        }
-        if (userDao.findByPhoneNumber(user.getPhoneNumber()) != null) {
-            throw new NotValidPhoneNumberException("User with this phone number is already registered");
-        }
-        if (userDao.findByEmail(user.getEmail()) != null) {
-            throw new NotValidEmailException("User with this email is already registered");
+        this.checkUser(user);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        User userFromDatabase = userDao.save(user);
+        int userId = userFromDatabase.getId();
+        if (userId == 1) {
+            userFromDatabase.setRole("ROLE_ADMIN");
         } else {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            User userFromDatabase = userDao.save(user);
-            int userId = userFromDatabase.getId();
-            if (userId == 1) {
-                userFromDatabase.setRole("ROLE_MAIN_ADMIN");
-            } else {
-                userFromDatabase.setRole("ROLE_USER");
-            }
-            userDao.save(userFromDatabase);
-            return userFromDatabase.getUsername();
+            userFromDatabase.setRole("ROLE_USER");
         }
+        userDao.save(userFromDatabase);
+        return userFromDatabase.getUsername();
     }
+
+    @Override
+    public User updateUser(User user, int id) {
+        this.checkUserForUpdate(user);
+        User userFromDatabase = userDao.findById(user.getId()).orElseThrow(NotFoundException::new);
+        user.setPassword(userFromDatabase.getPassword());
+        user.setRole(userFromDatabase.getRole());
+        return userDao.save(user);
+    }
+
 
     @Override
     public UsersPageDTO getAllUsers(PageRequest pageRequest) {
@@ -77,7 +78,7 @@ public class UserService implements iUserService, UserDetailsService {
     @Override
     public UserDTO getUserByUserName(String name) {
         final User user = userDao.findByUsername(name);
-        return new UserDTO(user.getId(), user.getUsername(), user.getPhoneNumber(), user.getEmail(), user.getRole());
+        return new UserDTO(user.getId(), user.getFirstName(), user.getLastName(), user.getUsername(), user.getPhoneNumber(), user.getEmail(), user.getRole());
     }
 
     @Override
@@ -100,10 +101,35 @@ public class UserService implements iUserService, UserDetailsService {
     @Override
     public List<UserDTO> convertUserListToUserDtoList(List<User> users, List<UserDTO> userDTOS) {
         for (User user : users) {
-            UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getPhoneNumber(), user.getEmail(), user.getRole());
+            UserDTO userDTO = new UserDTO(user.getId(), user.getFirstName(), user.getLastName(), user.getUsername(), user.getPhoneNumber(), user.getEmail(), user.getRole());
             userDTOS.add(userDTO);
         }
         return userDTOS;
     }
 
+    @Override
+    public void checkUser(User user) {
+        if (userDao.findByUsername(user.getUsername()) != null) {
+            throw new NotValidUserNameException("User with this username is already registered");
+        }
+        if (userDao.findByPhoneNumber(user.getPhoneNumber()) != null) {
+            throw new NotValidPhoneNumberException("User with this phone number is already registered");
+        }
+        if (userDao.findByEmail(user.getEmail()) != null) {
+            throw new NotValidEmailException("User with this email is already registered");
+        }
+    }
+
+    @Override
+    public void checkUserForUpdate(User user) {
+        if (userDao.findByUsernameAndNotById(user.getId(), user.getUsername()) != null) {
+            throw new NotValidUserNameException("User with this username is already registered");
+        }
+        if (userDao.findByPhoneNumberAndNotById(user.getId(), user.getPhoneNumber()) != null) {
+            throw new NotValidPhoneNumberException("User with this phone number is already registered");
+        }
+        if (userDao.findByEmailAndNotById(user.getId(), user.getEmail()) != null) {
+            throw new NotValidEmailException("User with this email is already registered");
+        }
+    }
 }

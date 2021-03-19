@@ -1,0 +1,28 @@
+<div [ngClass]="{main:true}">
+  <div [ngClass]="{categoryData:true}">
+    <div>
+      <div [ngClass]="{categories:true}">
+        <h3 [ngClass]="{categoriesLogo:true}">Period of time</h3>
+        <button [ngClass]="{button:true}" (click)="(getStatisticsDataForAllTime())">For all time</button>
+        <button [ngClass]="{button:true}" (click)="getStatisticsDataForPeriodOfTime('hour')">Last hour</button>
+        <button [ngClass]="{button:true}" (click)="getStatisticsDataForPeriodOfTime('day')">Last day</button>
+        <button [ngClass]="{button:true}" (click)="getStatisticsDataForPeriodOfTime('week')">Last week</button>
+        <button [ngClass]="{button:true}" (click)="getStatisticsDataForPeriodOfTime('month')">Last month</button>
+        <button [ngClass]="{button:true}" (click)="getStatisticsDataForPeriodOfTime('year')">Last year</button>
+
+      </div>
+    </div>
+    <div id="chart" [ngClass]="{chart:true}">
+      <app-statistics-card *ngFor="let o of ordersDataList" [data]="o"></app-statistics-card>
+    </div>
+  </div>
+  <div [ngClass]="{productData:true}">
+    <div [ngClass]="{logo:true}">
+      <h1>Most popular products</h1>
+    </div>
+    <div [ngClass]="{products:true}">
+      <app-most-popular-product-card *ngFor="let p of productDataList"
+                                     [product]="p"></app-most-popular-product-card>
+    </div>
+  </div>
+</div>

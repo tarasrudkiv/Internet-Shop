@@ -7,7 +7,7 @@ import org.springframework.data.domain.PageRequest;
 public interface IBasketService {
     Basket saveProductToBasket(Basket productForBasket);
 
-    BasketPageDTO getProductsFromBasket(String userName, PageRequest pageRequest);
+    BasketPageDTO getProductsFromBasket(int userId, PageRequest pageRequest);
 
     void deleteProduct(int id);
 }

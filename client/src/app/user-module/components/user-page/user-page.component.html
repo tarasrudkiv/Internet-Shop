@@ -1,13 +1,15 @@
 <div [ngClass]="{main:true}" *ngIf="user">
   <div [ngClass]="{userInfoAndAdminButton:true}">
     <div [ngClass]="{adminButtonBlock:true}">
-      <button [ngClass]="{adminButton:true}" *ngIf="isAdmin()" (click)="toAdminPage()">Admin Page</button>
+      <button [ngClass]="{adminButton:true}" *ngIf="isAdminOrManager()" (click)="toAdminPage()">Admin Page</button>
     </div>
     <div [ngClass]="{userInfo:true}">
-      <h3> User name -  {{user.username}}</h3>
-      <h3> {{user.role}}</h3>
+      <h2 [ngClass]="{name:true}">{{user.firstName}} {{user.lastName}}</h2>
+      <h3> User name - {{user.username}}</h3>
+      <h3> Role - {{role}}</h3>
       <h3> Phone number -  {{user.phoneNumber}}</h3>
       <h3> Email - {{user.email}}</h3>
+      <button [ngClass]="{updateButton:true}" (click)="toUpdatePage(user)">Update</button>
     </div>
   </div>
   <div [ngClass]="{buttonsAndLine:true}">

@@ -1,6 +1,7 @@
 package com.example.InternetShop.controller;
 
 import com.example.InternetShop.dto.OrderPageDTO;
+import com.example.InternetShop.dto.StatisticsDataDTO;
 import com.example.InternetShop.entity.ProductOrder;
 import com.example.InternetShop.service.order.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +28,10 @@ public class OrderController {
         return (this.orderService.getAllOrders(pageRequest));
     }
 
-    @GetMapping(value = "/{userName}")
-    public OrderPageDTO getAllOrdersOfOneUser(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size, @PathVariable String userName) {
+    @GetMapping(value = "/{userId}")
+    public OrderPageDTO getAllOrdersOfOneUser(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size, @PathVariable int userId) {
         final PageRequest pageRequest = PageRequest.of(page, size);
-        return (this.orderService.getAllOrdersOfOneUser(userName, pageRequest));
+        return (this.orderService.getAllOrdersOfOneUser(userId, pageRequest));
     }
 
     @GetMapping(value = "status/{status}")
@@ -45,6 +46,15 @@ public class OrderController {
         return (this.orderService.findOrderByProductName(productName, pageRequest));
     }
 
+    @GetMapping(value = "statistics")
+    public StatisticsDataDTO getStatisticsData() {
+        return (this.orderService.getStatisticsData());
+    }
+
+    @GetMapping(value = "statistics/{periodOfTime}")
+    public StatisticsDataDTO getStatisticsDataForPeriodOfTime(@PathVariable String periodOfTime) {
+        return (this.orderService.getStatisticsDataForPeriodOfTime(periodOfTime));
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

@@ -2,24 +2,39 @@
   <div [ngClass]="{formBlock:true}">
     <div><h2 [ngClass]="{registration:true}">Registration</h2></div>
     <form [ngClass]="{form:true}" #registrationForm="ngForm">
-      <p [ngClass]="{p:true}">Username</p>
-      <input [ngClass]="{input:true}" type="text" name="Username" [(ngModel)]="user.username" #username="ngModel"
+      <input [ngClass]="{input:true}" type="text" name="firstName" placeholder="First name" [(ngModel)]="user.firstName"
+             #firstName="ngModel"
              required>
-      <p [ngClass]="{p:true}">Password</p>
-      <input [ngClass]="{input:true}" type="password" name="password" [(ngModel)]="user.password" #password="ngModel"
+      <input [ngClass]="{input:true}" type="text" name="lastName" placeholder="Last name" [(ngModel)]="user.lastName"
+             #lastName="ngModel"
              required>
-      <p [ngClass]="{p:true}">Email</p>
-      <input [ngClass]="{input:true}" type="email" name="email" [(ngModel)]="user.email" #email="ngModel" required>
-      <p [ngClass]="{p:true}">PhoneNumber</p>
-      <input [ngClass]="{input:true}" type="number" name="number" [(ngModel)]="user.phoneNumber" #phoneNumber="ngModel"
+      <input [ngClass]="{input:true}" type="text" name="Username" placeholder="Username" [(ngModel)]="user.username"
+             #username="ngModel"
+             required>
+      <input [ngClass]="{input:true}" type="password" name="password" placeholder="Password"
+             (keyup)="checkPassword(user.password)"
+             [(ngModel)]="controlPassword" #password="ngModel"
+             required>
+      <input [ngClass]="{input:true}" type="password" name="controlPassword" placeholder="Repeat the password"
+             (keyup)="checkPassword(user.password)"
+             [(ngModel)]="user.password" #password="ngModel"
+             required>
+      <p [ngClass]="{message:true}">{{message}}</p>
+      <input [ngClass]="{input:true}" type="email" name="email" placeholder="Email" [(ngModel)]="user.email"
+             #email="ngModel" required>
+      <input [ngClass]="{input:true}" type="number" name="number" placeholder="Phone number"
+             [(ngModel)]="user.phoneNumber" #phoneNumber="ngModel"
              required>
 
     </form>
-    <button [ngClass]="{button:true}" (click)="saveUser()" [disabled]="!registrationForm.valid||loading">Register
+    <button [ngClass]="{button:true}" (click)="saveUser()" [disabled]="!registrationForm.valid||loading||message">
+      Register
     </button>
     <p>{{loading}}</p>
   </div>
 </div>
+
+
 
 
 

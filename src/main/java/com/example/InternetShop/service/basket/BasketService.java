@@ -16,7 +16,7 @@ public class BasketService implements IBasketService {
 
     @Override
     public Basket saveProductToBasket(Basket productForBasket) {
-        if (basketDao.findByProductIdAndUserName(productForBasket.getProductId(), productForBasket.getUserName()) != null) {
+        if (basketDao.findByProductIdAndUserId(productForBasket.getProductId(), productForBasket.getUserId()) != null) {
             throw new ProductAlreadyInBasketException("The product is already in the basket");
         } else {
             return basketDao.save(productForBasket);
@@ -24,8 +24,8 @@ public class BasketService implements IBasketService {
     }
 
     @Override
-    public BasketPageDTO getProductsFromBasket(String userName, PageRequest pageRequest) {
-        final Page<Basket> productPage = basketDao.getProductsByUserName(userName, pageRequest);
+    public BasketPageDTO getProductsFromBasket(int userId, PageRequest pageRequest) {
+        final Page<Basket> productPage = basketDao.getProductsByUserid(userId, pageRequest);
         return new BasketPageDTO(productPage.getContent(), productPage.getTotalElements(), productPage.getTotalPages(), productPage.getSize());
     }
 

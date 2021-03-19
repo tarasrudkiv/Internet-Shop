@@ -9,10 +9,10 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface BasketDao extends JpaRepository<Basket, Integer> {
-    @Query("select b from Basket b where b.userName=?1")
-    Page<Basket> getProductsByUserName(String userName, PageRequest pageRequest);
+    @Query("select b from Basket b where b.userId=?1")
+    Page<Basket> getProductsByUserid(int userId, PageRequest pageRequest);
 
     Basket findById(int id);
 
-    Basket findByProductIdAndUserName(int productId, String username);
+    Basket findByProductIdAndUserId(int productId, int userId);
 }

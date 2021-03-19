@@ -12,7 +12,6 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {BasketComponent} from './components/basket/basket.component';
 import {ProductModule} from "./product-module/product.module";
 
-
 const routes: Routes = [
     {path: '', component: HomePageComponent},
     {path: 'allProducts', loadChildren: () => import('./product-module/product.module').then(m => m.ProductModule)},

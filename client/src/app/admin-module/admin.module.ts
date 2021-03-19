@@ -24,6 +24,10 @@ import {UpdateTvComponent} from './components/update-products/update-tv/update-t
 import {UpdateSmartWatchComponent} from './components/update-products/update-smart-watch/update-smart-watch.component';
 import {AllUsersComponent} from "../user-module/components/all-users/all-users.component";
 import {AllOrdersComponent} from "../order-module/components/all-orders/all-orders.component";
+import {StatisticsPageComponent} from './components/statistics-page/statistics-page.component';
+import {MostPopularProductCardComponent} from './components/most-popular-product-card/most-popular-product-card.component';
+import { StatisticsCardComponent } from './components/statistics-card/statistics-card.component';
+
 
 const routes: Routes = [
 
@@ -32,6 +36,7 @@ const routes: Routes = [
       {path: 'productDetails', component: ProductDetailsComponent},
       {path: 'order/allOrders', component: AllOrdersComponent},
       {path: 'allUsers', component: AllUsersComponent},
+      {path: 'statistics', component: StatisticsPageComponent},
       {path: 'update/computer/:id', component: UpdateComputerComponent},
       {path: 'update/laptop/:id', component: UpdateLaptopComponent},
       {path: 'update/console/:id', component: UpdateConsoleComponent},
@@ -74,14 +79,18 @@ const routes: Routes = [
     UpdateMonitorComponent,
     UpdateTvComponent,
     UpdateSmartWatchComponent,
+    StatisticsPageComponent,
+    MostPopularProductCardComponent,
+    StatisticsCardComponent,
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     RouterModule.forChild(routes),
     FormsModule,
-    NgbModule
-  ]
+    NgbModule,
+  ],
+
 })
 export class AdminModule {
 }

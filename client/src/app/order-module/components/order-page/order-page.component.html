@@ -48,7 +48,7 @@
       <input [ngClass]="{input:true}" type="text" name="address" [(ngModel)]="orderedProduct.userAddress"
              #userAddress="ngModel" required>
       <p [ngClass]="{p:true}">Additional Information</p>
-      <textarea [ngClass]="{textArea:true}" name="additionalInformation"
+      <textarea maxlength="1000" [ngClass]="{textArea:true}" name="additionalInformation"
                 [(ngModel)]="orderedProduct.additionalInformation"></textarea>
     </form>
 

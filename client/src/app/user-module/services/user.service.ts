@@ -30,9 +30,15 @@ export class UserService {
   public save(user: IUser): Observable<IUser> {
     return (this.httpClient.post<IUser>('http://localhost:8080/user', user, {responseType: 'text' as 'json'}));
   }
+  public updateUser(user: IUser): Observable<IUser> {
+    let token = localStorage.getItem('token');
+    let tokenSTR = 'Bearer ' + token;
+    const headers = new HttpHeaders().set('Authorization', tokenSTR);
+    return (this.httpClient.put<IUser>(`http://localhost:8080/user/${user.id}`, user, {headers}));
+  }
 
   public generateToken(user: IAuthentication): Observable<IToken> {
-    return (this.httpClient.post<IToken>('http://localhost:8080/user/authenticate', user, {responseType: 'json'}));
+    return (this.httpClient.post<IToken>('http://localhost:8080/user/authenticate', user));
   }
 
   public changeRole(role: string, id: number): Observable<IUser> {
