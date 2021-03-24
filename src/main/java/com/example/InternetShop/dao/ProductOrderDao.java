@@ -28,7 +28,7 @@ public interface ProductOrderDao extends JpaRepository<ProductOrder, Integer> {
     @Query("select new com.example.InternetShop.dto.TotalOrdersDTO(count(p.id)) from ProductOrder p")
     TotalOrdersDTO getTotalOrders();
 
-    @Query("select new com.example.InternetShop.dto.MostPopularProductDTO(p.productName,p.category,p.productId,count(p.productName)) from ProductOrder p group by p.productName order by count(p.productName) DESC ")
+    @Query("select new com.example.InternetShop.dto.MostPopularProductDTO(p.productName,p.category, p.imageName,p.productId,count(p.productName)) from ProductOrder p group by p.productName order by count(p.productName) DESC ")
     Page<MostPopularProductDTO> getMostPopularProduct(PageRequest pageRequest);
 
 
@@ -38,6 +38,6 @@ public interface ProductOrderDao extends JpaRepository<ProductOrder, Integer> {
     @Query("select new com.example.InternetShop.dto.NumberOfOrdersForEachCategoryDTO(p.category,count(p.category)) from ProductOrder p where p.date>?1 group by p.category order by count(p.category) DESC ")
     List<NumberOfOrdersForEachCategoryDTO> getNumberOfOrdersForEachCategoryForPeriodOfTime(Date date);
 
-    @Query("select new com.example.InternetShop.dto.MostPopularProductDTO(p.productName,p.category,p.productId,count(p.productName)) from ProductOrder p where p.date>?1 group by p.productName order by count(p.productName) DESC ")
+    @Query("select new com.example.InternetShop.dto.MostPopularProductDTO(p.productName,p.category, p.imageName,p.productId,count(p.productName)) from ProductOrder p where p.date>?1 group by p.productName order by count(p.productName) DESC ")
     Page<MostPopularProductDTO> getMostPopularProductForPeriodOfTime(Date date, PageRequest pageRequest);
 }

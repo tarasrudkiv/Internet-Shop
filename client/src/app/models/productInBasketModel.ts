@@ -6,4 +6,5 @@ export interface IProductInBasket {
   productName: string;
   status: string;
   price: number;
+  imageName: string;
 }

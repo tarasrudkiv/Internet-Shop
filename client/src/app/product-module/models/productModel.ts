@@ -6,7 +6,8 @@ export interface IProduct {
   status: string;
   category: string;
   components: Component[];
-  image?:File;
+  // image?:File;
+  imageName?:string;
 }
 interface Component {
   componentName: string;

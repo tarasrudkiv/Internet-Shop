@@ -1,7 +1,7 @@
 <div [ngClass]="{main:true}">
   <div [ngClass]="{orderDetails:true}">
     <div [ngClass]="{pictureAndStatusBlock:true}">
-      <img src="{{host+'/product/image/'+order.productId}}" [ngClass]="{picture:true}">
+      <img src="{{host+'/product/image/'+order.imageName}}" [ngClass]="{picture:true}">
       <div [ngClass]="{orderStatusAndButton:true}">
         <div>
           <p [ngClass]="{p:true}">Order status - <span [ngClass]="{status:true}">{{order.status}}</span></p>

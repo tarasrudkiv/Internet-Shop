@@ -4,6 +4,7 @@ import com.example.InternetShop.dto.ProductPageDTO;
 import com.example.InternetShop.entity.Product;
 import com.example.InternetShop.service.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -53,9 +54,9 @@ public class ProductController {
     }
 
 
-    @GetMapping(value = ("/image/{id}"), produces = MediaType.IMAGE_JPEG_VALUE)
-    public byte[] getProductImage(@PathVariable int id) {
-        return productService.getProductImage(id);
+    @GetMapping(value = ("/image/{imageName}"), produces = MediaType.IMAGE_JPEG_VALUE)
+    public Resource getProductImage(@PathVariable String imageName) {
+        return productService.getProductImage(imageName);
     }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -77,5 +78,4 @@ public class ProductController {
     public void deleteProduct(@PathVariable int id) {
         productService.deleteProduct(id);
     }
-
 }

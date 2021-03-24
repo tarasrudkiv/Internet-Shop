@@ -2,7 +2,7 @@
 <div *ngIf="productForUpdate" [ngClass]="{main:true}">
     <div><h2 [ngClass]="{updateConsole:true}">Update Console</h2></div>
   <div>
-    <img src="{{host+'/product/image/'+productForUpdate.id}}" alt="" [ngClass]="{picture:true}">
+    <img src="{{host+'/product/image/'+productForUpdate.imageName}}" alt="" [ngClass]="{picture:true}">
   </div>
   <div [ngClass]="{formBlock:true}">
     <form [ngClass]="{form:true}" #updateConsoleForm="ngForm">

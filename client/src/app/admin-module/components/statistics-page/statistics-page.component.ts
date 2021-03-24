@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {OrderService} from "../../../order-module/services/order.service";
 import {INumberOfOrdersForEachCategory} from "../../../order-module/models/numberOfOrdersForEachCategoryModel";
-import {IMostPopularProduct} from "../../../order-module/models/mostPopularProductMdodel";
+import {IMostPopularProduct} from "../../../order-module/models/mostPopularProductModel";
 
 @Component({
   selector: 'app-statistics-page',

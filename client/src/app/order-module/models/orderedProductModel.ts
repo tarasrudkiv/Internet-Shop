@@ -17,4 +17,5 @@ export interface IOrderedProduct {
   userEmail: string;
   additionalInformation: string;
   date?: string;
+  imageName: string;
 }

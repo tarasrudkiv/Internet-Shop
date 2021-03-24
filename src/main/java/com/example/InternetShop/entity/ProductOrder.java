@@ -56,7 +56,7 @@ public class ProductOrder {
     String userEmail;
     @Column(length = 1000)
     String additionalInformation;
-//    @NotBlank
-//    String date;
     Date date;
+    @NotBlank
+    String imageName;
 }

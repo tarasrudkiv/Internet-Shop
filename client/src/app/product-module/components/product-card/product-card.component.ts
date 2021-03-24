@@ -20,6 +20,7 @@ export class ProductCardComponent implements OnInit {
     productName: "",
     status: "",
     price: null,
+    imageName: ""
   };
   loading = null;
 
@@ -42,6 +43,8 @@ export class ProductCardComponent implements OnInit {
     this.productForBasket.productName = this.product.productName;
     this.productForBasket.status = this.product.status;
     this.productForBasket.price = this.product.price;
+    this.productForBasket.imageName = this.product.imageName;
+
     this.productService.addToBasket(this.productForBasket).subscribe(value => {
       this.loading = null;
     }, error => {

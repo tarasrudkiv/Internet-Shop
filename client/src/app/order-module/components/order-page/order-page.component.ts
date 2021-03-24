@@ -27,7 +27,6 @@ export class OrderPageComponent implements OnInit {
     this.totalPrice = this.price;
     this.userService.getOneUser(localStorage.getItem('userName')).subscribe(value => {
       this.user = value;
-      console.log(this.user);
       this.orderedProduct.userId = this.user.id;
       this.orderedProduct.firstName = this.user.firstName;
       this.orderedProduct.lastName = this.user.lastName;
@@ -55,7 +54,7 @@ export class OrderPageComponent implements OnInit {
     userAddress: '',
     userEmail: '',
     additionalInformation: '',
-    // date: ''
+    imageName: ''
   };
 
 
@@ -81,7 +80,7 @@ export class OrderPageComponent implements OnInit {
     this.orderedProduct.numberOfProducts = this.numberOfProducts;
     this.orderedProduct.productPrice = this.price;
     this.orderedProduct.totalPrice = this.totalPrice;
-    // this.orderedProduct.date = JSON.stringify(new Date().getHours());
+    this.orderedProduct.imageName = this.product.imageName;
     this.orderService.orderProduct(this.orderedProduct).subscribe(value => {
       this.loading = null;
       alert('Success');

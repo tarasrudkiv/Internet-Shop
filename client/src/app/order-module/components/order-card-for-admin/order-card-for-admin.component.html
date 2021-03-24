@@ -1,6 +1,6 @@
 <div [ngClass]="{card:true}" (click)="showDetails()">
   <div [ngClass]="{pictureBlock:true}">
-    <img src="{{host+'/product/image/'+order.productId}}" [ngClass]="{picture:true}">
+    <img src="{{host+'/product/image/'+order.imageName}}" [ngClass]="{picture:true}">
   </div>
   <div>
     <p [ngClass]="{productName:true}">{{order.category}} {{order.productName}}</p>

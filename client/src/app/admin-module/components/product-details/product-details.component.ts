@@ -26,7 +26,6 @@ export class ProductDetailsComponent implements OnInit {
     this.searchType = "all";
     this.page = 1;
   }
-
   deleteComponent(id: number) {
     this.productService.deleteProduct(id);
     const findId = (element) => element.id === id;
@@ -62,7 +61,6 @@ export class ProductDetailsComponent implements OnInit {
 
   public getProductByProductName() {
     this.productService.getAllProductsByName(0, this.productName).subscribe(value => {
-      console.log(this.productName);
       this.products = value.productList;
       this.totalElements = value.totalElements;
       this.searchType = "byName";
@@ -86,7 +84,6 @@ export class ProductDetailsComponent implements OnInit {
     }
     if (this.searchType == "byName") {
       this.productService.getAllProductsByName(pageNumber - 1, this.productName).subscribe(value => {
-        console.log(this.productName);
         this.products = value.productList;
         this.totalElements = value.totalElements;
       })

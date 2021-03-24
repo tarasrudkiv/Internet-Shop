@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {IMostPopularProduct} from "../../../order-module/models/mostPopularProductMdodel";
+import {IMostPopularProduct} from "../../../order-module/models/mostPopularProductModel";
 
 @Component({
   selector: 'app-most-popular-product-card',

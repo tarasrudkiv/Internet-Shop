@@ -4,7 +4,7 @@
     <div>
       <div><h3 [ngClass]="{productName:true}">{{product.productName}}</h3></div>
       <div [ngClass]="{imageBlock:true}">
-        <img src="{{host+'/product/image/'+product.id}}" [ngClass]="{image:true}">
+        <img src="{{host+'/product/image/'+product.imageName}}" [ngClass]="{image:true}">
       </div>
     </div>
     <div [ngClass]="{priceSettings:true}">

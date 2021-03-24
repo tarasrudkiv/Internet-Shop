@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class MostPopularProductDTO {
     String productName;
     String productCategory;
+    String imageName;
     int productId;
     long numberOfOrders;
 }

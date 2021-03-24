@@ -1,5 +1,5 @@
 import {INumberOfOrdersForEachCategory} from "./numberOfOrdersForEachCategoryModel";
-import {IMostPopularProduct} from "./mostPopularProductMdodel";
+import {IMostPopularProduct} from "./mostPopularProductModel";
 
 export interface IStatisticData {
   ordersDataList: INumberOfOrdersForEachCategory[];

@@ -36,4 +36,6 @@ public class Basket {
     @NotNull
     @PositiveOrZero
     int price;
+    @NotBlank
+    String imageName;
 }
