@@ -21,6 +21,7 @@ const _c2 = function () { return { picture: true }; };
 const _c3 = function () { return { productName: true }; };
 class OrderCardForAdminComponent {
     constructor() {
+        this.url = "http://localhost:8080";
         this.host = "http://localhost:8080";
         this.orderSelected = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"];
         this.loading = null;
@@ -32,7 +33,7 @@ class OrderCardForAdminComponent {
     }
 }
 OrderCardForAdminComponent.ɵfac = function OrderCardForAdminComponent_Factory(t) { return new (t || OrderCardForAdminComponent)(); };
-OrderCardForAdminComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: OrderCardForAdminComponent, selectors: [["app-order-card-for-admin"]], inputs: { order: "order" }, outputs: { orderSelected: "orderSelected" }, decls: 14, vars: 14, consts: [[3, "ngClass", "click"], [3, "ngClass"], [3, "src", "ngClass"]], template: function OrderCardForAdminComponent_Template(rf, ctx) { if (rf & 1) {
+OrderCardForAdminComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: OrderCardForAdminComponent, selectors: [["app-order-card-for-admin"]], inputs: { order: "order" }, outputs: { orderSelected: "orderSelected" }, decls: 14, vars: 15, consts: [[3, "ngClass", "click"], [3, "ngClass"], [3, "src", "ngClass"]], template: function OrderCardForAdminComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function OrderCardForAdminComponent_Template_div_click_0_listener() { return ctx.showDetails(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
@@ -57,16 +58,16 @@ OrderCardForAdminComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     } if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](10, _c0));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](11, _c0));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](11, _c1));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](12, _c1));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("src", ctx.host + "/product/image/" + ctx.order.productId, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](12, _c2));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("src", ctx.host + "/product/image/" + ctx.order.imageName, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](13, _c2));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](13, _c3));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](14, _c3));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.order.productName);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate2"]("", ctx.order.category, " ", ctx.order.productName, "");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("Status - ", ctx.order.status, "");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
@@ -111,48 +112,61 @@ __webpack_require__.r(__webpack_exports__);
 class OrderService {
     constructor(httpClient) {
         this.httpClient = httpClient;
+        this.url = "http://localhost:8080";
     }
     orderProduct(orderedProduct) {
         let token = localStorage.getItem("token");
         let tokenSTR = 'Bearer ' + token;
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set("Authorization", tokenSTR);
-        return (this.httpClient.post("http://localhost:8080/order", orderedProduct, { headers }));
+        return (this.httpClient.post(this.url + "/order", orderedProduct, { headers }));
     }
     getAllOrders(page) {
         let token = localStorage.getItem("token");
         let tokenSTR = 'Bearer ' + token;
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set("Authorization", tokenSTR);
-        return (this.httpClient.get(`http://localhost:8080/order/?page=${page}`, { headers }));
+        return (this.httpClient.get(this.url + `/order/?page=${page}`, { headers }));
     }
-    getAllOrdersByUserName(userName, page) {
+    getAllOrdersByUserId(userId, page) {
         let token = localStorage.getItem("token");
         let tokenSTR = 'Bearer ' + token;
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set("Authorization", tokenSTR);
-        return (this.httpClient.get(`http://localhost:8080/order/${userName}/?page=${page}`, { headers }));
+        return (this.httpClient.get(this.url + `/order/${userId}/?page=${page}`, { headers }));
+    }
+    getStatisticDataForAllTime() {
+        let token = localStorage.getItem("token");
+        let tokenSTR = 'Bearer ' + token;
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set("Authorization", tokenSTR);
+        return (this.httpClient.get(this.url + `/order/statistics`, { headers }));
+    }
+    getStatisticDataForPeriodOfTime(periodOfTime) {
+        let token = localStorage.getItem("token");
+        let tokenSTR = 'Bearer ' + token;
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set("Authorization", tokenSTR);
+        return (this.httpClient.get(this.url + `/order/statistics/${periodOfTime}`, { headers }));
     }
     findOrderByStatus(status, page) {
         let token = localStorage.getItem("token");
         let tokenSTR = 'Bearer ' + token;
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set("Authorization", tokenSTR);
-        return (this.httpClient.get(`http://localhost:8080/order/status/${status}/?page=${page}`, { headers }));
+        return (this.httpClient.get(this.url + `/order/status/${status}/?page=${page}`, { headers }));
     }
     findOrderByProductName(productName, page) {
         let token = localStorage.getItem("token");
         let tokenSTR = 'Bearer ' + token;
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set("Authorization", tokenSTR);
-        return (this.httpClient.get(`http://localhost:8080/order/productName/${productName}/?page=${page}`, { headers }));
+        return (this.httpClient.get(this.url + `/order/productName/${productName}/?page=${page}`, { headers }));
     }
     setStatus(status, id) {
         let token = localStorage.getItem("token");
         let tokenSTR = 'Bearer ' + token;
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set("Authorization", tokenSTR);
-        return (this.httpClient.put(`http://localhost:8080/order/status/${id}`, status, { headers }));
+        return (this.httpClient.put(this.url + `/order/status/${id}`, status, { headers }));
     }
     deleteOrder(orderId) {
         let token = localStorage.getItem("token");
         let tokenSTR = 'Bearer ' + token;
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set("Authorization", tokenSTR);
-        return (this.httpClient.delete(`http://localhost:8080/order/delete/${orderId}`, { headers }).subscribe());
+        return (this.httpClient.delete(this.url + `/order/delete/${orderId}`, { headers }).subscribe());
     }
 }
 OrderService.ɵfac = function OrderService_Factory(t) { return new (t || OrderService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };

@@ -36,7 +36,7 @@ export class ProductDetailsComponent implements OnInit {
     this.router.navigate(['admin/update', product.category, product.id], {state: {product}});
   }
 
-  public setPageNumber(): void { // при зміні типу пошуку відкриває першу сторінку
+  public setPageNumber(): void {
     this.page = 1;
   }
 
@@ -68,7 +68,7 @@ export class ProductDetailsComponent implements OnInit {
     })
   }
 
-  onPageChange(pageNumber: number) {//перевіряє тип пошуку щоб підтягнути правильну сторінку
+  onPageChange(pageNumber: number) {
     if (this.searchType == "all") {
       this.productService.getAllProducts(pageNumber - 1).subscribe(value => {
           this.products = value.productList;

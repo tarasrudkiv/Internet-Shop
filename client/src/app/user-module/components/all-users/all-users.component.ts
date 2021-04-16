@@ -25,7 +25,7 @@ export class AllUsersComponent implements OnInit {
     this.page = 1;
   }
 
-  private setPageNumber(): void { // при зміні типу пошуку відкриває першу сторінку
+  private setPageNumber(): void {
     this.page = 1;
   }
 
@@ -52,7 +52,7 @@ export class AllUsersComponent implements OnInit {
     })
   }
 
-  onPageChange(pageNumber: number) {//перевіряє тип пошуку щоб підтягнути правильну сторінку
+  onPageChange(pageNumber: number) {
     if (this.searchType == "all") {
       this.userService.getAllUsers(pageNumber - 1).subscribe(value => {
           this.users = value.usersList;

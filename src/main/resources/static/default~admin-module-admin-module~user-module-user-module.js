@@ -168,7 +168,7 @@ function UserCardComponent_div_0_div_11_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3, "ROLE_USER");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "option");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, "ROLE_ADMIN");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, "ROLE_MANAGER");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "button", 3);
@@ -238,7 +238,7 @@ function UserCardComponent_div_0_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r0.user.role);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r0.isCurrentUserMainAdmin());
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r0.isCurrentUserAdmin());
 } }
 class UserCardComponent {
     constructor(userService) {
@@ -246,18 +246,18 @@ class UserCardComponent {
         this.role = null;
         this.loading = null;
     }
-    isCurrentUserMainAdmin() {
-        return (localStorage.getItem("role") === "ROLE_MAIN_ADMIN");
+    isCurrentUserAdmin() {
+        return (localStorage.getItem("role") === "ROLE_ADMIN");
     }
-    isUserMainAdmin() {
-        return (this.user.role === "ROLE_MAIN_ADMIN");
+    isUserAdmin() {
+        return (this.user.role === "ROLE_ADMIN");
     }
     print() {
         console.log(this.role);
     }
     changeRole() {
         this.loading = 'LOADING...';
-        if (this.role === "ROLE_USER" || this.role === "ROLE_ADMIN") {
+        if (this.role === "ROLE_USER" || this.role === "ROLE_MANAGER") {
             this.userService.changeRole(this.role, this.user.id).subscribe(value => {
                 this.user.role = value.role;
                 this.loading = null;
@@ -266,7 +266,6 @@ class UserCardComponent {
         }
         else {
             this.loading = null;
-            alert("print correct role");
         }
     }
     ngOnInit() {
@@ -276,7 +275,7 @@ UserCardComponent.ɵfac = function UserCardComponent_Factory(t) { return new (t 
 UserCardComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: UserCardComponent, selectors: [["app-user-card"]], inputs: { user: "user" }, decls: 1, vars: 1, consts: [[3, "ngClass", 4, "ngIf"], [3, "ngClass"], ["name", "role", 3, "ngModel", "ngModelChange"], [3, "disabled", "ngClass", "click"]], template: function UserCardComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](0, UserCardComponent_div_0_Template, 12, 18, "div", 0);
     } if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx.isCurrentUserMainAdmin() || !ctx.isUserMainAdmin());
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx.isCurrentUserAdmin() || !ctx.isUserAdmin());
     } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["NgIf"], _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgClass"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["SelectControlValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["NgModel"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["NgSelectOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ɵangular_packages_forms_forms_x"]], styles: [".main[_ngcontent-%COMP%] {\r\n  width: 1220px;\r\n  margin-bottom: 5px;\r\n  height: 45px;\r\n  display: flex;\r\n  flex-direction: row;\r\n  border: none;\r\n  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.82);\r\n}\r\n\r\n.id[_ngcontent-%COMP%] {\r\n  margin-left: 10px;\r\n  width: 40px;\r\n  font-size: large;\r\n}\r\n\r\n.name[_ngcontent-%COMP%] {\r\n  margin-left: 10px;\r\n  width: 250px;\r\n  font-size: large;\r\n  text-transform: capitalize;\r\n}\r\n\r\n.email[_ngcontent-%COMP%] {\r\n  margin-left: 10px;\r\n  width: 250px;\r\n  font-size: large;\r\n  text-transform: capitalize;\r\n}\r\n\r\n.number[_ngcontent-%COMP%] {\r\n  margin-left: 10px;\r\n  width: 150px;\r\n  font-size: large;\r\n}\r\n\r\n.role[_ngcontent-%COMP%] {\r\n  margin-left: 10px;\r\n  width: 150px;\r\n  font-size: large;\r\n}\r\n\r\n.select[_ngcontent-%COMP%] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  width: 100px;\r\n  font-size: large;\r\n  text-transform: capitalize;\r\n}\r\n\r\n.button[_ngcontent-%COMP%] {\r\n  margin-left: 10px;\r\n  margin-right: 10px;\r\n  border-radius: 15px/15px;\r\n  border: none;\r\n  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.82);\r\n}\r\n\r\n.button[_ngcontent-%COMP%]:hover {\r\n  opacity: 50%;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdXNlci1tb2R1bGUvY29tcG9uZW50cy91c2VyLWNhcmQvdXNlci1jYXJkLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxhQUFhO0VBQ2Isa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixhQUFhO0VBQ2IsbUJBQW1CO0VBQ25CLFlBQVk7RUFDWiwyQ0FBMkM7QUFDN0M7O0FBRUE7RUFDRSxpQkFBaUI7RUFDakIsV0FBVztFQUNYLGdCQUFnQjtBQUNsQjs7QUFFQTtFQUNFLGlCQUFpQjtFQUNqQixZQUFZO0VBQ1osZ0JBQWdCO0VBQ2hCLDBCQUEwQjtBQUM1Qjs7QUFFQTtFQUNFLGlCQUFpQjtFQUNqQixZQUFZO0VBQ1osZ0JBQWdCO0VBQ2hCLDBCQUEwQjtBQUM1Qjs7QUFFQTtFQUNFLGlCQUFpQjtFQUNqQixZQUFZO0VBQ1osZ0JBQWdCO0FBQ2xCOztBQUVBO0VBQ0UsaUJBQWlCO0VBQ2pCLFlBQVk7RUFDWixnQkFBZ0I7QUFDbEI7O0FBRUE7RUFDRSxhQUFhO0VBQ2IsbUJBQW1CO0VBQ25CLFlBQVk7RUFDWixnQkFBZ0I7RUFDaEIsMEJBQTBCO0FBQzVCOztBQUdBO0VBQ0UsaUJBQWlCO0VBQ2pCLGtCQUFrQjtFQUNsQix3QkFBd0I7RUFDeEIsWUFBWTtFQUNaLDJDQUEyQztBQUM3Qzs7QUFFQTtFQUNFLFlBQVk7QUFDZCIsImZpbGUiOiJzcmMvYXBwL3VzZXItbW9kdWxlL2NvbXBvbmVudHMvdXNlci1jYXJkL3VzZXItY2FyZC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm1haW4ge1xyXG4gIHdpZHRoOiAxMjIwcHg7XHJcbiAgbWFyZ2luLWJvdHRvbTogNXB4O1xyXG4gIGhlaWdodDogNDVweDtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XHJcbiAgYm9yZGVyOiBub25lO1xyXG4gIGJveC1zaGFkb3c6IDJweCAycHggMnB4IHJnYmEoMCwgMCwgMCwgMC44Mik7XHJcbn1cclxuXHJcbi5pZCB7XHJcbiAgbWFyZ2luLWxlZnQ6IDEwcHg7XHJcbiAgd2lkdGg6IDQwcHg7XHJcbiAgZm9udC1zaXplOiBsYXJnZTtcclxufVxyXG5cclxuLm5hbWUge1xyXG4gIG1hcmdpbi1sZWZ0OiAxMHB4O1xyXG4gIHdpZHRoOiAyNTBweDtcclxuICBmb250LXNpemU6IGxhcmdlO1xyXG4gIHRleHQtdHJhbnNmb3JtOiBjYXBpdGFsaXplO1xyXG59XHJcblxyXG4uZW1haWwge1xyXG4gIG1hcmdpbi1sZWZ0OiAxMHB4O1xyXG4gIHdpZHRoOiAyNTBweDtcclxuICBmb250LXNpemU6IGxhcmdlO1xyXG4gIHRleHQtdHJhbnNmb3JtOiBjYXBpdGFsaXplO1xyXG59XHJcblxyXG4ubnVtYmVyIHtcclxuICBtYXJnaW4tbGVmdDogMTBweDtcclxuICB3aWR0aDogMTUwcHg7XHJcbiAgZm9udC1zaXplOiBsYXJnZTtcclxufVxyXG5cclxuLnJvbGUge1xyXG4gIG1hcmdpbi1sZWZ0OiAxMHB4O1xyXG4gIHdpZHRoOiAxNTBweDtcclxuICBmb250LXNpemU6IGxhcmdlO1xyXG59XHJcblxyXG4uc2VsZWN0IHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XHJcbiAgd2lkdGg6IDEwMHB4O1xyXG4gIGZvbnQtc2l6ZTogbGFyZ2U7XHJcbiAgdGV4dC10cmFuc2Zvcm06IGNhcGl0YWxpemU7XHJcbn1cclxuXHJcblxyXG4uYnV0dG9uIHtcclxuICBtYXJnaW4tbGVmdDogMTBweDtcclxuICBtYXJnaW4tcmlnaHQ6IDEwcHg7XHJcbiAgYm9yZGVyLXJhZGl1czogMTVweC8xNXB4O1xyXG4gIGJvcmRlcjogbm9uZTtcclxuICBib3gtc2hhZG93OiAycHggMnB4IDJweCByZ2JhKDAsIDAsIDAsIDAuODIpO1xyXG59XHJcblxyXG4uYnV0dG9uOmhvdmVyIHtcclxuICBvcGFjaXR5OiA1MCU7XHJcbn1cclxuXHJcblxyXG4iXX0= */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](UserCardComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],

@@ -39,7 +39,7 @@ public class UserService implements iUserService, UserDetailsService {
         User userFromDatabase = userDao.save(user);
         int userId = userFromDatabase.getId();
         if (userId == 1) {
-            userFromDatabase.setRole("ROLE_ADMIN");
+            userFromDatabase.setRole("ROLE_ADMIN"); //first registered user gets the admin role
         } else {
             userFromDatabase.setRole("ROLE_USER");
         }

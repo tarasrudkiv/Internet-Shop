@@ -65,7 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/order/userName").authenticated()
                 .antMatchers(HttpMethod.PUT, "/order/status/**").hasAnyRole("MANAGER", "ADMIN")
                 .antMatchers(HttpMethod.GET, "/order/find/**").hasAnyRole("MANAGER", "ADMIN")
-//                .antMatchers(HttpMethod.GET, "/order/statistics").hasAnyRole("MANAGER", "ADMIN")
+                .antMatchers(HttpMethod.GET, "/order/statistics").hasAnyRole("MANAGER", "ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/order/delete/**").authenticated()
                 .and()
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)

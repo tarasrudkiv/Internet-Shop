@@ -8,6 +8,7 @@ import {IProduct} from "../../../product-module/models/productModel";
   styleUrls: ['./order-card-for-admin.component.css']
 })
 export class OrderCardForAdminComponent implements OnInit {
+  url="http://localhost:8080";
   public host: string = "http://localhost:8080";
   @Input()
   order: IOrderedProduct;

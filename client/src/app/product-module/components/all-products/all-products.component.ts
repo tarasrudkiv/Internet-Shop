@@ -25,7 +25,7 @@ export class AllProductsComponent implements OnInit {
     this.page = 1;
   }
 
-  public setPageNumber(): void { // при зміні типу пошуку відкриває першу сторінку
+  public setPageNumber(): void {
     this.page = 1;
   }
 

@@ -1,7 +1,7 @@
 <div (click)="showDetails(product.productId)" [ngClass]="{card:true}">
   <div>
     <div [ngClass]="{pictureBlock:true}">
-      <img src="{{host+'/product/image/'+product.imageName}}" alt="" [ngClass]="{picture:true}">
+      <img src="{{host+'/product/image/'+ product.imageName}}" alt="" [ngClass]="{picture:true}">
     </div>
     <div>
       <p [ngClass]="{productName:true}"> {{product.productName}} </p>
